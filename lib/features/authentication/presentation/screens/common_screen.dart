@@ -1,3 +1,4 @@
+import 'package:deco_trade_hub/core/common/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:deco_trade_hub/core/utils/constants/app_sizer.dart';
@@ -6,14 +7,11 @@ import 'package:deco_trade_hub/features/authentication/controllers/common_contro
 
 import '../../../../core/common/widgets/custom_button.dart';
 import '../../../../core/utils/constants/app_colors.dart';
+import 'login_screen.dart';
 
-import '../../../../core/utils/constants/logo_path.dart';
-import '../../controllers/login_controller.dart';
-
-class CommonScreen extends GetView<LoginController> {
+class CommonScreen extends GetView<CommonController> {
   CommonScreen({super.key});
 
-  final CommonController commonController = CommonController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -25,6 +23,7 @@ class CommonScreen extends GetView<LoginController> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(height: 8.h,),
                 Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50.h),
@@ -37,7 +36,7 @@ class CommonScreen extends GetView<LoginController> {
                       children: [
                         Flexible(
                             flex: 1,
-                            child: Obx(() => commonController.isSelected.value == "Login" ?
+                            child: Obx(() => controller.isSelected.value == "Login" ?
                                 CustomButton(
                                     onPressed: (){},
                                     title: "Login",
@@ -45,7 +44,7 @@ class CommonScreen extends GetView<LoginController> {
                                 ) :
                                 CustomButton(
                                   onPressed: (){
-                                    commonController.isSelected.value = "Login";
+                                    controller.isSelected.value = "Login";
                                   },
                                   title: "Login",
                                   buttonTextColor: AppColors.textSecondary,
@@ -57,7 +56,7 @@ class CommonScreen extends GetView<LoginController> {
                         ),
                         Flexible(
                             flex: 1,
-                            child: Obx(() => commonController.isSelected.value == "Sign Up" ?
+                            child: Obx(() => controller.isSelected.value == "Sign Up" ?
                             CustomButton(
                                 onPressed: (){},
                                 title: "Sign Up",
@@ -65,7 +64,7 @@ class CommonScreen extends GetView<LoginController> {
                             ) :
                             CustomButton(
                               onPressed: (){
-                                commonController.isSelected.value = "Sign Up";
+                                controller.isSelected.value = "Sign Up";
                               },
                               title: "Sing Up",
                               buttonTextColor: AppColors.textSecondary,
@@ -79,7 +78,12 @@ class CommonScreen extends GetView<LoginController> {
                     ),
                   ),
                 ),
-
+                SizedBox(height: 44.h,),
+                Obx(() =>
+                  controller.isSelected.value == "Login" ?
+                  LoginScreen() :
+                  SizedBox()
+                )
               ],
             ),
           ),

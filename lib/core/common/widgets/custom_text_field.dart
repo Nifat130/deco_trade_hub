@@ -38,6 +38,9 @@ class CustomTextField extends StatelessWidget {
       height: 44.h,
       child: TextFormField(
         maxLines:maxLine ,
+        onTapOutside: (n){
+          FocusScope.of(context).unfocus();
+        },
         readOnly: readOnly,
         keyboardType: keyboardType, // Use optional keyboard type
         obscureText: obscureText,
@@ -60,7 +63,7 @@ class CustomTextField extends StatelessWidget {
             borderRadius: BorderRadius.circular(radius)
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: AppColors.borderColor, width: 0.5),
+            borderSide: const BorderSide(color: AppColors.primary, width: 0.5),
               borderRadius: BorderRadius.circular(radius)
           ),
           contentPadding: EdgeInsets.only(left: 12.w,right: 10.w,top: 12.h,bottom: 12.h),

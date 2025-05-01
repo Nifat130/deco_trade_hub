@@ -1,6 +1,7 @@
 
 import 'package:get/get.dart';
 
+import '../../features/authentication/controllers/common_controller.dart';
 import '../../features/authentication/controllers/login_controller.dart';
 import '../../features/authentication/controllers/sing_up_controller.dart';
 import '../../features/on_boarding/controller/onboarding_controller.dart';
@@ -11,6 +12,7 @@ class ControllerBinder extends Bindings {
 
     //Get.put(SplashController(), permanent: true);
     Get.put(OnboardingController(), permanent: true);
+    Get.put(CommonController(), permanent: true);
     Get.put(LoginController(), permanent: true);
     Get.put(SingUpController(), permanent: true);
     /*Get.lazyPut<SplashController>(
@@ -37,6 +39,7 @@ class ControllerBinder extends Bindings {
     //       () => SettingController(),
     //   fenix: true,
     // );
+
 
   }
 }
