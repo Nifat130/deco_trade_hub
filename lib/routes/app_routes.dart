@@ -16,6 +16,7 @@ class AppRoute {
   static String bottomNevScreen = "/bottomNevScreen";
 
 
+  /// Checking for role
 
 
   static List<GetPage> routes = [
