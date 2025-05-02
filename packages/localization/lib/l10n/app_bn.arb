@@ -1,0 +1,79 @@
+{
+  "@@locale": "bn",
+  "noValueSelected": "কোনো মান নির্বাচন করা হয়নি",
+  "@noValueSelected": {
+    "description": "যখন কোনো মান নির্বাচন করা হয়নি তখন প্রদর্শিত পাঠ্য"
+  },
+  "valueMustBeNumericLessThan": "মানটি সংখ্যা হতে হবে এবং {max} অক্ষরের কম হতে হবে",
+  "@valueMustBeNumericLessThan": {
+    "description": "যখন মানটি সংখ্যাত্মক নয় অথবা এটি সর্বোচ্চ অনুমোদিত মানের চেয়ে বড় হয়"
+  },
+  "valueMustBeNumericBetween": "মানটি সংখ্যা হতে হবে এবং {min} এবং {max} অক্ষরের মধ্যে থাকতে হবে",
+  "@valueMustBeNumericBetween": {
+    "description": "যখন মানটি সংখ্যাত্মক নয় অথবা এটি সর্বনিম্ন এবং সর্বোচ্চ অনুমোদিত মানের মধ্যে নেই"
+  },
+  "valueCannotBeEmpty": "মানটি খালি থাকতে পারে না",
+  "@valueCannotBeEmpty": {
+    "description": "যখন মানটি খালি থাকে তখন প্রদর্শিত পাঠ্য"
+  },
+  "valueMustBeNumeric": "মানটি সংখ্যা হতে হবে",
+  "@valueMustBeNumeric": {
+    "description": "যখন মানটি সংখ্যাত্মক নয় তখন প্রদর্শিত পাঠ্য"
+  },
+  "valueMustBeNumericWithLength": "মানটি সংখ্যা হতে হবে এবং এর দৈর্ঘ্য {length} অক্ষর হতে হবে",
+  "@valueMustBeNumericWithLength": {
+    "description": "যখন মানটি সংখ্যাত্মক নয় অথবা এর প্রয়োজনীয় দৈর্ঘ্য নেই"
+  },
+  "valueMustBeBetween": "মানটি {min} এবং {max} অক্ষরের মধ্যে থাকতে হবে",
+  "@valueMustBeBetween": {
+    "description": "যখন মানটি সর্বনিম্ন এবং সর্বোচ্চ অনুমোদিত মানের মধ্যে নেই"
+  },
+  "cancel": "বাতিল",
+  "@cancel": {
+    "description": "বাতিল বোতনে প্রদর্শিত পাঠ্য"
+  },
+  "ok": "ঠিক আছে",
+  "@ok": {
+    "description": "ঠিক আছে বোতনে প্রদর্শিত পাঠ্য"
+  },
+  "back": "পেছনে",
+  "@back": {
+    "description": "পেছনে বোতনে প্রদর্শিত পাঠ্য"
+  },
+  "submit": "জমা দিন",
+  "@submit": {
+    "description": "জমা দিন বোতনে প্রদর্শিত পাঠ্য"
+  },
+  "next": "পরবর্তী",
+  "@next": {
+    "description": "পরবর্তী বোতনে প্রদর্শিত পাঠ্য"
+  },
+  "invalidEmailAddress": "অবৈধ ইমেইল ঠিকানা",
+  "@invalidEmailAddress": {
+    "description": "যখন ইমেইল ঠিকানা অবৈধ হয় তখন প্রদর্শিত পাঠ্য"
+  },
+  "oopsAnErrorHasOccurred": "অপস, একটি গুরুতর ত্রুটি ঘটেছে, দয়া করে সহায়তার জন্য যোগাযোগ করুন!",
+  "@oopsAnErrorHasOccurred": {
+    "description": "যখন একটি ত্রুটি ঘটেছে তখন প্রদর্শিত পাঠ্য"
+  },
+  "connected": "সংযুক্ত",
+  "@connected": {
+    "description": "যখন অ্যাপটি ইন্টারনেটে সংযুক্ত থাকে"
+  },
+  "disconnected": "অসংযুক্ত",
+  "@disconnected": {
+    "description": "যখন অ্যাপটি ইন্টারনেট থেকে সংযোগ বিচ্ছিন্ন হয়"
+  },
+  "networkErrorHasOccurred": "একটি নেটওয়ার্ক ত্রুটি ঘটেছে",
+  "@networkErrorHasOccurred": {
+    "description": "যখন একটি নেটওয়ার্ক ত্রুটি ঘটে"
+  },
+  "requestCancelled": "অনুরোধ বাতিল করা হয়েছে",
+  "@requestCancelled": {
+    "description": "যখন একটি অনুরোধ বাতিল করা হয়"
+  },
+  "generalApiErrorMessage": "একটি ত্রুটি ঘটেছে",
+  "@generalApiErrorMessage": {
+    "description": "যখন একটি সাধারণ API ত্রুটি ঘটে"
+  }
+}

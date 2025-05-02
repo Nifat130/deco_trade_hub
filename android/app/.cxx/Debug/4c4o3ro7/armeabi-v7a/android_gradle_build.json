@@ -1,0 +1,28 @@
+{
+  "buildFiles": [
+    "/home/msi/fvm/versions/3.29.2/packages/flutter_tools/gradle/src/main/groovy/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/home/msi/Android/Sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/home/msi/Desktop/flutter_projects/deco-trade-hub-final/android/app/.cxx/Debug/4c4o3ro7/armeabi-v7a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/home/msi/Android/Sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/home/msi/Desktop/flutter_projects/deco-trade-hub-final/android/app/.cxx/Debug/4c4o3ro7/armeabi-v7a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {},
+  "toolchains": {
+    "toolchain": {
+      "cCompilerExecutable": "/home/msi/Android/Sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/bin/clang.lld",
+      "cppCompilerExecutable": "/home/msi/Android/Sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++.lld"
+    }
+  },
+  "cFileExtensions": [],
+  "cppFileExtensions": []
+}

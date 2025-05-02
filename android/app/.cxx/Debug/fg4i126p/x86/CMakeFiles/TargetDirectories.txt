@@ -1,0 +1,2 @@
+/home/msi/Desktop/Varsity/deco_trade_hub/android/app/.cxx/Debug/fg4i126p/x86/CMakeFiles/edit_cache.dir
+/home/msi/Desktop/Varsity/deco_trade_hub/android/app/.cxx/Debug/fg4i126p/x86/CMakeFiles/rebuild_cache.dir
