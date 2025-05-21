@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../routes/app_routes.dart';
-
-
-class ForgetPassController extends GetxController{
+class ForgetPassController extends GetxController {
   final TextEditingController newPasswordTEController = TextEditingController();
-  final TextEditingController confirmPasswordTEController = TextEditingController();
+  final TextEditingController confirmPasswordTEController =
+      TextEditingController();
   final TextEditingController phoneTEController = TextEditingController();
 
   final newPasswordVisible = false.obs;
   final confirmPasswordVisible = false.obs;
 
-
   void toggleNewPasswordVisibility() {
     newPasswordVisible.value = !newPasswordVisible.value;
   }
+
   void toggleConfirmPasswordVisibility() {
     confirmPasswordVisible.value = !confirmPasswordVisible.value;
   }
