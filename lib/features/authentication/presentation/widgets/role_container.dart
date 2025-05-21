@@ -18,6 +18,7 @@ Widget roleContainer(LoginController controller, String roleName, String iconPat
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
+          width: 90.w,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.sp),
               color: controller.selectedRole.value == roleName ? AppColors.primary : AppColors.white,
@@ -30,7 +31,7 @@ Widget roleContainer(LoginController controller, String roleName, String iconPat
                 ),
               ]
           ),
-          padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+          padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -41,8 +42,6 @@ Widget roleContainer(LoginController controller, String roleName, String iconPat
             ],
           ),
         ),
-        if(controller.selectedRole.value == roleName)
-        SizedBox(height: 16.h,)
       ]
     ),
   );
