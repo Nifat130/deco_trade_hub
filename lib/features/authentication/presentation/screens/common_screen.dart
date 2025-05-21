@@ -1,4 +1,5 @@
 import 'package:deco_trade_hub/core/common/widgets/custom_text.dart';
+import 'package:deco_trade_hub/features/authentication/presentation/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:deco_trade_hub/core/utils/constants/app_sizer.dart';
@@ -7,6 +8,8 @@ import 'package:deco_trade_hub/features/authentication/controllers/common_contro
 
 import '../../../../core/common/widgets/custom_button.dart';
 import '../../../../core/utils/constants/app_colors.dart';
+import '../../../../core/utils/constants/icon_path.dart';
+import '../widgets/role_container.dart';
 import 'login_screen.dart';
 
 class CommonScreen extends GetView<CommonController> {
@@ -79,10 +82,26 @@ class CommonScreen extends GetView<CommonController> {
                   ),
                 ),
                 SizedBox(height: 44.h,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Obx(() =>
+                        roleContainer(controller, "Importer", controller.selectedRole.value == "Importer" ? IconPath.importerIcon : IconPath.importerBWIcon)
+                    ),
+                    Obx(() =>
+                        roleContainer(controller, "Retailer", controller.selectedRole.value == "Retailer" ? IconPath.retailerIcon : IconPath.retailerBWIcon)
+                    ),
+                    Obx(() =>
+                        roleContainer(controller, "Employee", controller.selectedRole.value == "Employee" ? IconPath.employeeIcon : IconPath.employeeBWIcon)
+                    ),
+                  ],
+                ),
+                SizedBox(height: 24.h,),
                 Obx(() =>
                   controller.isSelected.value == "Login" ?
                   LoginScreen() :
-                  SizedBox()
+                  SignupScreen()
                 )
               ],
             ),

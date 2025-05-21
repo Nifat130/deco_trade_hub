@@ -37,7 +37,7 @@ class CustomTextField extends StatelessWidget {
     return SizedBox(
       height: 44.h,
       child: TextFormField(
-        maxLines:maxLine ,
+        maxLines: maxLine,
         onTapOutside: (n){
           FocusScope.of(context).unfocus();
         },

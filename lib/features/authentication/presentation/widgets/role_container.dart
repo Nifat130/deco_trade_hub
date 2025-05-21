@@ -1,5 +1,6 @@
 
 import 'package:deco_trade_hub/core/utils/constants/app_sizer.dart';
+import 'package:deco_trade_hub/features/authentication/controllers/common_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +9,7 @@ import '../../../../core/utils/constants/app_colors.dart';
 import '../../../../core/utils/constants/icon_path.dart';
 import '../../controllers/login_controller.dart';
 
-Widget roleContainer(LoginController controller, String roleName, String iconPath){
+Widget roleContainer(CommonController controller, String roleName, String iconPath){
   return GestureDetector(
     onTap: (){
       controller.selectedRole.value = roleName;
