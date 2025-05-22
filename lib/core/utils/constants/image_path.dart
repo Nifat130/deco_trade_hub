@@ -12,6 +12,7 @@ class ImagePath{
    static const  String washing='$_basePath/washing.png';
    static const String userProfile = "$_basePath/profile.png";
    static const String dummyBusinessProfile = "$_basePath/dummyBusinessProfile.png";
+   static const String dummyEmployeeProfile = "$_basePath/dummyEmployeeProfile.png";
    static const String acPicture = "$_basePath/ac.svg";
 
 }

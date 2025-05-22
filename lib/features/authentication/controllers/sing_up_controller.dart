@@ -56,4 +56,41 @@ class SingUpController extends GetxController{
     );
     establishedDate.value = DateFormat('dd-MMM-yyy').format(date!);
   }
+
+  /// Employee Information
+  final employeeAgeTEController = TextEditingController();
+  final employeeLocationTEController = TextEditingController();
+  final preferPositionTEController = TextEditingController();
+  final bioTEController = TextEditingController();
+  final birthTEController = TextEditingController();
+
+  var profilePicPath = ''.obs;
+  var nidPath = ''.obs;
+  var birthDate = 'Enter your birth date'.obs;
+  void pickProfile() async{
+    final picker = ImagePicker();
+    final image = await picker.pickImage(source: ImageSource.gallery);
+
+    if(image != null){
+      profilePicPath.value = image.path;
+    }
+  }
+
+  void pickNIDFront() async{
+    final picker = ImagePicker();
+    final image = await picker.pickImage(source: ImageSource.gallery);
+
+    if(image != null){
+      nidPath.value = image.path;
+    }
+  }
+
+  void pickBirthDate(BuildContext context) async{
+    final date = await showDatePicker(
+        context: context,
+        firstDate: DateTime(1970),
+        lastDate: DateTime.now()
+    );
+    birthDate.value = DateFormat('dd-MMM-yyy').format(date!);
+  }
 }

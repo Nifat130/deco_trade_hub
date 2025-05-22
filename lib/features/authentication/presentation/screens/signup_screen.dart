@@ -43,6 +43,8 @@ class SignupScreen extends GetView<SingUpController> {
           ),
           SizedBox(height: 44.h,),
           CustomButton(onPressed: (){
+            commonController.selectedRole.value == 'Employee' ?
+            Get.toNamed(AppRoute.employeeSignupInformationScreen):
             Get.toNamed(AppRoute.signupInformationScreen, arguments: commonController.selectedRole.value);
           }, title: "Sign Up"),
           SizedBox(height: 12.h,),
