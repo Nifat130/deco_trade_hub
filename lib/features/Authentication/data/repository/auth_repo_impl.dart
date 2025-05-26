@@ -1,5 +1,6 @@
 import 'package:deco_trade_hub/features/Authentication/data/data_source/auth_datasource.dart';
 import 'package:deco_trade_hub/features/Authentication/domain/repository/auth_repo.dart';
+import 'package:deco_trade_hub/features/store/model/store_model.dart';
 import 'package:deco_trade_hub/services/dependencies/dependency_injection.dart';
 import 'package:deco_trade_hub/services/global/enums.dart';
 import 'package:deco_trade_hub/services/global/failures.dart';
@@ -143,5 +144,21 @@ class AuthRepoImpl implements AuthRepo {
       key: StorageKeys.refreshToken.keyString,
       value: session.refreshToken ?? '',
     );
+  }
+
+  @override
+  Future<Either<Failure, StoreModel>> fetchStoreForUser(String userId) async {
+    try {
+      final response = await Supabase.instance.client.from('stores').select('id').eq('owner_id', userId).maybeSingle();
+
+      if (response == null || response.isEmpty) {
+        return left(Failure('No Store Found for The User'));
+      }
+
+      final store = StoreModel.fromJson(response);
+      return right(store);
+    } catch (e) {
+      return left(Failure(e.toString()));
+    }
   }
 }

@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:deco_trade_hub/features/Authentication/domain/repository/auth_repo.dart';
+import 'package:deco_trade_hub/features/store/model/store_model.dart';
+import 'package:equatable/equatable.dart';
 import 'package:shared/shared.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -18,9 +19,18 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       final response = await _authRepo.checkSession();
 
-      response.fold(
-        (l) => emit(UnAuthenticated(l.message)),
-        (user) => emit(Authenticated(user)),
+      await response.fold(
+        (l) async => emit(UnAuthenticated(l.message)),
+        (user) async {
+          final storeResult = await _authRepo.fetchStoreForUser(user.id); // Add this method in your AuthRepo
+          storeResult.fold(
+            /// User is authenticated but has no store
+            (l) => emit(AuthenticatedWithoutStore(user)),
+
+            /// User is authenticated and has a store
+            (store) => emit(AuthenticatedWithStore(user, store)),
+          );
+        },
       );
     } catch (e) {
       logE(e.toString());

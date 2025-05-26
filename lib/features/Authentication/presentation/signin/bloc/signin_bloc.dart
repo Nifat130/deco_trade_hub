@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:deco_trade_hub/features/Authentication/domain/repository/auth_repo.dart';
 import 'package:deco_trade_hub/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
+import 'package:equatable/equatable.dart';
 
 part 'signin_event.dart';
 part 'signin_state.dart';
@@ -42,7 +42,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
             );
           },
           (user) {
-            _authCubit.emit(Authenticated(user));
+            _authCubit.checkSession();
             emit(state.copyWith(status: SignInStatus.success));
           },
         );

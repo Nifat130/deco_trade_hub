@@ -104,13 +104,6 @@ class StoreRepositoryImpl implements StoreRepository {
     // TODO: implement updateStoreDetails
     throw UnimplementedError();
   }
-
-  @override
-  Future<bool> hasStore({required String userId}) async {
-    final response = await supabaseClient.from('stores').select('id').eq('owner_id', userId).maybeSingle();
-
-    return response != null;
-  }
 }
 
 //  @override

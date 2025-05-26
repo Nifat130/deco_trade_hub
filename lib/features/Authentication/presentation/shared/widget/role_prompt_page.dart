@@ -41,6 +41,11 @@ class RolePromptView extends StatelessWidget {
         if (state is UnAuthenticated) {
           context.showErrorSnackBar(text: state.message);
         }
+        if (state is AuthenticatedWithStore) {
+          context.showSuccessSnackBar(text: 'Welcome back ${state.user.email}');
+        } else if (state is AuthenticatedWithoutStore) {
+          Get.toNamed(AppRoutes.storeForm, arguments: {'storeType': state.user.userMetadata?['role']});
+        }
       },
       builder: (context, state) {
         return switch (state) {
@@ -55,7 +60,7 @@ class RolePromptView extends StatelessWidget {
                 ),
               ),
             ),
-          Authenticated() => (state.user.userMetadata != null && state.user.userMetadata!['role'] != null)
+          AuthenticatedWithStore() => (state.user.userMetadata != null && state.user.userMetadata!['role'] != null)
               ? (state.user.userMetadata!['role'] == UserRole.isRetailer.value)
                   ? const RetailerRoute()
                   : const WholesalerRoute()
@@ -159,6 +164,16 @@ class RolePromptView extends StatelessWidget {
                       ),
                     ),
                   ],
+                ),
+              ),
+            ),
+          AuthenticatedWithoutStore() => BaseScreenWidget(
+              loading: true,
+              body: Center(
+                child: SvgPicture.asset(
+                  'assets/svg/splash_deco_trade_hub.svg',
+                  width: 600,
+                  height: 600,
                 ),
               ),
             ),

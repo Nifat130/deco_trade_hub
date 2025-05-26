@@ -6,6 +6,7 @@ import 'package:deco_trade_hub/features/store/presentation/wholesaler/view/store
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:shared/shared.dart';
 
 import '../../../../../core/validators/form_validator.dart';
@@ -13,19 +14,23 @@ import '../../../../../services/dependencies/src/dependency_injection.dart';
 import '../../shared/bloc/store_form/store_form_bloc.dart';
 
 class StoreSignUpForm extends StatelessWidget {
-  const StoreSignUpForm({super.key});
+  final String storeType;
+
+  const StoreSignUpForm({super.key, required this.storeType});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => ServiceProvider.get<StoreFormBloc>(),
-      child: const StoreSignUpFormView(),
+      child: StoreSignUpFormView(storeType: storeType),
     );
   }
 }
 
 class StoreSignUpFormView extends StatefulWidget {
-  const StoreSignUpFormView({super.key});
+  final String storeType;
+
+  const StoreSignUpFormView({super.key, required this.storeType});
 
   @override
   _StoreSignUpFormViewState createState() => _StoreSignUpFormViewState();
@@ -34,7 +39,6 @@ class StoreSignUpFormView extends StatefulWidget {
 class _StoreSignUpFormViewState extends State<StoreSignUpFormView> {
   late final GlobalKey<FormState> _formKey;
   late final StoreFormBloc _bloc;
-  String _storeType = 'Wholesaler';
 
   @override
   void initState() {
@@ -53,6 +57,7 @@ class _StoreSignUpFormViewState extends State<StoreSignUpFormView> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final _storeType = widget.storeType;
 
     Widget buildTitle(String title) {
       return Text(
@@ -70,8 +75,7 @@ class _StoreSignUpFormViewState extends State<StoreSignUpFormView> {
         logI("Listener fired with status: ${state.status}");
 
         if (state.status == StoreFormStatus.success) {
-          showCustomSnackBar(
-              context: context, content: Text('Store sign-up successful!'));
+          showCustomSnackBar(context: context, content: Text('Store sign-up successful!'));
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -91,7 +95,10 @@ class _StoreSignUpFormViewState extends State<StoreSignUpFormView> {
         return Scaffold(
           // loading: (state.status == StoreFormStatus.submitting),
           appBar: AppBar(
-            title: Text('Wholesaler Store Sign up'),
+            title: Text(
+              '${_storeType.capitalizeFirst} Store Sign Up',
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+            ),
           ),
           // applySafeArea: true,
           body: Padding(
@@ -107,21 +114,16 @@ class _StoreSignUpFormViewState extends State<StoreSignUpFormView> {
                     AppTextField.roundedBorder(
                       hintText: 'Enter your store name',
                       onChanged: (value) => _bloc.add(StoreNameChanged(value)),
-                      validator: (value) =>
-                          Validator.notEmpty(value, 'store name'),
+                      validator: (value) => Validator.notEmpty(value, 'store name'),
                     ),
                     const Gap(12),
                     buildTitle('Store Logo'),
                     const Gap(6),
-                    StoreAvatarUploader(
-                        onImageUploaded: (url) =>
-                            _bloc.add(StoreLogoUrlChanged(url))),
+                    StoreAvatarUploader(onImageUploaded: (url) => _bloc.add(StoreLogoUrlChanged(url))),
                     const Gap(16),
                     buildTitle('Store Banner'),
                     const Gap(6),
-                    StoreCoverUploader(
-                        onImageUploaded: (url) =>
-                            _bloc.add(StoreBannerUrlChanged(url))),
+                    StoreCoverUploader(onImageUploaded: (url) => _bloc.add(StoreBannerUrlChanged(url))),
                     const Gap(16),
                     buildTitle('Owner Name'),
                     const Gap(6),
@@ -137,8 +139,7 @@ class _StoreSignUpFormViewState extends State<StoreSignUpFormView> {
                       hintText: 'Enter store contact number',
                       textInputType: TextInputType.phone,
                       onChanged: (value) => _bloc.add(ContactNumChanged(value)),
-                      validator: (value) =>
-                          Validator.validatePhoneNumber(value),
+                      validator: (value) => Validator.validatePhoneNumber(value),
                     ),
                     const Gap(16),
                     buildTitle('Email'),
@@ -163,16 +164,14 @@ class _StoreSignUpFormViewState extends State<StoreSignUpFormView> {
                     AppTextField.roundedBorder(
                       readOnly: true,
                       hintText: _storeType,
-                      onChanged: (value) =>
-                          _bloc.add(StoreTypeChanged(_storeType)),
+                      onChanged: (value) => _bloc.add(StoreTypeChanged(_storeType)),
                     ),
                     const Gap(16),
                     buildTitle('Address Line 1'),
                     const Gap(6),
                     AppTextField.roundedBorder(
                       hintText: 'Enter your address',
-                      onChanged: (value) =>
-                          _bloc.add(AddressLine1Changed(value)),
+                      onChanged: (value) => _bloc.add(AddressLine1Changed(value)),
                       validator: (e) => Validator.notEmpty(e, 'address'),
                     ),
                     const Gap(16),
@@ -180,8 +179,7 @@ class _StoreSignUpFormViewState extends State<StoreSignUpFormView> {
                     const Gap(6),
                     AppTextField.roundedBorder(
                       hintText: 'Enter your address (optional)',
-                      onChanged: (value) =>
-                          _bloc.add(AddressLine2Changed(value)),
+                      onChanged: (value) => _bloc.add(AddressLine2Changed(value)),
                     ),
                     const Gap(16),
                     buildTitle('Postal Code'),
@@ -190,8 +188,7 @@ class _StoreSignUpFormViewState extends State<StoreSignUpFormView> {
                       hintText: 'Enter your postal code',
                       textInputType: TextInputType.number,
                       onChanged: (value) => _bloc.add(PostalCodeChanged(value)),
-                      validator: (value) =>
-                          Validator.notEmpty(value, 'postal code'),
+                      validator: (value) => Validator.notEmpty(value, 'postal code'),
                     ),
                     const Gap(16),
                     buildTitle('Social Media Links'),
@@ -207,8 +204,7 @@ class _StoreSignUpFormViewState extends State<StoreSignUpFormView> {
                     AppTextField.roundedBorder(
                       hintText: 'Enter your TIN card number',
                       onChanged: (value) => _bloc.add(TinChanged(value)),
-                      validator: (value) =>
-                          Validator.notEmpty(value, 'TIN card number'),
+                      validator: (value) => Validator.notEmpty(value, 'TIN card number'),
                     ),
                     const Gap(16),
                     buildTitle('NID'),
@@ -216,19 +212,16 @@ class _StoreSignUpFormViewState extends State<StoreSignUpFormView> {
                     AppTextField.roundedBorder(
                       hintText: 'Enter your NID number',
                       onChanged: (value) => _bloc.add(NidChanged(value)),
-                      validator: (value) =>
-                          Validator.notEmpty(value, 'NID number'),
+                      validator: (value) => Validator.notEmpty(value, 'NID number'),
                     ),
                     const Gap(24),
-                    if (state.status == StoreFormStatus.submitting)
-                      BaseLoaderWidget(),
+                    if (state.status == StoreFormStatus.submitting) BaseLoaderWidget(),
                     SizedBox(
                       width: context.screenWidth,
                       child: FilledButton.tonal(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                            _bloc
-                                .add(StoreFormSubmitted(storeType: _storeType));
+                            _bloc.add(StoreFormSubmitted(storeType: _storeType));
                           }
                         },
                         child: buildTitle('Submit'),

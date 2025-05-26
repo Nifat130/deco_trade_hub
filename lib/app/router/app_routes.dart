@@ -6,4 +6,6 @@ class AppRoutes {
   static const rolePrompt = '/role_prompt';
   static const signUp = '/role_prompt/signup';
   static const signIn = '/role_prompt/signin';
+
+  static const storeForm = '/store_form';
 }

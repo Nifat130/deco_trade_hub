@@ -7,7 +7,7 @@ class BaseBlurWidget extends StatelessWidget {
   const BaseBlurWidget({
     required this.child,
     super.key,
-    this.applyBlur = true,
+    this.applyBlur = false,
     this.blurIntensity = 5.0,
   });
 
@@ -21,7 +21,7 @@ class BaseBlurWidget extends StatelessWidget {
   final double blurIntensity;
 
   @override
-  Widget build(BuildContext context) => applyBlur
+  Widget build(BuildContext context) => false
       ? BackdropFilter(
           filter: ImageFilter.blur(
             sigmaX: blurIntensity,

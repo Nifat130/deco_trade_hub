@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 
 import '../../../../payment/presentation/stripe/view/stripe_payment_view.dart';
 import '../../../../signout_button.dart';
-import '../../../../store/presentation/wholesaler/view/store_sign_up_form.dart';
 
 class WholesalerHomePage extends StatelessWidget {
   const WholesalerHomePage({super.key});
@@ -50,11 +49,6 @@ class _WholesalerHomeViewState extends State<WholesalerHomeView> {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => PaymentPage2()));
                 },
                 child: Text('Go to Stripe payment page')),
-            FilledButton(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => StoreSignUpForm()));
-                },
-                child: Text('Go to Sign Up Form')),
             const SizedBox(height: 20),
             FilledButton.tonalIcon(
                 onPressed: () {

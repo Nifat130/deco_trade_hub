@@ -14,13 +14,23 @@ final class AuthLoading extends AuthState {
   List<Object> get props => [];
 }
 
-final class Authenticated extends AuthState {
-  const Authenticated(this.user);
+final class AuthenticatedWithoutStore extends AuthState {
+  const AuthenticatedWithoutStore(this.user);
 
   final User user;
 
   @override
   List<Object> get props => [user];
+}
+
+final class AuthenticatedWithStore extends AuthState {
+  const AuthenticatedWithStore(this.user, this.store);
+
+  final User user;
+  final StoreModel store;
+
+  @override
+  List<Object> get props => [user, store];
 }
 
 final class UnAuthenticated extends AuthState {

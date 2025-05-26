@@ -1,3 +1,4 @@
+import 'package:app_ui/app_ui.dart';
 import 'package:deco_trade_hub/app/router/app_routes.dart';
 import 'package:deco_trade_hub/features/Authentication/data/data_source/auth_datasource_impl.dart';
 import 'package:deco_trade_hub/features/Authentication/data/repository/auth_repo_impl.dart';
@@ -113,7 +114,7 @@ class NoAccountText extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            Get.toNamed(AppRoutes.rolePrompt);
+            Get.toNamed(AppRoutes.signUp);
           },
           child: const Text(
             'Sign Up',
@@ -194,36 +195,12 @@ class SignInForm extends StatelessWidget {
           const SizedBox(height: 8),
           BlocListener<SignInBloc, SignInState>(
             listener: (context, state) {
-              if (state.status == SignInStatus.submitting) {
-                ScaffoldMessenger.of(context)
-                  ..hideCurrentSnackBar()
-                  ..showSnackBar(
-                    const SnackBar(
-                      content: Text('Signing in...'),
-                      duration: Duration(minutes: 1),
-                    ),
-                  );
-              }
+              if (state.status == SignInStatus.submitting) {}
               if (state.status == SignInStatus.success) {
-                ScaffoldMessenger.of(context)
-                  ..hideCurrentSnackBar()
-                  ..showSnackBar(
-                    const SnackBar(
-                      content: Text('Sign in success'),
-                      duration: Duration(seconds: 2),
-                    ),
-                  );
-                Get.offAllNamed(AppRoutes.rolePrompt);
+                Get.toNamed(AppRoutes.rolePrompt);
               }
               if (state.status == SignInStatus.failure) {
-                ScaffoldMessenger.of(context)
-                  ..hideCurrentSnackBar()
-                  ..showSnackBar(
-                    SnackBar(
-                      content: Text(state.errorMessage),
-                      duration: const Duration(seconds: 2),
-                    ),
-                  );
+                context.showCustomSnackBar(text: state.errorMessage);
               }
             },
             child: ElevatedButton(

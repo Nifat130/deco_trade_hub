@@ -52,7 +52,7 @@ dependencies:
   smooth_page_indicator: ^1.2.0+3
   shared_preferences: ^2.3.5
   fpdart: ^1.1.1
-  flutter_svg: ^2.0.17
+  flutter_svg: 2.1.0
   persistent_bottom_nav_bar: ^6.2.1
   dotted_border: ^2.1.0
   freezed_annotation: ^2.4.1

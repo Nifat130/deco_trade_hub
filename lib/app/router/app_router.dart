@@ -4,6 +4,7 @@ import 'package:deco_trade_hub/features/Authentication/presentation/shared/widge
 import 'package:deco_trade_hub/features/Authentication/presentation/signin/view/signin_view.dart';
 import 'package:deco_trade_hub/features/Authentication/presentation/signup/view/signup_view.dart';
 import 'package:deco_trade_hub/features/onboarding/presentation/view/onboarding_view.dart';
+import 'package:deco_trade_hub/features/store/presentation/shared/pages/store_sign_up_page.dart';
 import 'package:get/get.dart';
 
 final List<GetPage> appRoutes = [
@@ -14,6 +15,11 @@ final List<GetPage> appRoutes = [
   GetPage(
     name: AppRoutes.onboarding,
     page: () => const OnBoardingView(),
+  ),
+
+  GetPage(
+    name: AppRoutes.storeForm,
+    page: () => StoreSignUpForm(storeType: Get.arguments['storeType'] as String),
   ),
   // GetPage(
   //   name: AppRoutes.home,
