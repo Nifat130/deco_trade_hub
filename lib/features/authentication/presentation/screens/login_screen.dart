@@ -3,9 +3,8 @@ import 'package:deco_trade_hub/core/common/widgets/custom_text.dart';
 import 'package:deco_trade_hub/core/common/widgets/custom_text_field.dart';
 import 'package:deco_trade_hub/core/utils/constants/app_colors.dart';
 import 'package:deco_trade_hub/core/utils/constants/app_sizer.dart';
-import 'package:deco_trade_hub/core/utils/constants/icon_path.dart';
 import 'package:deco_trade_hub/features/authentication/controllers/common_controller.dart';
-import 'package:deco_trade_hub/features/authentication/presentation/widgets/role_container.dart';
+import 'package:deco_trade_hub/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -36,7 +35,12 @@ class LoginScreen extends GetView<LoginController> {
             prefixIcon: Icon(Icons.lock_outline),
           ),
           SizedBox(height: 12.h,),
-          CustomText(text: "Forgot password?", fontSize: 12.sp, fontWeight: FontWeight.w500,),
+          GestureDetector(
+            onTap: (){
+              Get.toNamed(AppRoute.forgetPasswordScreen);
+            },
+            child: CustomText(text: "Forgot password?", fontSize: 12.sp, fontWeight: FontWeight.w500,),
+          ),
           SizedBox(height: 44.h,),
           CustomButton(onPressed: (){}, title: "Sign In"),
           SizedBox(height: 12.h,),
