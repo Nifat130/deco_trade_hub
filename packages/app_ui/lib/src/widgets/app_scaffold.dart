@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 /// {@template custom_scaffold}
-/// App scaffold that is used as a wrapper for the pages.
+/// App scaffold that is used as a wrapper for the presentation.
 /// {@endtemplate}
 class AppScaffold extends StatelessWidget {
   /// {@macro app_scaffold}

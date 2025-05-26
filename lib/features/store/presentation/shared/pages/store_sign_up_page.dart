@@ -2,7 +2,6 @@ import 'package:app_ui/app_ui.dart';
 import 'package:deco_trade_hub/features/store/model/store_model.dart';
 import 'package:deco_trade_hub/features/store/presentation/shared/widget/store_avatar_uploader.dart';
 import 'package:deco_trade_hub/features/store/presentation/shared/widget/store_cover_uploader.dart';
-import 'package:deco_trade_hub/features/store/presentation/wholesaler/view/store_details_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -76,12 +75,6 @@ class _StoreSignUpFormViewState extends State<StoreSignUpFormView> {
 
         if (state.status == StoreFormStatus.success) {
           showCustomSnackBar(context: context, content: Text('Store sign-up successful!'));
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => StorePage(store: dummyStore),
-            ),
-          );
         } else if (state.status == StoreFormStatus.error) {
           showCustomSnackBar(
             context: context,
@@ -229,16 +222,7 @@ class _StoreSignUpFormViewState extends State<StoreSignUpFormView> {
                     ),
                     const Gap(32),
                     FilledButton.tonal(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => StorePage(
-                              store: dummyStore,
-                            ),
-                          ),
-                        );
-                      },
+                      onPressed: () {},
                       child: buildTitle('Goto StoreDetails Page'),
                     ),
                   ],

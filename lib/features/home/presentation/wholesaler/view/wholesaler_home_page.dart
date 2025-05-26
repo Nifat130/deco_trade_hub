@@ -3,6 +3,7 @@ import 'package:deco_trade_hub/ui/widgets/global/custom_appbar.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../signout_button.dart';
+import '../../../../whole_saler_product/presentation/widgets/category_selector_widget.dart';
 
 class WholesalerHomePage extends StatelessWidget {
   const WholesalerHomePage({super.key});
@@ -55,6 +56,8 @@ class _WholesalerHomeViewState extends State<WholesalerHomeView> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
+            CategorySelectorWidget(),
+            const SizedBox(height: 20),
             HomeStatsCard(
               title: 'Total Orders',
               value: '20',

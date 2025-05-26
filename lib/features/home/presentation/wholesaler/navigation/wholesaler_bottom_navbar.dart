@@ -13,6 +13,9 @@ class WholesalerRoute extends StatelessWidget {
       context,
       screens: const [
         WholesalerHomePage(),
+        const Placeholder(),
+        const Placeholder(),
+        const Placeholder(),
         Placeholder(),
       ],
       items: [
@@ -23,13 +26,33 @@ class WholesalerRoute extends StatelessWidget {
           inactiveColorPrimary: Colors.grey,
         ),
         PersistentBottomNavBarItem(
+          icon: const Icon(Icons.history),
+          title: 'Orders',
+          activeColorPrimary: context.theme.primaryColor,
+          inactiveColorPrimary: Colors.grey,
+        ),
+        PersistentBottomNavBarItem(
+          icon: const Icon(Icons.add_business),
+          title: 'Add Product',
+          activeColorPrimary: context.theme.primaryColor,
+          inactiveColorPrimary: Colors.grey,
+        ),
+        PersistentBottomNavBarItem(
+          icon: const Icon(Icons.settings),
+          title: 'Admin',
+          activeColorPrimary: context.theme.primaryColor,
+          inactiveColorPrimary: Colors.grey,
+        ),
+        PersistentBottomNavBarItem(
           icon: const Icon(Icons.person),
           title: 'Profile',
           activeColorPrimary: context.theme.primaryColor,
           inactiveColorPrimary: Colors.grey,
         ),
       ],
-      controller: PersistentTabController(),
+      controller: PersistentTabController(
+          // initialIndex: 0,
+          ),
     );
   }
 }
