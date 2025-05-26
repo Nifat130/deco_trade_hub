@@ -82,8 +82,7 @@ class StoreRepositoryImpl implements StoreRepository {
   }
 
   @override
-  Future<Either<Failure, StoreModel>> getStoreDetailsById(
-      {required String storeId}) {
+  Future<Either<Failure, StoreModel>> getStoreDetailsById({required String storeId}) {
     // TODO: implement getStoreDetailsById
     throw UnimplementedError();
   }
@@ -104,6 +103,13 @@ class StoreRepositoryImpl implements StoreRepository {
       required String storeBannerUrl}) {
     // TODO: implement updateStoreDetails
     throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> hasStore({required String userId}) async {
+    final response = await supabaseClient.from('stores').select('id').eq('owner_id', userId).maybeSingle();
+
+    return response != null;
   }
 }
 

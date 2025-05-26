@@ -15,10 +15,10 @@ final List<GetPage> appRoutes = [
     name: AppRoutes.onboarding,
     page: () => const OnBoardingView(),
   ),
-  GetPage(
-    name: AppRoutes.home,
-    page: () => const HomeScreen(),
-  ),
+  // GetPage(
+  //   name: AppRoutes.home,
+  //   page: () => const HomeScreen(),
+  // ),
   GetPage(
     name: AppRoutes.error,
     page: () => const ErrorScreen(),

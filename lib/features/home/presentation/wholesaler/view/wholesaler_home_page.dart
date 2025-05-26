@@ -1,11 +1,11 @@
 import 'package:app_ui/app_ui.dart';
-import 'package:deco_trade_hub/app/screens/home_screen/src/ui/home_screen.dart';
 import 'package:deco_trade_hub/features/home/presentation/wholesaler/view/payment_page.dart';
 import 'package:deco_trade_hub/features/profile/view/retailer/controller/retailer_profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../payment/presentation/stripe/view/stripe_payment_view.dart';
+import '../../../../signout_button.dart';
 import '../../../../store/presentation/wholesaler/view/store_sign_up_form.dart';
 
 class WholesalerHomePage extends StatelessWidget {
@@ -29,7 +29,7 @@ class _WholesalerHomeViewState extends State<WholesalerHomeView> {
 
   @override
   void initState() {
-    name = Get.find<RetailerProfileController>().getName() ?? '';
+    name = Get.find<RetailerProfileController>().getName();
     print(name);
     super.initState();
   }
@@ -47,21 +47,18 @@ class _WholesalerHomeViewState extends State<WholesalerHomeView> {
             Text('Hello $name'),
             FilledButton(
                 onPressed: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => PaymentPage2()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => PaymentPage2()));
                 },
                 child: Text('Go to Stripe payment page')),
             FilledButton(
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => StoreSignUpForm()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => StoreSignUpForm()));
                 },
                 child: Text('Go to Sign Up Form')),
             const SizedBox(height: 20),
             FilledButton.tonalIcon(
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => StripePaymentView()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => StripePaymentView()));
                 },
                 icon: Icon(Icons.payment),
                 label: Text('Stripe Payment view')),

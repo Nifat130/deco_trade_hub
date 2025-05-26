@@ -48,4 +48,8 @@ abstract interface class StoreRepository {
   Future<Either<Failure, String>> deleteStore({
     required String storeId,
   });
+
+  Future<bool> hasStore({
+    required String userId,
+  });
 }

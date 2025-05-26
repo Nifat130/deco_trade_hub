@@ -1,12 +1,13 @@
 import 'package:app_ui/app_ui.dart';
-import 'package:flutter/material.dart';
-import 'package:deco_trade_hub/app/screens/home_screen/src/ui/home_screen.dart';
 import 'package:deco_trade_hub/services/dependencies/dependency_injection.dart';
 import 'package:deco_trade_hub/ui/widgets/global/language_dropdown.dart';
 import 'package:deco_trade_hub/ui/widgets/global/theme_switch.dart';
+import 'package:flutter/material.dart';
 import 'package:localization/localization.dart';
 import 'package:shared/shared.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
+import '../../../../signout_button.dart';
 
 class RetailerHomePage extends StatelessWidget {
   const RetailerHomePage({super.key});
@@ -45,8 +46,7 @@ class RetailerHomeView extends StatelessWidget {
                 final restClient = manualSl.get<RestClient>();
 
                 try {
-                  final response =
-                      await restClient.get('profiles', queryParams: {
+                  final response = await restClient.get('profiles', queryParams: {
                     'id': 'eq.${Supabase.instance.client.auth.currentUser?.id}',
                   });
                   logE('Get response: $response');
@@ -57,8 +57,7 @@ class RetailerHomeView extends StatelessWidget {
                       'username': 'msiprime',
                     },
                     queryParams: {
-                      'id':
-                          'eq.${Supabase.instance.client.auth.currentUser?.id}',
+                      'id': 'eq.${Supabase.instance.client.auth.currentUser?.id}',
                     },
                   );
                   logE('Insert response: $response2');
