@@ -201,9 +201,7 @@ class _MaterialScaffold extends StatelessWidget {
       appBar: appBar,
       drawer: drawer,
       bottomSheet: bottomSheet,
-    )
-        .withPopScope(onPopInvokedWithResult, canPop: canPop)
-        .withAdaptiveSystemTheme(context);
+    ).withPopScope(onPopInvokedWithResult, canPop: canPop).withAdaptiveSystemTheme(context);
   }
 }
 
