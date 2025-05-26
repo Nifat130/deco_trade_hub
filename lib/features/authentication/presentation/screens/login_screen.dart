@@ -42,7 +42,12 @@ class LoginScreen extends GetView<LoginController> {
             child: CustomText(text: "Forgot password?", fontSize: 12.sp, fontWeight: FontWeight.w500,),
           ),
           SizedBox(height: 44.h,),
-          CustomButton(onPressed: (){}, title: "Sign In"),
+          CustomButton(
+              onPressed: (){
+                Get.toNamed(AppRoute.bottomNevScreen);
+              },
+              title: "Sign In"
+          ),
           SizedBox(height: 12.h,),
           CustomText(text: "By joining you agree to ours terms ot Service and Privacy Policy", textAlign: TextAlign.center, fontWeight: FontWeight.w400, fontSize: 14.sp, color: AppColors.textSecondary,),
         ],

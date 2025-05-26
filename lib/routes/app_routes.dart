@@ -1,5 +1,7 @@
 
 
+import 'package:deco_trade_hub/features/home/presentation/screens/home_screen.dart';
+import 'package:deco_trade_hub/features/notifiaction/presentation/screens/notification_screen.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:deco_trade_hub/features/authentication/presentation/screens/common_screen.dart';
@@ -22,6 +24,8 @@ class AppRoute {
   static String signupInformationScreen = "/signupInformationScreen";
   static String employeeSignupInformationScreen = "/employeeSignupInformationScreen";
   static String bottomNevScreen = "/bottomNevScreen";
+  static String homeScreen = "/homeScreen";
+  static String notificationScreen = "/notificationScreen";
 
 
   /// Checking for role
@@ -47,11 +51,13 @@ class AppRoute {
       transitionDuration: const Duration(milliseconds: 400),
     ),
     // GetPage(name: init, page: () => const SplashScreen()),
-    GetPage(name: bottomNevScreen, page:() => const BottomNevScreen()),
+    GetPage(name: bottomNevScreen, page:() => BottomNevScreen()),
     GetPage(name: signupInformationScreen, page:() => const SignupInformationScreen()),
     GetPage(name: employeeSignupInformationScreen, page:() => const EmployeeSignupInformationScreen()),
     GetPage(name: forgetPasswordScreen, page:() => ForgotPasswordScreen()),
     GetPage(name: passwordResetScreen, page:() => PasswordResetScreen()),
+    GetPage(name: homeScreen, page:() => HomeScreen()),
+    GetPage(name: notificationScreen, page:() => NotificationScreen()),
     // GetPage(name: roleSelectionScreen, page:() => const RoleSelectionScreen()),
     // GetPage(name: forgetPassword, page:() => const ForgetPassword()),
     // GetPage(name: otpVerificationScreen, page:() => const OtpVerificationScreen()),
