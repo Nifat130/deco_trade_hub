@@ -26,14 +26,16 @@ Future<void> bootstrap(Environment env) async {
     DeviceOrientation.portraitDown,
   ]);
 
-  /// GetX dependency injection
-  AppBindings().dependencies();
-
   await AppSecrets.load();
   await Supabase.initialize(
     url: AppSecrets.supabaseUrl,
     anonKey: AppSecrets.supabaseAnonKey,
   );
+
+  /// GetX dependency injection
+
+  AppBindings().dependencies();
+
   Stripe.publishableKey = AppSecrets.stripePublishableKey;
   Stripe.instance.applySettings();
 

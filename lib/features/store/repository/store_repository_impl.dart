@@ -1,8 +1,10 @@
 import 'package:deco_trade_hub/features/store/model/store_model.dart';
+import 'package:deco_trade_hub/features/store/model/store_owner_model.dart';
 import 'package:deco_trade_hub/features/store/repository/store_repository.dart';
 import 'package:deco_trade_hub/services/global/failures.dart';
 import 'package:fpdart/src/either.dart';
 import 'package:injectable/injectable.dart';
+import 'package:shared/shared.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 @LazySingleton(as: StoreRepository)
@@ -10,6 +12,7 @@ class StoreRepositoryImpl implements StoreRepository {
   final SupabaseClient supabaseClient;
 
   StoreRepositoryImpl(this.supabaseClient);
+
   @override
   @override
   Future<Either<Failure, String>> createStore({
@@ -82,51 +85,85 @@ class StoreRepositoryImpl implements StoreRepository {
   }
 
   @override
-  Future<Either<Failure, StoreModel>> getStoreDetailsById({required String storeId}) {
-    // TODO: implement getStoreDetailsById
-    throw UnimplementedError();
+  Future<Either<Failure, StoreModel>> getUserStore() async {
+    try {
+      final currentUser = supabaseClient.auth.currentUser;
+      if (currentUser == null) {
+        return Left(Failure("User is not authenticated."));
+      }
+      final response = await supabaseClient.from('stores').select().eq('owner_id', currentUser.id).single();
+
+      final store = StoreModel.fromJson(response);
+      return Right(store);
+    } on PostgrestException catch (e) {
+      return Left(Failure(e.message));
+    } catch (e) {
+      logE('Exception getting stores: ${e.toString()}');
+      return Left(Failure(e.toString()));
+    }
   }
 
   @override
-  Future<Either<Failure, StoreModel>> updateStoreDetails(
-      {required String storeId,
-      required String storeName,
-      required String ownerName,
-      required String contactNumber,
-      required String email,
-      required String addressLine1,
-      required String addressLine2,
-      required String postalCode,
-      required String storeType,
-      required Map<String, dynamic> socialMediaLinks,
-      required String websiteUrl,
-      required String storeBannerUrl}) {
-    // TODO: implement updateStoreDetails
-    throw UnimplementedError();
+  Future<Either<Failure, StoreModel>> updateStoreDetails({
+    required String storeId,
+    String? storeName,
+    String? description,
+    String? contactNumber,
+    String? email,
+    String? addressLine1,
+    String? addressLine2,
+    Map<String, dynamic>? socialMediaLinks,
+    String? websiteUrl,
+  }) async {
+    try {
+      final currentUser = supabaseClient.auth.currentUser;
+      if (currentUser == null) {
+        return Left(Failure("User is not authenticated."));
+      }
+
+      final updateData = <String, dynamic>{
+        if (storeName != null) 'store_name': storeName,
+        // if (ownerName != null) 'owner_name': ownerName,
+        if (description != null) 'store_description': description,
+        if (contactNumber != null) 'contact_number': contactNumber,
+        if (email != null) 'email': email,
+        if (addressLine1 != null) 'address_line1': addressLine1,
+        if (addressLine2 != null) 'address_line2': addressLine2,
+        // if (postalCode != null) 'postal_code': postalCode,
+        // if (storeType != null) 'store_type': storeType,
+        if (socialMediaLinks != null) 'social_media_links': socialMediaLinks,
+        if (websiteUrl != null) 'website_url': websiteUrl,
+        // if (storeBannerUrl != null) 'store_banner_url': storeBannerUrl,
+      };
+
+      final response = await supabaseClient.from('stores').update(updateData).eq('id', storeId).select().single();
+
+      final updatedStore = StoreModel.fromJson(response);
+      return Right(updatedStore);
+    } on PostgrestException catch (e) {
+      return Left(Failure(e.message));
+    } catch (e) {
+      logE('Error updating store: ${e.toString()}');
+      return Left(Failure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, StoreOwnerModel>> getStoreOwnerInfo({required String ownerId}) async {
+    try {
+      final currentUser = supabaseClient.auth.currentUser;
+      if (currentUser == null) {
+        return Left(Failure("User is not authenticated."));
+      }
+      final response = await supabaseClient.from('profiles').select().eq('id', ownerId).single();
+
+      final store = StoreOwnerModel.fromJson(response);
+      return Right(store);
+    } on PostgrestException catch (e) {
+      return Left(Failure(e.message));
+    } catch (e) {
+      logE('Exception getting store owner: ${e.toString()}');
+      return Left(Failure(e.toString()));
+    }
   }
 }
-
-//  @override
-//   Future<Result<List<String>>> getRegionFilters() async {
-//     try {
-//       final currentUser = supabaseClient.auth.currentUser;
-//       if (currentUser == null) throw Exception('User is not authenticated.');
-//
-//       final response = await supabaseClient.rest.rpc(
-//         'get_user_business_regions',
-//         params: {'p_user_id': currentUser.id},
-//       );
-//
-//       final regions = (response as List<dynamic>)
-//           .map((item) => item['business_region'] as String)
-//           .toList();
-//
-//       return Result.ok(regions);
-//     } on PostgrestException catch (e) {
-//       _log.warning(e.message);
-//       return Result.error(e);
-//     } on Exception catch (e) {
-//       _log.warning(e.toString());
-//       return Result.error(e);
-//     }
-//   }

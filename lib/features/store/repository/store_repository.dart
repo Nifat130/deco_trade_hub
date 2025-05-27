@@ -1,3 +1,4 @@
+import 'package:deco_trade_hub/features/store/model/store_owner_model.dart';
 import 'package:deco_trade_hub/services/global/failures.dart';
 import 'package:fpdart/fpdart.dart';
 
@@ -24,24 +25,22 @@ abstract interface class StoreRepository {
   });
 
   /// Get Store Details
-  Future<Either<Failure, StoreModel>> getStoreDetailsById({
-    required String storeId,
-  });
+  Future<Either<Failure, StoreModel>> getUserStore();
+
+  /// Get Store Owner information
+  Future<Either<Failure, StoreOwnerModel>> getStoreOwnerInfo({required String ownerId});
 
   /// Update Store Details
   Future<Either<Failure, StoreModel>> updateStoreDetails({
     required String storeId,
-    required String storeName,
-    required String ownerName,
-    required String contactNumber,
-    required String email,
-    required String addressLine1,
-    required String addressLine2,
-    required String postalCode,
-    required String storeType,
-    required Map<String, dynamic> socialMediaLinks,
-    required String websiteUrl,
-    required String storeBannerUrl,
+    String? storeName,
+    String? description,
+    String? contactNumber,
+    String? email,
+    String? addressLine1,
+    String? addressLine2,
+    Map<String, dynamic>? socialMediaLinks,
+    String? websiteUrl,
   });
 
   /// Delete Store

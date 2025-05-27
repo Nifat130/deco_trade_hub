@@ -8,4 +8,5 @@ class AppRoutes {
   static const signIn = '/role_prompt/signin';
 
   static const storeForm = '/store_form';
+  static const editStore = '/edit_store';
 }

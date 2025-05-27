@@ -13,18 +13,19 @@ class AppBindings extends Bindings {
     __initControllers();
   }
 
-  void __initSingletons() {}
+  void __initSingletons() {
+    final supabaseClient = Supabase.instance.client;
+
+    /// Supabase Client
+    Get.lazyPut(() => supabaseClient);
+  }
 
   void __initRepos() {
     /// Profile Repository
-    Get.lazyPut<ProfileRepository>(() => ProfileRepoImpl());
+    Get.lazyPut<StoreRepository>(() => StoreRepositoryImpl(Get.find()));
   }
 
   void __initControllers() {
-    /// Profile controllers for Retailers
-    Get.lazyPut(() => RetailerProfileController(Get.find()));
-
-    /// Profile controllers for Wholesalers
-    Get.lazyPut(() => WholesalerProfileController(Get.find()));
+    Get.lazyPut(() => StoreController(repo: Get.find()));
   }
 }
