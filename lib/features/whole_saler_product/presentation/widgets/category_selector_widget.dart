@@ -1,4 +1,4 @@
-import 'package:deco_trade_hub/features/whole_saler_product/controllers/product_controller.dart';
+import 'package:deco_trade_hub/features/whole_saler_product/controllers/category_controller.dart';
 import 'package:deco_trade_hub/features/whole_saler_product/model/category_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 class CategorySelectorWidget extends StatelessWidget {
   CategorySelectorWidget({super.key});
 
-  final CategoryController controller = Get.put(CategoryController());
+  final CategoryController controller = Get.find<CategoryController>();
 
   @override
   Widget build(BuildContext context) {

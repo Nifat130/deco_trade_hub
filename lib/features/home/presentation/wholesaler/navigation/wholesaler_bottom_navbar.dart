@@ -1,5 +1,6 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:deco_trade_hub/features/store/presentation/store_profile_page.dart';
+import 'package:deco_trade_hub/features/whole_saler_product/presentation/add_product_page.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
@@ -15,7 +16,7 @@ class WholesalerRoute extends StatelessWidget {
       screens: [
         WholesalerHomePage(),
         const Placeholder(),
-        const Placeholder(),
+        const AddProductPage(),
         const Placeholder(),
         StoreProfilePage(),
       ],

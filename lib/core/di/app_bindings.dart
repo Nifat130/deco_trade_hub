@@ -21,11 +21,16 @@ class AppBindings extends Bindings {
   }
 
   void __initRepos() {
-    /// Profile Repository
+    /// Store Repository
     Get.lazyPut<StoreRepository>(() => StoreRepositoryImpl(Get.find()));
+
+    /// Product Repository
+    Get.lazyPut<ProductRepository>(() => ProductRepositoryImpl(Get.find()));
   }
 
   void __initControllers() {
     Get.lazyPut(() => StoreController(repo: Get.find()));
+    Get.lazyPut(() => CategoryController());
+    Get.lazyPut(() => WholesalerProductController(repo: Get.find()));
   }
 }
