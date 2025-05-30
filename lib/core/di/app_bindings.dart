@@ -25,7 +25,7 @@ class AppBindings extends Bindings {
     Get.lazyPut<StoreRepository>(() => StoreRepositoryImpl(Get.find()));
 
     /// Product Repository
-    Get.lazyPut<ProductRepository>(() => ProductRepositoryImpl(Get.find()));
+    Get.lazyPut<ProductRepository>(() => ProductRepositoryImpl());
   }
 
   void __initControllers() {

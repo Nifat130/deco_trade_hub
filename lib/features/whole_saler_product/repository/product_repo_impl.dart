@@ -6,9 +6,9 @@ import 'package:fpdart/fpdart.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ProductRepositoryImpl implements ProductRepository {
-  final SupabaseClient supabaseClient;
+  final SupabaseClient supabaseClient = Supabase.instance.client;
 
-  ProductRepositoryImpl(this.supabaseClient);
+  ProductRepositoryImpl();
 
   @override
   Future<Either<Failure, List<ProductModel>>> getProductsByStore(String storeId) {
