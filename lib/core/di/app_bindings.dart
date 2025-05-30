@@ -17,7 +17,7 @@ class AppBindings extends Bindings {
     final supabaseClient = Supabase.instance.client;
 
     /// Supabase Client
-    Get.lazyPut(() => supabaseClient);
+    Get.put(() => supabaseClient);
   }
 
   void __initRepos() {
