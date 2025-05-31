@@ -8,4 +8,6 @@ import 'package:deco_trade_hub/features/whole_saler_product/repository/product_r
 import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../features/Authentication/presentation/controllers/auth_controller.dart';
+
 part 'app_bindings.dart';

@@ -1,16 +1,18 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:deco_trade_hub/app/router/app_routes.dart';
+import 'package:deco_trade_hub/features/Authentication/presentation/controllers/auth_controller.dart';
 import 'package:deco_trade_hub/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
+import 'package:deco_trade_hub/features/Authentication/presentation/shared/widget/role_container.dart';
 import 'package:deco_trade_hub/features/Authentication/presentation/signin/view/signin_view.dart';
 import 'package:deco_trade_hub/features/home/presentation/retailer/navigation/retailer_bottom_navbar.dart';
 import 'package:deco_trade_hub/features/home/presentation/wholesaler/navigation/wholesaler_bottom_navbar.dart';
-import 'package:deco_trade_hub/services/global/enums.dart';
+import 'package:deco_trade_hub/ui/nifat/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-import '../../signup/view/common_screen.dart';
+import '../../../../../core/utils/constants/icon_path.dart';
 
 class RolePromptPage extends StatefulWidget {
   const RolePromptPage({super.key});
@@ -67,7 +69,7 @@ class RolePromptView extends StatelessWidget {
                   ? const RetailerRoute()
                   : const WholesalerRoute()
               : const SignInPage(),
-          UnAuthenticated() => CommonScreen(),
+          UnAuthenticated() => SignUpWithRoleScreen(),
           AuthenticatedWithoutStore() => BaseScreenWidget(
               loading: true,
               body: Center(
@@ -85,111 +87,112 @@ class RolePromptView extends StatelessWidget {
 }
 
 class SignUpWithRoleScreen extends StatelessWidget {
-  const SignUpWithRoleScreen({
-    super.key,
-  });
+  const SignUpWithRoleScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        title: const Text(
-          'Create an Account',
-          style: TextStyle(
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.blue.shade50,
+              Colors.white,
+            ],
           ),
         ),
-        centerTitle: true,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              'Choose your role to get started',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-                color: Colors.black54,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 40),
-
-            // Retailer Button
-            ElevatedButton(
-              onPressed: () {
-                Get.toNamed(
-                  AppRoutes.signUp,
-                  arguments: UserRole.isRetailer.value,
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                minimumSize: const Size(double.infinity, 60),
-                backgroundColor: Colors.blue,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                elevation: 5,
-              ),
-              child: const Text(
-                'Sign Up as Retailer',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-
-            // Wholesaler Button
-            ElevatedButton(
-              onPressed: () {
-                Get.toNamed(
-                  AppRoutes.signUp,
-                  arguments: UserRole.isWholesaler.value,
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                minimumSize: const Size(double.infinity, 60),
-                backgroundColor: Colors.blue,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                elevation: 5,
-              ),
-              child: const Text(
-                'Sign Up as Wholesaler',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-
-            // Already Have an Account? Login Text Button
-            TextButton(
-              onPressed: () {
-                Get.toNamed(AppRoutes.signIn);
-              },
-              child: const Text(
-                'Already have an account? Log In',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.blue,
-                ),
-              ),
-            ),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: GetBuilder<AuthController>(
+            builder: (controller) {
+              return Column(
+                children: [
+                  const SizedBox(height: 60),
+                  Hero(
+                    tag: 'app_logo',
+                    child: Image.asset(
+                      'assets/images/logo.png',
+                      height: 100,
+                      width: 100,
+                    ),
+                  ),
+                  const SizedBox(height: 30),
+                  const Text(
+                    'Create an Account',
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blueGrey,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    'Choose your role to get started',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.blueGrey,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 50),
+                  Row(
+                    spacing: 20,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      RoleContainer(
+                        roleName: UserRole.isWholesaler,
+                        iconPath: controller.currentRole.value == "Wholesaler"
+                            ? IconPath.importerIcon
+                            : IconPath.importerBWIcon,
+                      ),
+                      RoleContainer(
+                        roleName: UserRole.isRetailer,
+                        iconPath: controller.currentRole.value == "Retailer"
+                            ? IconPath.importerIcon
+                            : IconPath.importerBWIcon,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 50),
+                  CustomButton(
+                    onPressed: () {
+                      Get.toNamed(AppRoutes.signUp, arguments: {
+                        controller.currentRole.value,
+                      });
+                    },
+                    title: 'Sign Up as ${controller.currentRole.value}',
+                  ),
+                  const Spacer(),
+                  TextButton(
+                    onPressed: () {
+                      Get.toNamed(AppRoutes.signIn);
+                    },
+                    child: RichText(
+                      text: const TextSpan(
+                        text: 'Already have an account? ',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.blueGrey,
+                        ),
+                        children: [
+                          TextSpan(
+                            text: 'Log In',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blue,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );

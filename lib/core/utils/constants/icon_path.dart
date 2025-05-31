@@ -9,5 +9,19 @@ class IconPath{
   static const  String connectivity='$_basePath/connectivity.png';
   static const  String tools='$_basePath/tools.png';
   static const  String profile='$_basePath/profile.svg';
+  static const  String importerIcon='$_basePath/importerIcon.png';
+  static const  String importerBWIcon='$_basePath/importerBWIcon.png';
+  static const  String retailerBWIcon='$_basePath/retailerBWIcon.png';
+  static const  String retailerIcon='$_basePath/retailerIcon.png';
+  static const  String employeeBWIcon='$_basePath/employeeBWIcon.png';
+  static const  String employeeIcon='$_basePath/employeeIcon.png';
+  static const  String homeButtonIcon='$_basePath/homeButtonIcon.png';
+  static const  String shoppingButtonIcon='$_basePath/shoppingButtonIcon.png';
+  static const  String hire='$_basePath/hire.png';
+  static const  String settings='$_basePath/settings.png';
+  static const  String notificationIcon='$_basePath/notificationIcon.png';
+  static const  String notification1='$_basePath/notification1.png';
+  static const  String notification2='$_basePath/notification2.png';
+  static const  String notification3='$_basePath/notification3.png';
 
 }

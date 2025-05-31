@@ -5,6 +5,9 @@ import 'package:deco_trade_hub/features/Authentication/presentation/signup/bloc/
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+
+import '../../controllers/auth_controller.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({
@@ -36,11 +39,12 @@ class SignUpView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var x = Get.find<AuthController>().currentRole.value;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: const Text('Sign Up'),
+        title: Text('Sign Up as $x'),
       ),
       body: BlocConsumer<SignUpBloc, SignUpState>(
         listener: (context, state) {

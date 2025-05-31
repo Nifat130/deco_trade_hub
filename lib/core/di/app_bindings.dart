@@ -32,5 +32,6 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => StoreController(repo: Get.find()));
     Get.lazyPut(() => CategoryController());
     Get.lazyPut(() => WholesalerProductController(repo: Get.find()));
+    Get.lazyPut(() => AuthController());
   }
 }
