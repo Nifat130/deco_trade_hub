@@ -6,6 +6,7 @@ import 'package:deco_trade_hub/app/view/app.dart';
 import 'package:deco_trade_hub/services/dependencies/src/dependency_injection.dart';
 import 'package:deco_trade_hub/services/environments/environments.dart';
 import 'package:deco_trade_hub/services/logger/error_logger.dart';
+import 'package:flutter/foundation.dart' as foundation;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -60,4 +61,9 @@ Future<void> bootstrap(Environment env) async {
   Bloc.observer = const AppBlocObserver();
 
   runApp(const App());
+}
+
+class PlatformUtils {
+  static bool get isIOS => foundation.defaultTargetPlatform == TargetPlatform.iOS;
+  static bool get isAndroid => foundation.defaultTargetPlatform == TargetPlatform.android;
 }

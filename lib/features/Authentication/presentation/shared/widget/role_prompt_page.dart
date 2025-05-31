@@ -10,6 +10,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import '../../signup/view/common_screen.dart';
+
 class RolePromptPage extends StatefulWidget {
   const RolePromptPage({super.key});
 
@@ -65,108 +67,7 @@ class RolePromptView extends StatelessWidget {
                   ? const RetailerRoute()
                   : const WholesalerRoute()
               : const SignInPage(),
-          UnAuthenticated() => Scaffold(
-              appBar: AppBar(
-                elevation: 0,
-                backgroundColor: Colors.transparent,
-                title: const Text(
-                  'Create an Account',
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
-                centerTitle: true,
-              ),
-              body: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'Choose your role to get started',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black54,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 40),
-
-                    // Retailer Button
-                    ElevatedButton(
-                      onPressed: () {
-                        Get.toNamed(
-                          AppRoutes.signUp,
-                          arguments: UserRole.isRetailer.value,
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(double.infinity, 60),
-                        backgroundColor: Colors.blue,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        elevation: 5,
-                      ),
-                      child: const Text(
-                        'Sign Up as Retailer',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-
-                    // Wholesaler Button
-                    ElevatedButton(
-                      onPressed: () {
-                        Get.toNamed(
-                          AppRoutes.signUp,
-                          arguments: UserRole.isWholesaler.value,
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(double.infinity, 60),
-                        backgroundColor: Colors.blue,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        elevation: 5,
-                      ),
-                      child: const Text(
-                        'Sign Up as Wholesaler',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-
-                    // Already Have an Account? Login Text Button
-                    TextButton(
-                      onPressed: () {
-                        Get.toNamed(AppRoutes.signIn);
-                      },
-                      child: const Text(
-                        'Already have an account? Log In',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.blue,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+          UnAuthenticated() => CommonScreen(),
           AuthenticatedWithoutStore() => BaseScreenWidget(
               loading: true,
               body: Center(
@@ -179,6 +80,118 @@ class RolePromptView extends StatelessWidget {
             ),
         };
       },
+    );
+  }
+}
+
+class SignUpWithRoleScreen extends StatelessWidget {
+  const SignUpWithRoleScreen({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        title: const Text(
+          'Create an Account',
+          style: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
+        centerTitle: true,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'Choose your role to get started',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                color: Colors.black54,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 40),
+
+            // Retailer Button
+            ElevatedButton(
+              onPressed: () {
+                Get.toNamed(
+                  AppRoutes.signUp,
+                  arguments: UserRole.isRetailer.value,
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size(double.infinity, 60),
+                backgroundColor: Colors.blue,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                elevation: 5,
+              ),
+              child: const Text(
+                'Sign Up as Retailer',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+
+            // Wholesaler Button
+            ElevatedButton(
+              onPressed: () {
+                Get.toNamed(
+                  AppRoutes.signUp,
+                  arguments: UserRole.isWholesaler.value,
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size(double.infinity, 60),
+                backgroundColor: Colors.blue,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                elevation: 5,
+              ),
+              child: const Text(
+                'Sign Up as Wholesaler',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+
+            // Already Have an Account? Login Text Button
+            TextButton(
+              onPressed: () {
+                Get.toNamed(AppRoutes.signIn);
+              },
+              child: const Text(
+                'Already have an account? Log In',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.blue,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
