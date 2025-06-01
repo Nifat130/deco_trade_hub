@@ -1,14 +1,21 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:deco_trade_hub/app/router/app_routes.dart';
+import 'package:deco_trade_hub/core/utils/constants/app_sizer.dart';
 import 'package:deco_trade_hub/features/Authentication/data/data_source/auth_datasource_impl.dart';
 import 'package:deco_trade_hub/features/Authentication/data/repository/auth_repo_impl.dart';
 import 'package:deco_trade_hub/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
 import 'package:deco_trade_hub/features/Authentication/presentation/signin/bloc/signin_bloc.dart';
 import 'package:deco_trade_hub/features/Authentication/presentation/signup/view/signup_view.dart';
+import 'package:deco_trade_hub/ui/nifat/widgets/custom_button.dart';
+import 'package:deco_trade_hub/ui/widgets/global/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+
+import '../../../../../core/utils/constants/app_colors.dart';
+import '../../../../../ui/nifat/widgets/custom_text.dart';
+import '../../shared/widget/custom_textfield_with_onchanged.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({super.key});
@@ -22,75 +29,84 @@ class SignInPage extends StatelessWidget {
           authRepo: context.read<AuthRepoImpl>(),
           authCubit: context.read<AuthCubit>(),
         ),
-        child: const SignInView2(),
+        child: const SignInView(),
       ),
     );
   }
 }
 
-class SignInView2 extends StatelessWidget {
-  const SignInView2({super.key});
+class SignInView extends StatelessWidget {
+  const SignInView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppBar(title: 'Sign In', isBackButtonExist: true),
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: const Text('Sign In'),
-      ),
       body: SafeArea(
-        child: SizedBox(
-          width: double.infinity,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: SingleChildScrollView(
-              child: Column(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(height: 24),
+              const Text(
+                'Welcome Back',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Sign in with your email and password\nor continue with social media',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Color(0xFF757575),
+                ),
+              ),
+              const SizedBox(height: 32),
+              Center(
+                child: const SignInForm(),
+              ),
+
+              const SizedBox(height: 24),
+
+              // Social Logins
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 16),
-                  const Text(
-                    'Welcome Back',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  SocialCard(
+                    icon: SvgPicture.string(googleIcon),
+                    press: () {},
                   ),
-                  const SizedBox(height: 8),
-                  const Text(
-                    'Sign in with your email and password '
-                    ' \nor continue with social media',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Color(0xFF757575)),
+                  const SizedBox(width: 16),
+                  SocialCard(
+                    icon: SvgPicture.string(facebookIcon),
+                    press: () {},
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-                  const SignInForm(),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.2),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SocialCard(
-                        icon: SvgPicture.string(googleIcon),
-                        press: () {},
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: SocialCard(
-                          icon: SvgPicture.string(facebookIcon),
-                          press: () {},
-                        ),
-                      ),
-                      SocialCard(
-                        icon: SvgPicture.string(twitterIcon),
-                        press: () {},
-                      ),
-                    ],
+                  const SizedBox(width: 16),
+                  SocialCard(
+                    icon: SvgPicture.string(twitterIcon),
+                    press: () {},
                   ),
-                  const SizedBox(height: 16),
-                  const NoAccountText(),
                 ],
               ),
-            ),
+
+              const SizedBox(height: 16),
+              const NoAccountText(),
+              const Spacer(),
+
+              // Terms at the bottom
+              CustomText(
+                text: "By joining you agree to our Terms of Service and Privacy Policy",
+                textAlign: TextAlign.center,
+                fontWeight: FontWeight.w400,
+                fontSize: 14.sp,
+                color: AppColors.textSecondary,
+              ),
+              const SizedBox(height: 16),
+            ],
           ),
         ),
       ),
@@ -98,10 +114,69 @@ class SignInView2 extends StatelessWidget {
   }
 }
 
+class SignInForm extends StatelessWidget {
+  const SignInForm({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      child: Column(
+        children: [
+          CustomTextFieldWithOnChanged(
+            onChanged: (email) => context.read<SignInBloc>().add(EmailChanged(email: email)),
+            textInputAction: TextInputAction.next,
+            prefixIcon: const Icon(Icons.email_outlined),
+            hintText: 'Enter your email',
+            keyboardType: TextInputType.emailAddress,
+            validator: (email) {
+              if (email == null || email.isEmpty) {
+                return 'Please enter your email';
+              }
+              if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(email)) {
+                return 'Please enter a valid email address';
+              }
+              return null;
+            },
+          ),
+          SizedBox(height: 16.h),
+          CustomTextFieldWithOnChanged(
+            obscureText: true,
+            prefixIcon: const Icon(Icons.lock_outline),
+            onChanged: (password) => context.read<SignInBloc>().add(PasswordChanged(password: password)),
+            hintText: 'Enter your password',
+            validator: (password) {
+              if (password == null || password.isEmpty) {
+                return 'Please enter your password';
+              }
+              if (password.length < 6) {
+                return 'Password must be at least 6 characters';
+              }
+              return null;
+            },
+          ),
+          SizedBox(height: 24.h),
+          BlocListener<SignInBloc, SignInState>(
+            listener: (context, state) {
+              if (state.status == SignInStatus.success) {
+                Get.toNamed(AppRoutes.rolePrompt);
+              }
+              if (state.status == SignInStatus.failure) {
+                context.showCustomSnackBar(text: state.errorMessage);
+              }
+            },
+            child: CustomButton(
+              onPressed: () => context.read<SignInBloc>().add(const LoginSubmitted()),
+              title: 'Continue',
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class NoAccountText extends StatelessWidget {
-  const NoAccountText({
-    super.key,
-  });
+  const NoAccountText({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -120,105 +195,11 @@ class NoAccountText extends StatelessWidget {
             'Sign Up',
             style: TextStyle(
               color: Color(0xFFFF7643),
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),
       ],
-    );
-  }
-}
-
-const authOutlineInputBorder = OutlineInputBorder(
-  borderSide: BorderSide(color: Color(0xFF757575)),
-  borderRadius: BorderRadius.all(Radius.circular(100)),
-);
-
-class SignInForm extends StatelessWidget {
-  const SignInForm({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Form(
-      child: Column(
-        children: [
-          TextFormField(
-            onSaved: (email) {},
-            onChanged: (email) => context.read<SignInBloc>().add(EmailChanged(email: email)),
-            textInputAction: TextInputAction.next,
-            decoration: InputDecoration(
-              hintText: 'Enter your email',
-              labelText: 'Email',
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-              hintStyle: const TextStyle(color: Color(0xFF757575)),
-              contentPadding: const EdgeInsets.symmetric(
-                horizontal: 24,
-                vertical: 16,
-              ),
-              suffix: SvgPicture.string(
-                mailIcon,
-              ),
-              border: authOutlineInputBorder,
-              enabledBorder: authOutlineInputBorder,
-              focusedBorder: authOutlineInputBorder.copyWith(
-                borderSide: const BorderSide(
-                  color: Color(0xFFFF7643),
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 24),
-            child: TextFormField(
-              onSaved: (password) {},
-              onChanged: (password) => context.read<SignInBloc>().add(PasswordChanged(password: password)),
-              obscureText: true,
-              decoration: InputDecoration(
-                hintText: 'Enter your password',
-                labelText: 'Password',
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-                hintStyle: const TextStyle(color: Color(0xFF757575)),
-                contentPadding: const EdgeInsets.symmetric(
-                  horizontal: 24,
-                  vertical: 16,
-                ),
-                suffix: SvgPicture.string(
-                  lockIcon,
-                ),
-                border: authOutlineInputBorder,
-                enabledBorder: authOutlineInputBorder,
-                focusedBorder: authOutlineInputBorder.copyWith(
-                  borderSide: const BorderSide(color: Color(0xFFFF7643)),
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(height: 8),
-          BlocListener<SignInBloc, SignInState>(
-            listener: (context, state) {
-              if (state.status == SignInStatus.submitting) {}
-              if (state.status == SignInStatus.success) {
-                Get.toNamed(AppRoutes.rolePrompt);
-              }
-              if (state.status == SignInStatus.failure) {
-                context.showCustomSnackBar(text: state.errorMessage);
-              }
-            },
-            child: ElevatedButton(
-              onPressed: () => context.read<SignInBloc>().add(const LoginSubmitted()),
-              style: ElevatedButton.styleFrom(
-                elevation: 0,
-                backgroundColor: const Color(0xFFFF7643),
-                foregroundColor: Colors.white,
-                minimumSize: const Size(double.infinity, 48),
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(16)),
-                ),
-              ),
-              child: const Text('Continue'),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

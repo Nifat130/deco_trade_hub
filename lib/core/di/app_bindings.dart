@@ -14,15 +14,12 @@ class AppBindings extends Bindings {
   }
 
   void __initSingletons() {
-    final supabaseClient = Supabase.instance.client;
-
     /// Supabase Client
-    Get.put(() => supabaseClient);
   }
 
   void __initRepos() {
     /// Store Repository
-    Get.lazyPut<StoreRepository>(() => StoreRepositoryImpl(Get.find()));
+    Get.lazyPut<StoreRepository>(() => StoreRepositoryImpl());
 
     /// Product Repository
     Get.lazyPut<ProductRepository>(() => ProductRepositoryImpl());

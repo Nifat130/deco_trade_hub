@@ -27,7 +27,6 @@ import 'package:deco_trade_hub/services/logger/error_logger.dart' as _i89;
 import 'package:deco_trade_hub/services/logger/event_logger.dart' as _i1066;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
-import 'package:supabase_flutter/supabase_flutter.dart' as _i454;
 
 // initializes the registration of main-scope dependencies inside of GetIt
 _i174.GetIt $initInjectable(
@@ -50,8 +49,7 @@ _i174.GetIt $initInjectable(
     () => registerModule.incrementValue,
     instanceName: 'increment_value',
   );
-  gh.lazySingleton<_i719.StoreRepository>(
-      () => _i768.StoreRepositoryImpl(gh<_i454.SupabaseClient>()));
+  gh.lazySingleton<_i719.StoreRepository>(() => _i768.StoreRepositoryImpl());
   gh.lazySingleton<_i962.AppMetaDataCubit>(() => _i962.AppMetaDataCubit(
         gh<_i258.AppLogger>(),
         gh<_i89.ErrorLogger>(),

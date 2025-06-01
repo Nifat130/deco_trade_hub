@@ -9,9 +9,9 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 @LazySingleton(as: StoreRepository)
 class StoreRepositoryImpl implements StoreRepository {
-  final SupabaseClient supabaseClient;
+  final SupabaseClient supabaseClient = Supabase.instance.client;
 
-  StoreRepositoryImpl(this.supabaseClient);
+  StoreRepositoryImpl();
 
   @override
   @override
