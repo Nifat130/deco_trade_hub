@@ -6,7 +6,7 @@ sealed class AppColorsTheme extends ThemeExtension<AppColorsTheme> {
 
   static const Color transparent = Color(0x00000000);
   static const Color lightBlue = Color.fromARGB(255, 100, 181, 246);
-  static const Color deepBlue = Color(0xff337eff);
+  static const Color deepBlue = Color(0xFF214B84);
   static const Color orangeAccent = Color.fromARGB(255, 230, 81, 0);
   static const Color orange = Color.fromARGB(255, 239, 108, 0);
   static const Color borderOutline = Color.fromARGB(165, 58, 58, 58);
@@ -130,7 +130,7 @@ final class AppColorsThemeLight extends AppColorsTheme {
   });
 
   static const AppColorsThemeLight instance = AppColorsThemeLight._(
-    primaryColor: AppColorsTheme.green,
+    primaryColor: AppColorsTheme.deepBlue,
     onPrimary: AppColorsTheme.white,
     secondaryColor: AppColorsTheme.pink,
     onSecondary: AppColorsTheme.white,
@@ -254,27 +254,19 @@ final class AppColorsThemeLight extends AppColorsTheme {
         disabledBorderColor: disabledBorderColor ?? this.disabledBorderColor,
         focusedBorderColor: focusedBorderColor ?? this.focusedBorderColor,
         errorBorderColor: errorBorderColor ?? this.errorBorderColor,
-        focusedErrorBorderColor:
-            focusedErrorBorderColor ?? this.focusedErrorBorderColor,
+        focusedErrorBorderColor: focusedErrorBorderColor ?? this.focusedErrorBorderColor,
         checkboxCheckColor: checkboxCheckColor ?? this.checkboxCheckColor,
-        selectedCheckboxFillColor:
-            selectedCheckboxFillColor ?? this.selectedCheckboxFillColor,
-        unSelectedCheckboxFillColor:
-            unSelectedCheckboxFillColor ?? this.unSelectedCheckboxFillColor,
-        disabledCheckboxFillColor:
-            disabledCheckboxFillColor ?? this.disabledCheckboxFillColor,
-        disabledButtonBackgroundColor:
-            disabledButtonBackgroundColor ?? this.disabledButtonBackgroundColor,
-        onDisabledButtonBackgroundColor: onDisabledButtonBackgroundColor ??
-            this.onDisabledButtonBackgroundColor,
+        selectedCheckboxFillColor: selectedCheckboxFillColor ?? this.selectedCheckboxFillColor,
+        unSelectedCheckboxFillColor: unSelectedCheckboxFillColor ?? this.unSelectedCheckboxFillColor,
+        disabledCheckboxFillColor: disabledCheckboxFillColor ?? this.disabledCheckboxFillColor,
+        disabledButtonBackgroundColor: disabledButtonBackgroundColor ?? this.disabledButtonBackgroundColor,
+        onDisabledButtonBackgroundColor: onDisabledButtonBackgroundColor ?? this.onDisabledButtonBackgroundColor,
         buttonPurple: buttonPurple ?? this.buttonPurple,
         barrierColor1: barrierColor1 ?? this.barrierColor1,
         cardShadowColor: cardShadowColor ?? this.cardShadowColor,
-        selectedChipBorderColor:
-            selectedChipBorderColor ?? this.selectedChipBorderColor,
+        selectedChipBorderColor: selectedChipBorderColor ?? this.selectedChipBorderColor,
         dividerColor: dividerColor ?? this.dividerColor,
-        progressIndicatorColor:
-            progressIndicatorColor ?? this.progressIndicatorColor,
+        progressIndicatorColor: progressIndicatorColor ?? this.progressIndicatorColor,
       );
 
   @override
@@ -292,25 +284,19 @@ final class AppColorsThemeLight extends AppColorsTheme {
       onSecondary: Color.lerp(onSecondary, other.onSecondary, t)!,
       background: Color.lerp(background, other.background, t)!,
       cursorColor: Color.lerp(cursorColor, other.cursorColor, t)!,
-      selectionHandleColor:
-          Color.lerp(selectionHandleColor, other.selectionHandleColor, t)!,
+      selectionHandleColor: Color.lerp(selectionHandleColor, other.selectionHandleColor, t)!,
       selectionColor: Color.lerp(selectionColor, other.selectionColor, t)!,
       indicationText: Color.lerp(indicationText, other.indicationText, t)!,
-      enabledBorderColor:
-          Color.lerp(enabledBorderColor, other.enabledBorderColor, t)!,
-      disabledBorderColor:
-          Color.lerp(disabledBorderColor, other.disabledBorderColor, t)!,
-      focusedBorderColor:
-          Color.lerp(focusedBorderColor, other.focusedBorderColor, t)!,
-      errorBorderColor:
-          Color.lerp(errorBorderColor, other.errorBorderColor, t)!,
+      enabledBorderColor: Color.lerp(enabledBorderColor, other.enabledBorderColor, t)!,
+      disabledBorderColor: Color.lerp(disabledBorderColor, other.disabledBorderColor, t)!,
+      focusedBorderColor: Color.lerp(focusedBorderColor, other.focusedBorderColor, t)!,
+      errorBorderColor: Color.lerp(errorBorderColor, other.errorBorderColor, t)!,
       focusedErrorBorderColor: Color.lerp(
         focusedErrorBorderColor,
         other.focusedErrorBorderColor,
         t,
       )!,
-      checkboxCheckColor:
-          Color.lerp(checkboxCheckColor, other.checkboxCheckColor, t)!,
+      checkboxCheckColor: Color.lerp(checkboxCheckColor, other.checkboxCheckColor, t)!,
       selectedCheckboxFillColor: Color.lerp(
         selectedCheckboxFillColor,
         other.selectedCheckboxFillColor,
@@ -345,8 +331,7 @@ final class AppColorsThemeLight extends AppColorsTheme {
         t,
       )!,
       dividerColor: Color.lerp(dividerColor, other.dividerColor, t)!,
-      progressIndicatorColor:
-          Color.lerp(progressIndicatorColor, other.progressIndicatorColor, t)!,
+      progressIndicatorColor: Color.lerp(progressIndicatorColor, other.progressIndicatorColor, t)!,
     );
   }
 }
@@ -506,27 +491,19 @@ final class AppColorsThemeDark extends AppColorsTheme {
         disabledBorderColor: disabledBorderColor ?? this.disabledBorderColor,
         focusedBorderColor: focusedBorderColor ?? this.focusedBorderColor,
         errorBorderColor: errorBorderColor ?? this.errorBorderColor,
-        focusedErrorBorderColor:
-            focusedErrorBorderColor ?? this.focusedErrorBorderColor,
+        focusedErrorBorderColor: focusedErrorBorderColor ?? this.focusedErrorBorderColor,
         checkboxCheckColor: checkboxCheckColor ?? this.checkboxCheckColor,
-        selectedCheckboxFillColor:
-            selectedCheckboxFillColor ?? this.selectedCheckboxFillColor,
-        unSelectedCheckboxFillColor:
-            unSelectedCheckboxFillColor ?? this.unSelectedCheckboxFillColor,
-        disabledCheckboxFillColor:
-            disabledCheckboxFillColor ?? this.disabledCheckboxFillColor,
-        disabledButtonBackgroundColor:
-            disabledButtonBackgroundColor ?? this.disabledButtonBackgroundColor,
-        onDisabledButtonBackgroundColor: onDisabledButtonBackgroundColor ??
-            this.onDisabledButtonBackgroundColor,
+        selectedCheckboxFillColor: selectedCheckboxFillColor ?? this.selectedCheckboxFillColor,
+        unSelectedCheckboxFillColor: unSelectedCheckboxFillColor ?? this.unSelectedCheckboxFillColor,
+        disabledCheckboxFillColor: disabledCheckboxFillColor ?? this.disabledCheckboxFillColor,
+        disabledButtonBackgroundColor: disabledButtonBackgroundColor ?? this.disabledButtonBackgroundColor,
+        onDisabledButtonBackgroundColor: onDisabledButtonBackgroundColor ?? this.onDisabledButtonBackgroundColor,
         buttonPurple: buttonPurple ?? this.buttonPurple,
         barrierColor1: barrierColor1 ?? this.barrierColor1,
         cardShadowColor: cardShadowColor ?? this.cardShadowColor,
-        selectedChipBorderColor:
-            selectedChipBorderColor ?? this.selectedChipBorderColor,
+        selectedChipBorderColor: selectedChipBorderColor ?? this.selectedChipBorderColor,
         dividerColor: dividerColor ?? this.dividerColor,
-        progressIndicatorColor:
-            progressIndicatorColor ?? this.progressIndicatorColor,
+        progressIndicatorColor: progressIndicatorColor ?? this.progressIndicatorColor,
       );
 
   @override
@@ -544,25 +521,19 @@ final class AppColorsThemeDark extends AppColorsTheme {
       onSecondary: Color.lerp(onSecondary, other.onSecondary, t)!,
       background: Color.lerp(background, other.background, t)!,
       cursorColor: Color.lerp(cursorColor, other.cursorColor, t)!,
-      selectionHandleColor:
-          Color.lerp(selectionHandleColor, other.selectionHandleColor, t)!,
+      selectionHandleColor: Color.lerp(selectionHandleColor, other.selectionHandleColor, t)!,
       selectionColor: Color.lerp(selectionColor, other.selectionColor, t)!,
       indicationText: Color.lerp(indicationText, other.indicationText, t)!,
-      enabledBorderColor:
-          Color.lerp(enabledBorderColor, other.enabledBorderColor, t)!,
-      disabledBorderColor:
-          Color.lerp(disabledBorderColor, other.disabledBorderColor, t)!,
-      focusedBorderColor:
-          Color.lerp(focusedBorderColor, other.focusedBorderColor, t)!,
-      errorBorderColor:
-          Color.lerp(errorBorderColor, other.errorBorderColor, t)!,
+      enabledBorderColor: Color.lerp(enabledBorderColor, other.enabledBorderColor, t)!,
+      disabledBorderColor: Color.lerp(disabledBorderColor, other.disabledBorderColor, t)!,
+      focusedBorderColor: Color.lerp(focusedBorderColor, other.focusedBorderColor, t)!,
+      errorBorderColor: Color.lerp(errorBorderColor, other.errorBorderColor, t)!,
       focusedErrorBorderColor: Color.lerp(
         focusedErrorBorderColor,
         other.focusedErrorBorderColor,
         t,
       )!,
-      checkboxCheckColor:
-          Color.lerp(checkboxCheckColor, other.checkboxCheckColor, t)!,
+      checkboxCheckColor: Color.lerp(checkboxCheckColor, other.checkboxCheckColor, t)!,
       selectedCheckboxFillColor: Color.lerp(
         selectedCheckboxFillColor,
         other.selectedCheckboxFillColor,
@@ -597,8 +568,7 @@ final class AppColorsThemeDark extends AppColorsTheme {
         t,
       )!,
       dividerColor: Color.lerp(dividerColor, other.dividerColor, t)!,
-      progressIndicatorColor:
-          Color.lerp(progressIndicatorColor, other.progressIndicatorColor, t)!,
+      progressIndicatorColor: Color.lerp(progressIndicatorColor, other.progressIndicatorColor, t)!,
     );
   }
 }

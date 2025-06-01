@@ -7,6 +7,7 @@ import 'package:deco_trade_hub/features/Authentication/presentation/signin/view/
 import 'package:deco_trade_hub/features/home/presentation/retailer/navigation/retailer_bottom_navbar.dart';
 import 'package:deco_trade_hub/features/home/presentation/wholesaler/navigation/wholesaler_bottom_navbar.dart';
 import 'package:deco_trade_hub/ui/nifat/widgets/custom_button.dart';
+import 'package:deco_trade_hub/ui/nifat/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -114,18 +115,14 @@ class SignUpWithRoleScreen extends StatelessWidget {
                     tag: 'app_logo',
                     child: Image.asset(
                       'assets/images/logo.png',
-                      height: 100,
-                      width: 100,
+                      height: 150,
+                      width: 150,
                     ),
                   ),
                   const SizedBox(height: 30),
-                  const Text(
-                    'Create an Account',
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.blueGrey,
-                    ),
+                  const CustomText(
+                    text: 'Create an Account',
+                    fontSize: 24,
                   ),
                   const SizedBox(height: 16),
                   const Text(
@@ -150,8 +147,8 @@ class SignUpWithRoleScreen extends StatelessWidget {
                       RoleContainer(
                         roleName: UserRole.isRetailer,
                         iconPath: controller.currentRole.value == "Retailer"
-                            ? IconPath.importerIcon
-                            : IconPath.importerBWIcon,
+                            ? IconPath.retailerIcon
+                            : IconPath.retailerBWIcon,
                       ),
                     ],
                   ),

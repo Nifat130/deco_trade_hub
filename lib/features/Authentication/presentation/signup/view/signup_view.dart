@@ -1,12 +1,19 @@
+import 'package:deco_trade_hub/core/utils/constants/app_sizer.dart';
 import 'package:deco_trade_hub/features/Authentication/data/data_source/auth_datasource_impl.dart';
 import 'package:deco_trade_hub/features/Authentication/data/repository/auth_repo_impl.dart';
 import 'package:deco_trade_hub/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
 import 'package:deco_trade_hub/features/Authentication/presentation/signup/bloc/signup_bloc.dart';
+import 'package:deco_trade_hub/ui/nifat/widgets/custom_button.dart';
+import 'package:deco_trade_hub/ui/nifat/widgets/custom_text.dart';
+import 'package:deco_trade_hub/ui/widgets/global/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../../core/utils/constants/app_colors.dart';
+import '../../../../../core/utils/constants/image_path.dart';
 import '../../controllers/auth_controller.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -42,9 +49,8 @@ class SignUpView extends StatelessWidget {
     var x = Get.find<AuthController>().currentRole.value;
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text('Sign Up as $x'),
+      appBar: CustomAppBar(
+        title: 'Sign Up as $x',
       ),
       body: BlocConsumer<SignUpBloc, SignUpState>(
         listener: (context, state) {
@@ -82,20 +88,17 @@ class SignUpView extends StatelessWidget {
                 child: Column(
                   children: [
                     const SizedBox(height: 16),
-                    const Text(
-                      'Register Account',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
+                    ClipOval(
+                      child: Image.asset(
+                        ImagePath.dummyBusinessProfile,
+                        height: 100.h,
+                        width: 100.w,
+                        fit: BoxFit.fill,
+                        color: AppColors.textSecondary,
                       ),
                     ),
                     const SizedBox(height: 8),
-                    const Text(
-                      'Complete your details or continue \nwith social media',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: Color(0xFF757575)),
-                    ),
+                    const CustomText(text: 'Register Account', fontSize: 18, fontWeight: FontWeight.bold),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                     const SignUpForm(),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.05),
@@ -129,49 +132,30 @@ class SignUpForm extends StatelessWidget {
     return Form(
       child: Column(
         children: [
-          CustomTextField(
-            label: 'Full Name',
-            hint: 'Enter your full name',
-            icon: Icons.person_2_outlined,
+          CustomTextFieldForSignup(
+            hintText: 'Enter your full name',
             onChanged: (value) => context.read<SignUpBloc>().add(FullNameChanged(value)),
           ),
           const SizedBox(height: 32),
-          CustomTextField(
-            label: 'User Name',
-            hint: 'Enter your user name',
-            icon: Icons.person_2_outlined,
+          CustomTextFieldForSignup(
+            hintText: 'Enter your user name',
             onChanged: (value) => context.read<SignUpBloc>().add(UsernameChanged(value)),
           ),
           const SizedBox(height: 32),
-          CustomTextField(
-            label: 'Email',
-            hint: 'Enter your email',
-            iconSvg: mailIcon,
+          CustomTextFieldForSignup(
+            hintText: 'Enter your email',
             onChanged: (value) => context.read<SignUpBloc>().add(EmailChanged(value)),
           ),
           const SizedBox(height: 32),
-          CustomTextField(
-            label: 'Password',
-            hint: 'Enter your password',
-            iconSvg: lockIcon,
+          CustomTextFieldForSignup(
+            hintText: 'Enter your password',
             obscureText: true,
             onChanged: (value) => context.read<SignUpBloc>().add(PasswordChanged(value)),
           ),
           const SizedBox(height: 32),
-          ElevatedButton(
-            onPressed: () {
-              context.read<SignUpBloc>().add(FormSubmitted());
-            },
-            style: ElevatedButton.styleFrom(
-              elevation: 0,
-              backgroundColor: const Color(0xFFFF7643),
-              foregroundColor: Colors.white,
-              minimumSize: const Size(double.infinity, 48),
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(16)),
-              ),
-            ),
-            child: const Text('Continue'),
+          CustomButton(
+            onPressed: () => context.read<SignUpBloc>().add(FormSubmitted()),
+            title: 'Continue',
           ),
         ],
       ),
@@ -179,50 +163,66 @@ class SignUpForm extends StatelessWidget {
   }
 }
 
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({
-    required this.label,
-    required this.hint,
-    required this.onChanged,
+class CustomTextFieldForSignup extends StatelessWidget {
+  const CustomTextFieldForSignup({
     super.key,
-    this.icon,
-    this.iconSvg,
+    required this.hintText,
     this.obscureText = false,
+    this.suffixIcon,
+    this.validator,
+    this.keyboardType = TextInputType.text,
+    this.readOnly = false,
+    this.prefixIcon,
+    this.fillColor,
+    this.maxLine = 1,
+    this.radius = 8,
+    required this.onChanged,
   });
 
-  final String label;
-  final String hint;
-  final IconData? icon;
-  final String? iconSvg;
+  final Function(String)? onChanged;
+  final String hintText;
   final bool obscureText;
-  final ValueChanged<String> onChanged;
+  final dynamic fillColor;
+  final Widget? suffixIcon;
+  final Widget? prefixIcon;
+  final String? Function(String?)? validator;
+  final TextInputType keyboardType;
+  final bool readOnly;
+  final int maxLine;
+  final double radius;
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      onChanged: onChanged,
-      obscureText: obscureText,
-      decoration: InputDecoration(
-        hintText: hint,
-        labelText: label,
-        floatingLabelBehavior: FloatingLabelBehavior.always,
-        hintStyle: const TextStyle(color: Color(0xFF757575)),
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 24,
-          vertical: 16,
+    return SizedBox(
+      height: 44.h,
+      child: TextFormField(
+        maxLines: maxLine,
+        readOnly: readOnly,
+        keyboardType: keyboardType,
+        obscureText: obscureText,
+        onChanged: onChanged,
+        decoration: InputDecoration(
+          hintText: hintText,
+          prefixIcon: prefixIcon,
+          suffixIcon: suffixIcon,
+          hintStyle: GoogleFonts.dmSans(
+            color: AppColors.textSecondary,
+            fontWeight: FontWeight.w400,
+            fontSize: 14.sp,
+            height: 20 / 14,
+          ),
+          fillColor: fillColor ?? Colors.transparent,
+          // Make background transparent
+          filled: true,
+          enabledBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: AppColors.borderColor, width: 0.5),
+              borderRadius: BorderRadius.circular(radius)),
+          focusedBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: AppColors.borderColor, width: 0.5),
+              borderRadius: BorderRadius.circular(radius)),
+          contentPadding: EdgeInsets.only(left: 12.w, right: 10.w, top: 12.h, bottom: 12.h),
         ),
-        suffix: icon != null
-            ? Icon(icon, color: Colors.grey.shade400)
-            : iconSvg != null
-                ? SvgPicture.string(
-                    iconSvg!,
-                  )
-                : null,
-        border: authOutlineInputBorder,
-        enabledBorder: authOutlineInputBorder,
-        focusedBorder: authOutlineInputBorder.copyWith(
-          borderSide: const BorderSide(color: Color(0xFFFF7643)),
-        ),
+        validator: validator,
       ),
     );
   }
