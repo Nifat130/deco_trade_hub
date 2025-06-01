@@ -25,11 +25,6 @@ class WholesalerRoute extends StatelessWidget {
         const Placeholder(),
         StoreProfilePage(),
       ],
-      // margin: EdgeInsets.only(
-      //   left: 20.w,
-      //   right: 20.w,
-      //   bottom: 20.h,
-      // ),
       decoration: NavBarDecoration(
         borderRadius: BorderRadius.circular(20),
         colorBehindNavBar: Colors.white,
