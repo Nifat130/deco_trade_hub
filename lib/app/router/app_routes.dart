@@ -9,4 +9,8 @@ class AppRoutes {
 
   static const storeForm = '/store_form';
   static const editStore = '/edit_store';
+
+  /// Home Routes
+  static const wholesalerHome = '/wholesaler_route/home';
+  static const retailerHome = '/retailer_home/home';
 }

@@ -77,8 +77,6 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         );
         return;
       }
-
-      // Call the signup method from the authDataSource
     });
   }
 

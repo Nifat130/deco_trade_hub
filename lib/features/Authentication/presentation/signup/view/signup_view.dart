@@ -52,18 +52,10 @@ class SignUpView extends StatelessWidget {
       ),
       body: BlocConsumer<SignUpBloc, SignUpState>(
         listener: (context, state) {
-          // if (state.status == SignUpStatus.success) {
-          //   /// todo: Navigate to the next page or show a success message
-          // }
           if (state.status == SignUpStatus.failure) {
-            ScaffoldMessenger.of(context)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(
-                SnackBar(
-                  content: Text(state.errorMessage),
-                  backgroundColor: Colors.red,
-                ),
-              );
+            context.showErrorSnackBar(
+              text: state.errorMessage,
+            );
           }
           if (state.status == SignUpStatus.submitting) {
             context.showCustomSnackBar(

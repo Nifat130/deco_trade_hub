@@ -18,6 +18,7 @@ class CustomTextFieldWithOnChanged extends StatelessWidget {
     this.maxLine = 1,
     this.radius = 8,
     this.textInputAction,
+    this.disabled = false,
     required this.onChanged,
   });
 
@@ -33,12 +34,14 @@ class CustomTextFieldWithOnChanged extends StatelessWidget {
   final bool readOnly;
   final int maxLine;
   final double radius;
+  final bool disabled;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 44.h,
       child: TextFormField(
+        enabled: !disabled,
         textInputAction: textInputAction,
         maxLines: maxLine,
         readOnly: readOnly,
@@ -46,6 +49,9 @@ class CustomTextFieldWithOnChanged extends StatelessWidget {
         obscureText: obscureText,
         onChanged: onChanged,
         decoration: InputDecoration(
+          disabledBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: Colors.transparent, width: 0.5),
+              borderRadius: BorderRadius.circular(radius)),
           hintText: hintText,
           prefixIcon: prefixIcon,
           suffixIcon: suffixIcon,

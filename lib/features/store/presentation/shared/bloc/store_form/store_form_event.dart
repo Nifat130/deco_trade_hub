@@ -43,6 +43,12 @@ class AddressLine1Changed extends StoreFormEvent {
   const AddressLine1Changed(this.addressLine1);
 }
 
+class AddressLine2Changed extends StoreFormEvent {
+  final String addressLine2;
+
+  const AddressLine2Changed(this.addressLine2);
+}
+
 class PostalCodeChanged extends StoreFormEvent {
   final String postalCode;
 
@@ -71,12 +77,6 @@ class StoreBannerUrlChanged extends StoreFormEvent {
   final String storeBannerUrl;
 
   const StoreBannerUrlChanged(this.storeBannerUrl);
-}
-
-class AddressLine2Changed extends StoreFormEvent {
-  final String addressLine2;
-
-  const AddressLine2Changed(this.addressLine2);
 }
 
 class SocialMediaLinksChanged extends StoreFormEvent {

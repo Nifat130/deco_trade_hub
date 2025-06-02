@@ -14,12 +14,6 @@ import 'package:deco_trade_hub/blocs/app_meta_data_cubit/app_meta_data_cubit.dar
 import 'package:deco_trade_hub/blocs/localization_cubit/localization_cubit.dart'
     as _i828;
 import 'package:deco_trade_hub/blocs/theme_cubit/theme_cubit.dart' as _i488;
-import 'package:deco_trade_hub/features/store/presentation/shared/bloc/store_form/store_form_bloc.dart'
-    as _i1057;
-import 'package:deco_trade_hub/features/store/repository/store_repository.dart'
-    as _i719;
-import 'package:deco_trade_hub/features/store/repository/store_repository_impl.dart'
-    as _i768;
 import 'package:deco_trade_hub/services/dependencies/src/dependency_injection.dart'
     as _i203;
 import 'package:deco_trade_hub/services/logger/app_logger.dart' as _i258;
@@ -49,13 +43,10 @@ _i174.GetIt $initInjectable(
     () => registerModule.incrementValue,
     instanceName: 'increment_value',
   );
-  gh.lazySingleton<_i719.StoreRepository>(() => _i768.StoreRepositoryImpl());
   gh.lazySingleton<_i962.AppMetaDataCubit>(() => _i962.AppMetaDataCubit(
         gh<_i258.AppLogger>(),
         gh<_i89.ErrorLogger>(),
       ));
-  gh.factory<_i1057.StoreFormBloc>(
-      () => _i1057.StoreFormBloc(gh<_i719.StoreRepository>()));
   return getIt;
 }
 

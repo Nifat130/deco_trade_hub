@@ -20,6 +20,8 @@ class StoreFormState extends Equatable {
   final String? featuredProductId;
   final String? ownerNID;
   final String? ownerTIN;
+  final String? errorMessage;
+
   final StoreFormStatus status;
 
   const StoreFormState.StoreFormState({
@@ -40,6 +42,7 @@ class StoreFormState extends Equatable {
     this.ownerNID,
     this.ownerTIN,
     this.isVerified = false,
+    this.errorMessage,
     this.featuredProductId,
   });
 
@@ -61,6 +64,7 @@ class StoreFormState extends Equatable {
         ownerNID = '',
         ownerTIN = '',
         isVerified = false,
+        errorMessage = '',
         featuredProductId = '';
 
   StoreFormState copyWith({
@@ -81,6 +85,7 @@ class StoreFormState extends Equatable {
     String? featuredProductId,
     String? ownerNID,
     String? ownerTIN,
+    String? errorMessage,
     StoreFormStatus? status,
   }) {
     return StoreFormState.StoreFormState(
@@ -101,6 +106,7 @@ class StoreFormState extends Equatable {
       ownerNID: ownerNID ?? this.ownerNID,
       ownerTIN: ownerTIN ?? this.ownerTIN,
       isVerified: isVerified ?? this.isVerified,
+      errorMessage: errorMessage ?? this.errorMessage,
       featuredProductId: featuredProductId ?? this.featuredProductId,
     );
   }
@@ -124,5 +130,7 @@ class StoreFormState extends Equatable {
         ownerTIN,
         isVerified,
         featuredProductId,
+        status,
+        errorMessage,
       ];
 }
