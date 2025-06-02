@@ -63,9 +63,11 @@ class _StoreSignUpFormViewState extends State<StoreSignUpFormView> {
         if (state.status == StoreFormStatus.success) {
           if (_storeType == UserRole.isRetailer.value) {
             Get.offAllNamed(AppRoutes.retailerHome);
+            context.showSuccessSnackBar(text: 'Store created successfully');
           }
           if (_storeType == UserRole.isWholesaler.value) {
             Get.offAllNamed(AppRoutes.wholesalerHome);
+            context.showSuccessSnackBar(text: 'Store created successfully');
           }
         }
 
@@ -74,10 +76,6 @@ class _StoreSignUpFormViewState extends State<StoreSignUpFormView> {
         }
       },
       builder: (context, StoreFormState state) {
-        // if (state.status == StoreFormStatus.submitting) {
-        //   return const BaseLoaderWidget();
-        // }
-
         return AppScaffold(
           appBar: CustomAppBar(title: '${_storeType.capitalizeFirst} Sign Up'),
           // applySafeArea: true,
@@ -214,9 +212,9 @@ class _StoreSignUpFormViewState extends State<StoreSignUpFormView> {
                       child: CustomButton(
                         loading: state.status == StoreFormStatus.submitting,
                         onPressed: () {
-                          // if (_formKey.currentState!.validate()) {
-                          context.read<StoreFormBloc>().add(StoreFormSubmitted(storeType: _storeType));
-                          // }
+                          if (_formKey.currentState!.validate()) {
+                            context.read<StoreFormBloc>().add(StoreFormSubmitted(storeType: _storeType));
+                          }
                         },
                         title: 'Submit',
                       ),

@@ -12,7 +12,6 @@ class StoreRepositoryImpl implements StoreRepository {
   StoreRepositoryImpl();
 
   @override
-  @override
   Future<Either<Failure, String>> createStore({
     required String storeName,
     required String ownerName,
@@ -80,14 +79,14 @@ class StoreRepositoryImpl implements StoreRepository {
 
       // final response = await supabaseClient.from('stores').insert(storeData);
 
-      if (response.error != null) {
-        return Left(Failure(response.error!.message));
+      if (response == null) {
+        return Left(Failure('Error creating store'));
       }
 
       // Supabase RPC return value (store_id uuid)
-      final storeId = response.data as String?;
+      final storeId = response as String?;
       if (storeId == null) {
-        return Left(Failure('Failed to create store: No store ID returned.'));
+        return Left(Failure('Failed to create store - store ID is null'));
       }
 
       return Right(storeId);

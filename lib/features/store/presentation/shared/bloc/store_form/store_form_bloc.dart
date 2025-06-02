@@ -130,45 +130,41 @@ class StoreFormBloc extends Bloc<StoreFormEvent, StoreFormState> {
     ));
 
     try {
-      await Future.delayed(const Duration(seconds: 2));
+      final result = await _storeRepository.createStore(
+        storeName: state.storeName,
+        ownerName: state.ownerName,
+        storeDescription: state.storeDescription ?? '',
+        contactNumber: state.contactNumber,
+        email: state.email,
+        addressLine1: state.addressLine1,
+        addressLine2: state.addressLine2 ?? '',
+        postalCode: state.postalCode,
+        storeType: event.storeType,
+        socialMediaLinks: {},
+        websiteUrl: state.websiteUrl ?? '',
+        storeBannerUrl: state.storeBannerUrl ?? '',
+        storeLogoUrl: state.storeLogoUrl ?? '',
+        ownerNID: state.ownerNID ?? '',
+        ownerTIN: state.ownerTIN ?? '',
+      );
 
-      emit(state.copyWith(
-        status: StoreFormStatus.error,
-        errorMessage: 'Store creation is not implemented yet.',
-      ));
-      // final result = await _storeRepository.createStore(
-      //   storeName: state.storeName,
-      //   ownerName: state.ownerName,
-      //   storeDescription: state.storeDescription ?? '',
-      //   contactNumber: state.contactNumber,
-      //   email: state.email,
-      //   addressLine1: state.addressLine1,
-      //   addressLine2: state.addressLine2 ?? '',
-      //   postalCode: state.postalCode,
-      //   storeType: event.storeType,
-      //   socialMediaLinks: {},
-      //   websiteUrl: state.websiteUrl ?? '',
-      //   storeBannerUrl: state.storeBannerUrl ?? '',
-      //   storeLogoUrl: state.storeLogoUrl ?? '',
-      //   ownerNID: state.ownerNID ?? '',
-      //   ownerTIN: state.ownerTIN ?? '',
-      // );
-      //
-      // result.fold(
-      //   (failure) {
-      //     emit(state.copyWith(
-      //       status: StoreFormStatus.error,
-      //     ));
-      //   },
-      //   (success) {
-      //     emit(state.copyWith(
-      //       status: StoreFormStatus.success,
-      //     ));
-      //   },
-      // );
+      result.fold(
+        (failure) {
+          emit(state.copyWith(
+            status: StoreFormStatus.error,
+            errorMessage: failure.message,
+          ));
+        },
+        (success) {
+          emit(state.copyWith(
+            status: StoreFormStatus.success,
+          ));
+        },
+      );
     } catch (e) {
       emit(state.copyWith(
         status: StoreFormStatus.error,
+        errorMessage: e.toString(),
       ));
     }
   }
