@@ -7,6 +7,7 @@ import 'package:deco_trade_hub/core/utils/constants/app_sizer.dart';
 import 'package:deco_trade_hub/core/utils/constants/app_sizer.dart';
 import 'package:deco_trade_hub/core/utils/constants/app_sizer.dart';
 import 'package:deco_trade_hub/core/utils/constants/app_sizer.dart';
+import 'package:deco_trade_hub/features/settings/presentation/screens/business_setting_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -33,7 +34,7 @@ class NavController extends GetxController {
     HomeScreen(),
     HomeScreen(),
     HomeScreen(),
-    HomeScreen(),
+    BusinessSettingScreen(),
   ];
 
   final List<String> labels = const ['Home', 'Bookings', 'Hire', 'Settings'];

@@ -1,5 +1,6 @@
 import 'package:deco_trade_hub/core/utils/constants/app_sizer.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -68,13 +69,13 @@ class ForgotPasswordScreen extends StatelessWidget {
                 //     otpCustomField(name),
                 //   ],
                 // ),
-                Spacer(),
+                SizedBox(height: 250.h,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Flexible(
                       flex: 8,
-                      child: CustomOutlinedButton(onPressed: (){Get.offNamed(AppRoute.loginScreen, arguments: userRole);}, title: "Back", borderColor: AppColors.borderColor),
+                      child: CustomOutlinedButton(onPressed: (){Get.offNamed(AppRoute.loginScreen, arguments: userRole);}, title: "Back", borderColor: AppColors.borderColor, height: 54.h, buttonTextColor: AppColors.primary,),
                     ),
                     Flexible(
                       flex: 1,

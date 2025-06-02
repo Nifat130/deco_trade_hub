@@ -2,6 +2,7 @@
 
 import 'package:deco_trade_hub/features/home/presentation/screens/home_screen.dart';
 import 'package:deco_trade_hub/features/notifiaction/presentation/screens/notification_screen.dart';
+import 'package:deco_trade_hub/features/settings/presentation/screens/business_setting_screen.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:deco_trade_hub/features/authentication/presentation/screens/common_screen.dart';
@@ -26,6 +27,7 @@ class AppRoute {
   static String bottomNevScreen = "/bottomNevScreen";
   static String homeScreen = "/homeScreen";
   static String notificationScreen = "/notificationScreen";
+  static String businessSettingsScreen = "/businessSettingsScreen";
 
 
   /// Checking for role
@@ -58,6 +60,7 @@ class AppRoute {
     GetPage(name: passwordResetScreen, page:() => PasswordResetScreen()),
     GetPage(name: homeScreen, page:() => HomeScreen()),
     GetPage(name: notificationScreen, page:() => NotificationScreen()),
+    GetPage(name: businessSettingsScreen, page:() => BusinessSettingScreen()),
     // GetPage(name: roleSelectionScreen, page:() => const RoleSelectionScreen()),
     // GetPage(name: forgetPassword, page:() => const ForgetPassword()),
     // GetPage(name: otpVerificationScreen, page:() => const OtpVerificationScreen()),
