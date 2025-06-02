@@ -1,3 +1,4 @@
+import 'package:app_ui/app_ui.dart';
 import 'package:deco_trade_hub/core/utils/constants/app_sizer.dart';
 import 'package:deco_trade_hub/features/Authentication/data/data_source/auth_datasource_impl.dart';
 import 'package:deco_trade_hub/features/Authentication/data/repository/auth_repo_impl.dart';
@@ -18,11 +19,8 @@ import '../../shared/widget/custom_textfield_with_onchanged.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({
-    required this.userRole,
     super.key,
   });
-
-  final String userRole;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +32,7 @@ class SignUpPage extends StatelessWidget {
         create: (context) => SignUpBloc(
           authCubit: context.read<AuthCubit>(),
           authRepo: context.read<AuthRepoImpl>(),
-        )..add(UserRoleChanged(userRole)),
+        )..add(UserRoleChanged(Get.find<AuthController>().currentRole.value)),
         child: const SignUpView(),
       ),
     );
@@ -46,11 +44,11 @@ class SignUpView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var x = Get.find<AuthController>().currentRole.value;
+    var currentRole = Get.find<AuthController>().currentRole.value;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomAppBar(
-        title: 'Sign Up as $x',
+        title: 'Sign Up as $currentRole',
       ),
       body: BlocConsumer<SignUpBloc, SignUpState>(
         listener: (context, state) {
@@ -68,14 +66,10 @@ class SignUpView extends StatelessWidget {
               );
           }
           if (state.status == SignUpStatus.submitting) {
-            ScaffoldMessenger.of(context)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(
-                const SnackBar(
-                  content: Text('Submitting...'),
-                  backgroundColor: Colors.blue,
-                ),
-              );
+            context.showCustomSnackBar(
+              content: const Text('Submitting...'),
+              backgroundColor: Colors.blue,
+            );
           }
         },
         builder: (context, state) {

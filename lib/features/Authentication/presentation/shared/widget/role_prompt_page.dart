@@ -155,9 +155,7 @@ class SignUpWithRoleScreen extends StatelessWidget {
                   const SizedBox(height: 50),
                   CustomButton(
                     onPressed: () {
-                      Get.toNamed(AppRoutes.signUp, arguments: {
-                        controller.currentRole.value,
-                      });
+                      Get.toNamed(AppRoutes.signUp);
                     },
                     title: 'Sign Up as ${controller.currentRole.value}',
                   ),

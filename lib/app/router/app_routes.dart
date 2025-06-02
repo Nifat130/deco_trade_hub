@@ -4,8 +4,8 @@ class AppRoutes {
   static const home = '/home';
   static const error = '/error';
   static const rolePrompt = '/role_prompt';
-  static const signUp = '/role_prompt/signup';
-  static const signIn = '/role_prompt/signin';
+  static const signUp = '/signup';
+  static const signIn = '/signin';
 
   static const storeForm = '/store_form';
   static const editStore = '/edit_store';

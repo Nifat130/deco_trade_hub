@@ -38,27 +38,49 @@ class StoreRepositoryImpl implements StoreRepository {
         return Left(Failure("User is not authenticated."));
       }
 
-      final response = await supabaseClient.rpc(
-        'create_store',
-        params: {
-          'p_store_name': storeName,
-          'p_owner_id': currentUser.id,
-          'p_contact_number': contactNumber,
-          'p_email': email,
-          'p_postal_code': postalCode,
-          'p_store_type': storeType,
-          'p_store_description': storeDescription,
-          'p_store_logo_url': storeLogoUrl,
-          'p_address_line1': addressLine1,
-          'p_address_line2': addressLine2,
-          'p_social_media_links': socialMediaLinks,
-          'p_website_url': websiteUrl,
-          'p_store_banner_url': storeBannerUrl,
-          'p_featured_product_id': null,
-          'p_nid': ownerNID,
-          'p_tin': ownerTIN,
-        },
-      );
+      final storeData = {
+        'store_name': storeName,
+        'owner_id': currentUser.id,
+        'contact_number': contactNumber,
+        'email': email,
+        'postal_code': postalCode,
+        'store_type': 'Retailer',
+        'store_description': storeDescription,
+        'store_logo_url': storeLogoUrl,
+        'address_line1': addressLine1,
+        'address_line2': addressLine2,
+        'social_media_links': socialMediaLinks,
+        'website_url': websiteUrl,
+        'store_banner_url': storeBannerUrl,
+        'featured_product_id': null,
+        'nid': ownerNID,
+        'tin': ownerTIN,
+        // 'created_at': DateTime.now().toIso8601String(),
+      };
+
+      // final response = await supabaseClient.rpc(
+      //   'create_store',
+      //   params: {
+      //     'p_store_name': storeName,
+      //     'p_owner_id': currentUser.id,
+      //     'p_contact_number': contactNumber,
+      //     'p_email': email,
+      //     'p_postal_code': postalCode,
+      //     'p_store_type': storeType,
+      //     'p_store_description': storeDescription,
+      //     'p_store_logo_url': storeLogoUrl,
+      //     'p_address_line1': addressLine1,
+      //     'p_address_line2': addressLine2,
+      //     'p_social_media_links': socialMediaLinks,
+      //     'p_website_url': websiteUrl,
+      //     'p_store_banner_url': storeBannerUrl,
+      //     'p_featured_product_id': null,
+      //     'p_nid': ownerNID,
+      //     'p_tin': ownerTIN,
+      //   },
+      // );
+
+      final response = await supabaseClient.from('stores').insert(storeData);
 
       if (response.error != null) {
         return Left(Failure(response.error!.message));

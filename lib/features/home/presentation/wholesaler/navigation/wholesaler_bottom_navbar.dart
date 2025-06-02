@@ -46,8 +46,6 @@ class WholesalerRoute extends StatelessWidget {
           ),
           title: 'Home',
           textStyle: textStyle,
-          // activeColorPrimary: context.theme.primaryColor,
-          // inactiveColorPrimary: Colors.black,
         ),
         PersistentBottomNavBarItem(
           icon: Image.asset(

@@ -1,7 +1,10 @@
 import 'package:app_ui/app_ui.dart';
-import 'package:deco_trade_hub/features/store/model/store_model.dart';
+import 'package:deco_trade_hub/features/Authentication/presentation/shared/widget/custom_textfield_with_onchanged.dart';
 import 'package:deco_trade_hub/features/store/presentation/shared/widget/store_avatar_uploader.dart';
 import 'package:deco_trade_hub/features/store/presentation/shared/widget/store_cover_uploader.dart';
+import 'package:deco_trade_hub/ui/nifat/widgets/custom_button.dart';
+import 'package:deco_trade_hub/ui/nifat/widgets/custom_text.dart';
+import 'package:deco_trade_hub/ui/widgets/global/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -55,18 +58,7 @@ class _StoreSignUpFormViewState extends State<StoreSignUpFormView> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final _storeType = widget.storeType;
-
-    Widget buildTitle(String title) {
-      return Text(
-        title,
-        style: theme.textTheme.titleMedium?.copyWith(
-          fontWeight: FontWeight.bold,
-          color: theme.primaryColor,
-        ),
-      );
-    }
 
     return BlocConsumer<StoreFormBloc, StoreFormState>(
       bloc: _bloc,
@@ -87,12 +79,7 @@ class _StoreSignUpFormViewState extends State<StoreSignUpFormView> {
 
         return Scaffold(
           // loading: (state.status == StoreFormStatus.submitting),
-          appBar: AppBar(
-            title: Text(
-              '${_storeType.capitalizeFirst} Store Sign Up',
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
-            ),
-          ),
+          appBar: CustomAppBar(title: '${_storeType.capitalizeFirst} Sign Up'),
           // applySafeArea: true,
           body: Padding(
             padding: const EdgeInsets.all(16.0),
@@ -102,107 +89,107 @@ class _StoreSignUpFormViewState extends State<StoreSignUpFormView> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    buildTitle('Store Name'),
+                    CustomText(text: 'Store Name'),
                     const Gap(6),
-                    AppTextField.roundedBorder(
+                    CustomTextFieldWithOnChanged(
                       hintText: 'Enter your store name',
                       onChanged: (value) => _bloc.add(StoreNameChanged(value)),
                       validator: (value) => Validator.notEmpty(value, 'store name'),
                     ),
                     const Gap(12),
-                    buildTitle('Store Logo'),
+                    CustomText(text: 'Store Logo'),
                     const Gap(6),
                     StoreAvatarUploader(onImageUploaded: (url) => _bloc.add(StoreLogoUrlChanged(url))),
                     const Gap(16),
-                    buildTitle('Store Banner'),
+                    CustomText(text: 'Store Banner'),
                     const Gap(6),
                     StoreCoverUploader(onImageUploaded: (url) => _bloc.add(StoreBannerUrlChanged(url))),
                     const Gap(16),
-                    buildTitle('Owner Name'),
+                    CustomText(text: 'Owner Name'),
                     const Gap(6),
-                    AppTextField.roundedBorder(
+                    CustomTextFieldWithOnChanged(
                       hintText: 'Enter your name',
                       onChanged: (value) => _bloc.add(OwnerNameChanged(value)),
                       validator: (value) => Validator.notEmpty(value, 'name'),
                     ),
                     const Gap(16),
-                    buildTitle('Contact Number'),
+                    CustomText(text: 'Contact Number'),
                     const Gap(6),
-                    AppTextField.roundedBorder(
+                    CustomTextFieldWithOnChanged(
                       hintText: 'Enter store contact number',
-                      textInputType: TextInputType.phone,
+                      keyboardType: TextInputType.phone,
                       onChanged: (value) => _bloc.add(ContactNumChanged(value)),
                       validator: (value) => Validator.validatePhoneNumber(value),
                     ),
                     const Gap(16),
-                    buildTitle('Email'),
+                    CustomText(text: 'Email'),
                     const Gap(6),
-                    AppTextField.roundedBorder(
+                    CustomTextFieldWithOnChanged(
                       hintText: 'Enter your email',
                       onChanged: (value) => _bloc.add(EmailChanged(value)),
-                      textInputType: TextInputType.emailAddress,
+                      keyboardType: TextInputType.emailAddress,
                       validator: (value) => Validator.validateEmail(value),
                     ),
                     const Gap(16),
-                    buildTitle('Description'),
+                    CustomText(text: 'Description'),
                     const Gap(6),
-                    AppTextField.roundedBorder(
-                      maxLines: 3,
+                    CustomTextFieldWithOnChanged(
+                      maxLine: 3,
                       hintText: 'Enter a brief description of your store',
                       onChanged: (value) => _bloc.add(StoreDescChanged(value)),
                     ),
                     const Gap(16),
-                    buildTitle('Store Type'),
+                    CustomText(text: 'Store Type'),
                     const Gap(6),
-                    AppTextField.roundedBorder(
+                    CustomTextFieldWithOnChanged(
                       readOnly: true,
                       hintText: _storeType,
                       onChanged: (value) => _bloc.add(StoreTypeChanged(_storeType)),
                     ),
                     const Gap(16),
-                    buildTitle('Address Line 1'),
+                    CustomText(text: 'Address Line 1'),
                     const Gap(6),
-                    AppTextField.roundedBorder(
+                    CustomTextFieldWithOnChanged(
                       hintText: 'Enter your address',
                       onChanged: (value) => _bloc.add(AddressLine1Changed(value)),
                       validator: (e) => Validator.notEmpty(e, 'address'),
                     ),
                     const Gap(16),
-                    buildTitle('Address Line 2'),
+                    CustomText(text: 'Address Line 2'),
                     const Gap(6),
-                    AppTextField.roundedBorder(
+                    CustomTextFieldWithOnChanged(
                       hintText: 'Enter your address (optional)',
                       onChanged: (value) => _bloc.add(AddressLine2Changed(value)),
                     ),
                     const Gap(16),
-                    buildTitle('Postal Code'),
+                    CustomText(text: 'Postal Code'),
                     const Gap(6),
-                    AppTextField.roundedBorder(
+                    CustomTextFieldWithOnChanged(
                       hintText: 'Enter your postal code',
-                      textInputType: TextInputType.number,
+                      keyboardType: TextInputType.number,
                       onChanged: (value) => _bloc.add(PostalCodeChanged(value)),
                       validator: (value) => Validator.notEmpty(value, 'postal code'),
                     ),
                     const Gap(16),
-                    buildTitle('Social Media Links'),
+                    CustomText(text: 'Social Media Links'),
                     const Gap(6),
-                    AppTextField.roundedBorder(
+                    CustomTextFieldWithOnChanged(
                       hintText: 'Enter links (if any)',
                       onChanged: (value) => _bloc.add(StoreDescChanged(value)),
-                      textInputType: TextInputType.url,
+                      keyboardType: TextInputType.url,
                     ),
                     const Gap(16),
-                    buildTitle('TIN Card'),
+                    CustomText(text: 'TIN Card'),
                     const Gap(6),
-                    AppTextField.roundedBorder(
+                    CustomTextFieldWithOnChanged(
                       hintText: 'Enter your TIN card number',
                       onChanged: (value) => _bloc.add(TinChanged(value)),
                       validator: (value) => Validator.notEmpty(value, 'TIN card number'),
                     ),
                     const Gap(16),
-                    buildTitle('NID'),
+                    CustomText(text: 'NID'),
                     const Gap(6),
-                    AppTextField.roundedBorder(
+                    CustomTextFieldWithOnChanged(
                       hintText: 'Enter your NID number',
                       onChanged: (value) => _bloc.add(NidChanged(value)),
                       validator: (value) => Validator.notEmpty(value, 'NID number'),
@@ -211,20 +198,15 @@ class _StoreSignUpFormViewState extends State<StoreSignUpFormView> {
                     if (state.status == StoreFormStatus.submitting) BaseLoaderWidget(),
                     SizedBox(
                       width: context.screenWidth,
-                      child: FilledButton.tonal(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            _bloc.add(StoreFormSubmitted(storeType: _storeType));
-                          }
-                        },
-                        child: buildTitle('Submit'),
-                      ),
+                      child: CustomButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              _bloc.add(StoreFormSubmitted(storeType: _storeType));
+                            }
+                          },
+                          title: 'Submit'),
                     ),
                     const Gap(32),
-                    FilledButton.tonal(
-                      onPressed: () {},
-                      child: buildTitle('Goto StoreDetails Page'),
-                    ),
                   ],
                 ),
               ),
@@ -235,31 +217,3 @@ class _StoreSignUpFormViewState extends State<StoreSignUpFormView> {
     );
   }
 }
-
-StoreModel dummyStore = StoreModel(
-  id: '550e8400-e29b-41d4-a716-446655440000',
-  storeName: 'Tech Haven',
-  ownerId: '550e8400-e29b-41d4-a716-446655440001',
-  storeDescription:
-      'Your one-stop shop for cutting-edge technology and gadgets. We offer the latest in electronics, smart home devices, and computer accessories with expert advice and premium customer service.',
-  storeLogoUrl: 'https://example.com/logo.png',
-  contactNumber: '+1 (555) 123-4567',
-  email: 'contact@techhaven.com',
-  addressLine1: '123 Tech Valley',
-  addressLine2: 'Suite 456',
-  postalCode: 'TV 12345',
-  storeType: 'Retailer',
-  socialMediaLinks: {
-    'facebook': 'https://facebook.com/techhaven',
-    'instagram': 'https://instagram.com/techhaven',
-    'twitter': 'https://twitter.com/techhaven'
-  },
-  websiteUrl: 'https://techhaven.com',
-  storeBannerUrl: 'https://example.com/banner.jpg',
-  isVerified: true,
-  createdAt: DateTime.now().subtract(const Duration(days: 365)),
-  updatedAt: DateTime.now(),
-  featuredProductId: '550e8400-e29b-41d4-a716-446655440002',
-  nid: '1234567890123',
-  tin: 'TIN-987654321',
-);

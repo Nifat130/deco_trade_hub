@@ -31,17 +31,15 @@ final List<GetPage> appRoutes = [
     page: () => const ErrorScreen(),
   ),
   GetPage(
+    name: AppRoutes.signUp,
+    page: () => SignUpPage(),
+  ),
+  GetPage(
+    name: AppRoutes.signIn,
+    page: () => const SignInPage(),
+  ),
+  GetPage(
     name: AppRoutes.rolePrompt,
     page: () => const RolePromptPage(),
-    children: [
-      GetPage(
-        name: AppRoutes.signUp.replaceFirst(AppRoutes.rolePrompt, ''),
-        page: () => SignUpPage(userRole: Get.arguments.toString()),
-      ),
-      GetPage(
-        name: AppRoutes.signIn.replaceFirst(AppRoutes.rolePrompt, ''),
-        page: () => const SignInPage(),
-      ),
-    ],
   ),
 ];
