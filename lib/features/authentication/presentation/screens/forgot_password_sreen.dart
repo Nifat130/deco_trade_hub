@@ -35,6 +35,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                 CustomText(text: "Please enter the OTP that has been sent to your registered email address.", fontSize: 14.h, color: AppColors.textSecondary,),
                 SizedBox(height: 80.h,),
                 CustomText(text: "Enter the OTP", fontSize: 14.h, color: AppColors.primary,),
+                SizedBox(height: 8.h,),
                 Pinput(
                   length: 6,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
