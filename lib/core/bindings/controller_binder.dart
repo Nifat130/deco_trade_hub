@@ -1,4 +1,5 @@
 
+import 'package:deco_trade_hub/features/settings/controllers/business_setting_screen_controller.dart';
 import 'package:get/get.dart';
 
 import '../../features/authentication/controllers/common_controller.dart';
@@ -35,10 +36,10 @@ class ControllerBinder extends Bindings {
     //       () => GrowthController(),
     //   fenix: true,
     // );
-    // Get.lazyPut<SettingController>(
-    //       () => SettingController(),
-    //   fenix: true,
-    // );
+    Get.lazyPut<BusinessSettingScreenController>(
+          () => BusinessSettingScreenController(),
+      fenix: true,
+    );
 
 
   }

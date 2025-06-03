@@ -34,6 +34,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                 CustomText(text: "Please enter the OTP that has been sent to your registered email address.", fontSize: 14.h, color: AppColors.textSecondary,),
                 SizedBox(height: 80.h,),
                 CustomText(text: "Enter the OTP", fontSize: 14.h, color: AppColors.primary,),
+                SizedBox(height: 8.h,),
                 Pinput(
                   length: 6,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -68,13 +69,13 @@ class ForgotPasswordScreen extends StatelessWidget {
                 //     otpCustomField(name),
                 //   ],
                 // ),
-                SizedBox(height: 320.h,),
+                SizedBox(height: 250.h,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Flexible(
                       flex: 8,
-                      child: CustomOutlinedButton(onPressed: (){Get.offNamed(AppRoute.loginScreen, arguments: userRole);}, title: "Back", borderColor: AppColors.borderColor),
+                      child: CustomOutlinedButton(onPressed: (){Get.offNamed(AppRoute.loginScreen, arguments: userRole);}, title: "Back", borderColor: AppColors.borderColor, height: 54.h, buttonTextColor: AppColors.primary,),
                     ),
                     Flexible(
                       flex: 1,

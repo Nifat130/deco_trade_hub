@@ -14,7 +14,7 @@ class CustomOutlinedButton extends StatelessWidget {
   final Color buttonTextColor;
   final double radius, height;
   final String title;
-  final String? icon;
+  final IconData? icon;
   final bool isIcon;
 
   const CustomOutlinedButton({
@@ -60,8 +60,8 @@ class CustomOutlinedButton extends StatelessWidget {
                 title,
                 style: GoogleFonts.dmSans(
                   color: buttonTextColor,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16.sp,
                   height: 22 / 16,
                   letterSpacing: -0.6,
                 ),
@@ -69,10 +69,9 @@ class CustomOutlinedButton extends StatelessWidget {
               if (isIcon == false)
                 SizedBox(width: 12.w),
               if (isIcon == false)
-                Image.asset(
-                  icon ?? IconPath.arrowRight,
-                  width: 17.w,
-                  height: 12.h,
+                Icon(
+                  icon ?? null,
+                  size: 17.w,
                   color: iconColor,
                 ),
             ],
