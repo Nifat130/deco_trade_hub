@@ -10,7 +10,7 @@ import '../../../../core/common/widgets/custom_submit_button.dart';
 import '../../../../core/common/widgets/custom_text.dart';
 import '../../../../core/utils/constants/app_colors.dart';
 import '../../../../routes/app_routes.dart';
-
+////////////////
 class ForgotPasswordScreen extends StatelessWidget {
   ForgotPasswordScreen({super.key});
   final name = TextEditingController();
