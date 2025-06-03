@@ -68,7 +68,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                 //     otpCustomField(name),
                 //   ],
                 // ),
-                Spacer(),
+                SizedBox(height: 320.h,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
