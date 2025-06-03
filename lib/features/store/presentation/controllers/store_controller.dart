@@ -1,8 +1,9 @@
 import 'package:deco_trade_hub/features/store/model/store_model.dart';
 import 'package:deco_trade_hub/features/store/model/store_owner_model.dart';
-import 'package:deco_trade_hub/features/store/repository/store_repository.dart';
 import 'package:get/get.dart';
 import 'package:shared/shared.dart';
+
+import '../../repository/store_repository_impl.dart';
 
 class StoreController extends GetxController implements GetxService {
   final StoreRepository repo;

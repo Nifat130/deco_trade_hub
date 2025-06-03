@@ -1,17 +1,15 @@
 import 'package:deco_trade_hub/features/store/model/store_model.dart';
 import 'package:deco_trade_hub/features/store/model/store_owner_model.dart';
-import 'package:deco_trade_hub/features/store/repository/store_repository.dart';
 import 'package:deco_trade_hub/services/global/failures.dart';
 import 'package:fpdart/src/either.dart';
 import 'package:shared/shared.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-class StoreRepositoryImpl implements StoreRepository {
+class StoreRepository {
   final SupabaseClient supabaseClient = Supabase.instance.client;
 
-  StoreRepositoryImpl();
+  StoreRepository();
 
-  @override
   Future<Either<Failure, String>> createStore({
     required String storeName,
     required String ownerName,
@@ -97,13 +95,11 @@ class StoreRepositoryImpl implements StoreRepository {
     }
   }
 
-  @override
   Future<Either<Failure, String>> deleteStore({required String storeId}) {
     // TODO: implement deleteStore
     throw UnimplementedError();
   }
 
-  @override
   Future<Either<Failure, StoreModel>> getUserStore() async {
     try {
       final currentUser = supabaseClient.auth.currentUser;
@@ -122,7 +118,6 @@ class StoreRepositoryImpl implements StoreRepository {
     }
   }
 
-  @override
   Future<Either<Failure, StoreModel>> updateStoreDetails({
     required String storeId,
     String? storeName,
@@ -167,7 +162,6 @@ class StoreRepositoryImpl implements StoreRepository {
     }
   }
 
-  @override
   Future<Either<Failure, StoreOwnerModel>> getStoreOwnerInfo({required String ownerId}) async {
     try {
       final currentUser = supabaseClient.auth.currentUser;

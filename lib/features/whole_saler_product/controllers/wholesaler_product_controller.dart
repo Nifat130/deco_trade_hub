@@ -1,7 +1,7 @@
 import 'package:deco_trade_hub/features/whole_saler_product/model/product_model.dart';
 import 'package:get/get.dart';
 
-import '../repository/product_repository.dart' show ProductRepository;
+import '../repository/product_repo_impl.dart';
 
 class WholesalerProductController extends GetxController implements GetxService {
   final ProductRepository repo;

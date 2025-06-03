@@ -4,7 +4,6 @@ import 'package:deco_trade_hub/features/Authentication/presentation/controllers/
 import 'package:deco_trade_hub/features/Authentication/presentation/shared/widget/custom_textfield_with_onchanged.dart';
 import 'package:deco_trade_hub/features/store/presentation/shared/widget/store_avatar_uploader.dart';
 import 'package:deco_trade_hub/features/store/presentation/shared/widget/store_cover_uploader.dart';
-import 'package:deco_trade_hub/features/store/repository/store_repository.dart';
 import 'package:deco_trade_hub/ui/nifat/widgets/custom_button.dart';
 import 'package:deco_trade_hub/ui/nifat/widgets/custom_text.dart';
 import 'package:deco_trade_hub/ui/widgets/global/custom_appbar.dart';
@@ -14,6 +13,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
 import '../../../../../core/validators/form_validator.dart';
+import '../../../repository/store_repository_impl.dart';
 import '../../shared/bloc/store_form/store_form_bloc.dart';
 
 class StoreSignUpForm extends StatelessWidget {

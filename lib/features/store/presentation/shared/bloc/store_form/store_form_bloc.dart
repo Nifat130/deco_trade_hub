@@ -1,9 +1,10 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:deco_trade_hub/features/store/repository/store_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:shared/shared.dart';
+
+import '../../../../repository/store_repository_impl.dart';
 
 part 'store_form_event.dart';
 part 'store_form_state.dart';
