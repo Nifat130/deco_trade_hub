@@ -155,7 +155,7 @@ class SignInForm extends StatelessWidget {
             },
           ),
           SizedBox(height: 24.h),
-          BlocListener<SignInBloc, SignInState>(
+          BlocConsumer<SignInBloc, SignInState>(
             listener: (context, state) {
               if (state.status == SignInStatus.success) {
                 Get.toNamed(AppRoutes.rolePrompt);
@@ -164,10 +164,13 @@ class SignInForm extends StatelessWidget {
                 context.showCustomSnackBar(text: state.errorMessage);
               }
             },
-            child: CustomButton(
-              onPressed: () => context.read<SignInBloc>().add(const LoginSubmitted()),
-              title: 'Continue',
-            ),
+            builder: (context, SignInState state) {
+              return CustomButton(
+                loading: state.status == SignInStatus.submitting,
+                onPressed: () => context.read<SignInBloc>().add(const LoginSubmitted()),
+                title: 'Continue',
+              );
+            },
           ),
         ],
       ),
