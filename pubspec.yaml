@@ -42,10 +42,10 @@ dependencies:
     path: packages/shared
   storage:
     path: packages/storage/storage
-  secure_storage:
-    path: packages/storage/secure_storage
   persistent_storage:
     path: packages/storage/persistent_storage
+
+
   supabase_flutter: ^2.8.4
   flutter_dotenv: ^5.2.1
   lottie: ^3.3.0
