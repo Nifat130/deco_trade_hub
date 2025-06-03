@@ -1,9 +1,7 @@
 import 'package:flutter/foundation.dart';
-import 'package:deco_trade_hub/services/dependencies/src/dependency_injection.dart';
 import 'package:shared/shared.dart';
 
 /// The AppLogger class provides a simple logging mechanism for the application.
-@LazySingletonService()
 class AppLogger {
   const AppLogger();
 

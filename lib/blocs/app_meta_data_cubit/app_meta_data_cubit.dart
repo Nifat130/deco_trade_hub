@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:android_id/android_id.dart';
-import 'package:deco_trade_hub/blocs/bloc_utils/src/base_cubit.dart';
-import 'package:deco_trade_hub/services/dependencies/src/dependency_injection.dart';
+import 'package:bloc/bloc.dart';
+import 'package:deco_trade_hub/core/di/get_it_di.dart';
 import 'package:deco_trade_hub/services/global/enums.dart';
 import 'package:deco_trade_hub/services/logger/app_logger.dart';
 import 'package:deco_trade_hub/services/logger/error_logger.dart';
@@ -14,14 +14,7 @@ import 'package:shared/shared.dart';
 
 part 'app_meta_data_state.dart';
 
-/// Cubit responsible for managing application metadata.
-///
-/// This controller handles the retrieval and storage of various device and
-/// application
-/// information, such as device ID, OS type and version, app version, and build
-/// number.
-@LazySingletonService()
-class AppMetaDataCubit extends BaseCubit<AppMetaDataState> {
+class AppMetaDataCubit extends Cubit<AppMetaDataState> {
   AppMetaDataCubit(
     this._logger,
     this._errorLogger,
@@ -34,14 +27,6 @@ class AppMetaDataCubit extends BaseCubit<AppMetaDataState> {
 
   Completer<void>? _initCompleter;
 
-  /// Initializes and populates the metadata.
-  ///
-  /// This method should be called after the `runApp` function in the `main`
-  /// function.
-  /// It can be called multiple times to re-populate the metadata if needed.
-  ///
-  /// Important: See https://pub.dev/packages/package_info_plus for more
-  /// information on timing constraints for package info retrieval.
   Future<void> init() async {
     if (_initCompleter == null) {
       _initCompleter = Completer<void>();
@@ -95,11 +80,6 @@ class AppMetaDataCubit extends BaseCubit<AppMetaDataState> {
     }
   }
 
-  /// Retrieves the device's unique ID.
-  ///
-  /// Returns the device unique id for iOS and Android platforms.
-  /// Returns null if the platform is not supported or if the ID can't be
-  /// determined.
   Future<String?> _getDeviceId() async {
     final deviceInfo = DeviceInfoPlugin();
     if (Platform.isIOS) {

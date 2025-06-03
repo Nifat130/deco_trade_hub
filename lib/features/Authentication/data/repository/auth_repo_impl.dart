@@ -1,7 +1,7 @@
+import 'package:deco_trade_hub/core/di/get_it_di.dart';
 import 'package:deco_trade_hub/features/Authentication/data/data_source/auth_datasource.dart';
 import 'package:deco_trade_hub/features/Authentication/domain/repository/auth_repo.dart';
 import 'package:deco_trade_hub/features/store/model/store_model.dart';
-import 'package:deco_trade_hub/services/dependencies/dependency_injection.dart';
 import 'package:deco_trade_hub/services/global/enums.dart';
 import 'package:deco_trade_hub/services/global/failures.dart';
 import 'package:fpdart/fpdart.dart';

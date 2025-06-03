@@ -1,9 +1,7 @@
-import 'package:deco_trade_hub/blocs/bloc_utils/src/base_hydrated_cubit.dart';
-import 'package:deco_trade_hub/services/dependencies/src/dependency_injection.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 /// Manages the locale of the app.
-@LazySingletonService()
-class LocalizationCubit extends BaseHydratedCubit<Language> {
+class LocalizationCubit extends HydratedCubit<Language> {
   // initially the locale is set to english
   LocalizationCubit() : super(Language.english);
 
@@ -14,8 +12,7 @@ class LocalizationCubit extends BaseHydratedCubit<Language> {
   void setNextLanguage() => emit(state.nextLanguage);
 
   @override
-  Language? fromJson(Map<String, dynamic> json) =>
-      Language.values.firstWhere((l) => l.code == json['language_code']);
+  Language? fromJson(Map<String, dynamic> json) => Language.values.firstWhere((l) => l.code == json['language_code']);
 
   @override
   Map<String, dynamic>? toJson(Language state) => {'language_code': state.code};
@@ -47,8 +44,7 @@ enum Language {
   /// languages, and if the current language is the last language in the list,
   /// it returns the first language in the list.
 
-  Language get nextLanguage =>
-      Language.values[(index + 1) % Language.values.length];
+  Language get nextLanguage => Language.values[(index + 1) % Language.values.length];
 
   Language get language => Language.values[index];
 }

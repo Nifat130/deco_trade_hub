@@ -1,6 +1,5 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:deco_trade_hub/blocs/app_meta_data_cubit/app_meta_data_cubit.dart';
-import 'package:deco_trade_hub/services/dependencies/src/dependency_injection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -21,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    ServiceProvider.get<AppMetaDataCubit>().init();
+    context.read<AppMetaDataCubit>().init();
   }
 
   @override

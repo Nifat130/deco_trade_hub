@@ -9,7 +9,7 @@ import 'package:deco_trade_hub/core/utils/constants/app_sizer.dart';
 import 'package:deco_trade_hub/features/Authentication/data/data_source/auth_datasource_impl.dart';
 import 'package:deco_trade_hub/features/Authentication/data/repository/auth_repo_impl.dart';
 import 'package:deco_trade_hub/features/Authentication/presentation/shared/bloc/auth_cubit.dart';
-import 'package:deco_trade_hub/services/dependencies/src/dependency_injection.dart';
+import 'package:deco_trade_hub/services/logger/error_logger.dart';
 import 'package:fconnectivity/fconnectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' as bloc;
@@ -17,6 +17,7 @@ import 'package:get/get.dart';
 import 'package:localization/localization.dart';
 
 import '../../bootstrap.dart';
+import '../../services/logger/app_logger.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -32,13 +33,13 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) => bloc.MultiBlocProvider(
         providers: [
           bloc.BlocProvider<LocalizationCubit>(
-            create: (_) => ServiceProvider.get<LocalizationCubit>(),
+            create: (_) => LocalizationCubit(),
           ),
           bloc.BlocProvider<ThemeCubit>(
-            create: (_) => ServiceProvider.get<ThemeCubit>(),
+            create: (_) => ThemeCubit(),
           ),
           bloc.BlocProvider<AppMetaDataCubit>(
-            create: (_) => ServiceProvider.get<AppMetaDataCubit>(),
+            create: (_) => AppMetaDataCubit(AppLogger(), ErrorLogger()),
           ),
           bloc.BlocProvider<AuthCubit>(
             create: (_) => AuthCubit(

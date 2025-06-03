@@ -3,9 +3,7 @@ import 'dart:developer';
 
 import 'package:deco_trade_hub/app/app_secret.dart';
 import 'package:deco_trade_hub/app/view/app.dart';
-import 'package:deco_trade_hub/services/dependencies/src/dependency_injection.dart';
 import 'package:deco_trade_hub/services/environments/environments.dart';
-import 'package:deco_trade_hub/services/logger/error_logger.dart';
 import 'package:flutter/foundation.dart' as foundation;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +16,7 @@ import 'package:shared/shared.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'core/di/file_container.dart';
+import 'core/di/get_it_di.dart';
 import 'core/logger/app_bloc_observer.dart';
 
 Future<void> bootstrap(Environment env) async {
@@ -40,16 +39,13 @@ Future<void> bootstrap(Environment env) async {
   Stripe.publishableKey = AppSecrets.stripePublishableKey;
   Stripe.instance.applySettings();
 
-  await ManualServiceProvider.init();
-
-  await ServiceProvider.init(environment: env);
+  await ServiceProvider.init();
 
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory:
         kIsWeb ? HydratedStorageDirectory.web : HydratedStorageDirectory((await getTemporaryDirectory()).path),
   );
 
-  ServiceProvider.get<ErrorLogger>().registerErrorHandlers();
   FlutterError.onError = (details) {
     logF(details.exceptionAsString(), stackTrace: details.stack);
   };

@@ -1,10 +1,9 @@
 import 'package:app_ui/app_ui.dart';
-import 'package:deco_trade_hub/blocs/bloc_utils/src/base_hydrated_cubit.dart';
-import 'package:deco_trade_hub/services/dependencies/src/dependency_injection.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 /// Manages the theme of the app.
-@LazySingletonService()
-class ThemeCubit extends BaseHydratedCubit<AppTheme> {
+
+class ThemeCubit extends HydratedCubit<AppTheme> {
   // initially the theme is set to light theme
   ThemeCubit() : super(AppThemeLight.instance);
 
