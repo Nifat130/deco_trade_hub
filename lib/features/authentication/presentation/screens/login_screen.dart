@@ -46,7 +46,7 @@ class LoginScreen extends GetView<LoginController> {
               onPressed: (){
                 Get.toNamed(AppRoute.bottomNevScreen);
               },
-              title: "Sign In"
+              title: "Login"
           ),
           SizedBox(height: 12.h,),
           CustomText(text: "By joining you agree to ours terms ot Service and Privacy Policy", textAlign: TextAlign.center, fontWeight: FontWeight.w400, fontSize: 14.sp, color: AppColors.textSecondary,),

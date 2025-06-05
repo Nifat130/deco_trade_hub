@@ -1,4 +1,5 @@
 
+import 'package:deco_trade_hub/features/Product/controllers/add_product_controller.dart';
 import 'package:deco_trade_hub/features/settings/controllers/business_setting_screen_controller.dart';
 import 'package:get/get.dart';
 
@@ -38,6 +39,11 @@ class ControllerBinder extends Bindings {
     // );
     Get.lazyPut<BusinessSettingScreenController>(
           () => BusinessSettingScreenController(),
+      fenix: true,
+    );
+
+    Get.lazyPut<AddProductController>(
+          () => AddProductController(),
       fenix: true,
     );
 

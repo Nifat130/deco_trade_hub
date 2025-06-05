@@ -1,5 +1,6 @@
 
 
+import 'package:deco_trade_hub/features/Product/presentation/screens/add_product_screen.dart';
 import 'package:deco_trade_hub/features/home/presentation/screens/home_screen.dart';
 import 'package:deco_trade_hub/features/notifiaction/presentation/screens/notification_screen.dart';
 import 'package:deco_trade_hub/features/settings/presentation/screens/business_setting_screen.dart';
@@ -28,6 +29,7 @@ class AppRoute {
   static String homeScreen = "/homeScreen";
   static String notificationScreen = "/notificationScreen";
   static String businessSettingsScreen = "/businessSettingsScreen";
+  static String addProductScreen = "/addProductScreen";
 
 
   /// Checking for role
@@ -61,6 +63,7 @@ class AppRoute {
     GetPage(name: homeScreen, page:() => HomeScreen()),
     GetPage(name: notificationScreen, page:() => NotificationScreen()),
     GetPage(name: businessSettingsScreen, page:() => BusinessSettingScreen()),
+    GetPage(name: addProductScreen, page:() => AddProductScreen()),
     // GetPage(name: roleSelectionScreen, page:() => const RoleSelectionScreen()),
     // GetPage(name: forgetPassword, page:() => const ForgetPassword()),
     // GetPage(name: otpVerificationScreen, page:() => const OtpVerificationScreen()),
