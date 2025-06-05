@@ -13,7 +13,7 @@ import '../widgets/role_container.dart';
 import 'login_screen.dart';
 
 class CommonScreen extends GetView<CommonController> {
-  CommonScreen({super.key});
+  const CommonScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

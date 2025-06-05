@@ -31,6 +31,12 @@ class IconPath{
   static const  String binIcon = '$_basePath/binicon.png';
   static const  String twoStateVerificationIcon = '$_basePath/twostatevarificationicon.png';
   static const  String addPickIcon = '$_basePath/addPickIcon.png';
+  static const  String addPictureIcon = '$_basePath/addPictureIcon.png';
+  static const  String fabricIcon = '$_basePath/fabricIcon.png';
+  static const  String productCategoryIcon = '$_basePath/productCategoryIcon.png';
+  static const  String productNameIcon = '$_basePath/productNameIcon.png';
+  static const  String productQuantity = '$_basePath/productQuantity.png';
+  static const  String takaIcon = '$_basePath/takaIcon.png';
 
 
 }
