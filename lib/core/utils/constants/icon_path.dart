@@ -35,8 +35,9 @@ class IconPath{
   static const  String fabricIcon = '$_basePath/fabricIcon.png';
   static const  String productCategoryIcon = '$_basePath/productCategoryIcon.png';
   static const  String productNameIcon = '$_basePath/productNameIcon.png';
-  static const  String productQuantity = '$_basePath/productQuantity.png';
+  static const  String productQuantityIcon = '$_basePath/productQuantityIcon.png';
   static const  String takaIcon = '$_basePath/takaIcon.png';
+  static const  String productWidthIcon = '$_basePath/productWidthIcon.png';
 
 
 }
