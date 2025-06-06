@@ -5,6 +5,7 @@ import 'package:deco_trade_hub/features/whole_saler_product/controllers/wholesal
 import 'package:deco_trade_hub/features/whole_saler_product/repository/product_repo_impl.dart';
 import 'package:get/get.dart';
 
+import '../../features/Authentication/data/data_source/store_session.dart';
 import '../../features/Authentication/presentation/controllers/auth_controller.dart';
 
 part 'app_bindings.dart';

@@ -14,7 +14,7 @@ class AppBindings extends Bindings {
   }
 
   void __initSingletons() {
-    /// Supabase Client
+    Get.put(StoreSessionService());
   }
 
   void __initRepos() {

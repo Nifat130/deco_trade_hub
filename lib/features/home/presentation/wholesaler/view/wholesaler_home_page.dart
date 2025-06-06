@@ -1,13 +1,19 @@
 import 'package:app_ui/app_ui.dart';
-import 'package:deco_trade_hub/features/store/presentation/shared/widget/store_stats_card.dart';
+import 'package:deco_trade_hub/core/utils/constants/app_sizer.dart';
+import 'package:deco_trade_hub/features/home/presentation/shared/listview_widget.dart';
+import 'package:deco_trade_hub/features/whole_saler_product/controllers/wholesaler_product_controller.dart';
 import 'package:deco_trade_hub/ui/widgets/global/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
+import '../../../../../core/utils/constants/app_colors.dart';
+import '../../../../../core/utils/constants/image_path.dart';
+import '../../../../../ui/nifat/widgets/custom_text.dart';
 import '../../../../signout_button.dart';
 import '../../../../store/presentation/controllers/store_controller.dart';
-import '../../../../store/presentation/shared/widget/store_profile_header.dart';
+import '../../shared/dashboard_header.dart';
 
 class WholesalerHomePage extends StatelessWidget {
   const WholesalerHomePage({super.key});
@@ -30,6 +36,7 @@ class _WholesalerHomeViewState extends State<WholesalerHomeView> {
   void initState() {
     super.initState();
     Get.find<StoreController>().fetchStoreInfo();
+    Get.find<WholesalerProductController>().fetchProducts();
   }
 
   @override
@@ -59,34 +66,50 @@ class _WholesalerHomeViewState extends State<WholesalerHomeView> {
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            StoreProfileHeader(
-              profileUrl: 'Q',
-              coverUrl: 'https://randomuser.me/api/portraits/men/32.jpg',
-              storeName: 'Wholesaler Store',
-              storeOwner: 'John Doe',
-            ),
-            // Stats Cards
-            StoreStatsCard(
-              title: 'Total Orders',
-              value: '20',
-              icon: Icons.shopping_bag_outlined,
-              color: Colors.orangeAccent,
-            ),
-            const SizedBox(height: 16),
-            StoreStatsCard(
-              title: 'Total Earnings',
-              value: '₹45,000',
-              icon: Icons.attach_money,
-              color: Colors.greenAccent,
-            ),
-            const SizedBox(height: 16),
-            StoreStatsCard(
-              title: 'Pending Shipments',
-              value: '5',
-              icon: Icons.local_shipping_outlined,
-              color: Colors.redAccent,
-            ),
+            GetBuilder<WholesalerProductController>(builder: (productController) {
+              return Padding(
+                padding: EdgeInsets.only(left: 16.w, top: 20.h),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    HomeDashboardHeader(),
+                    CustomText(
+                      text: "New Arrivals",
+                      fontSize: 16.w,
+                    ),
+                    SizedBox(
+                      height: 8.h,
+                    ),
+
+                    productController.allProducts == null ? ProductListViewerSkeleton() : ProductListViewer(products: productController.allProducts!),
+                    //pageViewer(homeScreenController.recommended),
+                    // listViewer(homeScreenController.newArrivals),
+                    CustomText(
+                      text: "Top Rated Workers",
+                      fontSize: 16.w,
+                    ),
+                    SizedBox(
+                      height: 8.h,
+                    ),
+                    //pageViewer(homeScreenController.nearby),
+                    // listViewer(homeScreenController.workerList),
+                    CustomText(
+                      text: "Trending Products",
+                      fontSize: 16.w,
+                    ),
+                    SizedBox(
+                      height: 8.h,
+                    ),
+                    //pageViewer(homeScreenController.trend)
+                    // listViewer(homeScreenController.newArrivals)
+                  ],
+                ),
+              );
+            })
           ],
         ),
       ),

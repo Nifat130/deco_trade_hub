@@ -19,7 +19,6 @@ class _StoreProfilePageState extends State<StoreProfilePage> {
   @override
   void initState() {
     super.initState();
-    Get.find<StoreController>().fetchStoreInfo();
   }
 
   @override
@@ -41,20 +40,25 @@ class _StoreProfilePageState extends State<StoreProfilePage> {
               final store = controller.store!;
               return SingleChildScrollView(
                 padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    StoreProfileHeader(
-                      coverUrl: store.storeBannerUrl ?? '',
-                      profileUrl: store.storeLogoUrl ?? '',
-                      storeName: store.storeName ?? '',
-                      storeOwner: store.ownerId ?? '',
-                      onEdit: () => Get.toNamed(AppRoutes.editStore, arguments: {'store': controller.store}),
-                    ),
-                    _StoreDetails(store),
-                    const Divider(height: 40),
-                    StoreOwnerSection(),
-                  ],
+                child: RefreshIndicator(
+                  onRefresh: () async {
+                    await controller.fetchStoreInfo();
+                  },
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      StoreProfileHeader(
+                        coverUrl: store.storeBannerUrl ?? '',
+                        profileUrl: store.storeLogoUrl ?? '',
+                        storeName: store.storeName ?? '',
+                        storeOwner: store.ownerId ?? '',
+                        onEdit: () => Get.toNamed(AppRoutes.editStore, arguments: {'store': controller.store}),
+                      ),
+                      _StoreDetails(store),
+                      const Divider(height: 40),
+                      StoreOwnerSection(),
+                    ],
+                  ),
                 ),
               );
             },

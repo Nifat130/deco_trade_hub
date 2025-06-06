@@ -45,7 +45,7 @@ dependencies:
   persistent_storage:
     path: packages/storage/persistent_storage
 
-
+  skeletonizer: 1.4.3
   supabase_flutter: ^2.8.4
   flutter_dotenv: ^5.2.1
   lottie: ^3.3.0

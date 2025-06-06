@@ -2,8 +2,11 @@ import 'package:deco_trade_hub/features/store/model/store_model.dart';
 import 'package:deco_trade_hub/features/store/model/store_owner_model.dart';
 import 'package:deco_trade_hub/services/global/failures.dart';
 import 'package:fpdart/src/either.dart';
+import 'package:get/get.dart';
 import 'package:shared/shared.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
+import '../../Authentication/data/data_source/store_session.dart';
 
 class StoreRepository {
   final SupabaseClient supabaseClient = Supabase.instance.client;
@@ -75,17 +78,18 @@ class StoreRepository {
         },
       );
 
-      // final response = await supabaseClient.from('stores').insert(storeData);
 
       if (response == null) {
         return Left(Failure('Error creating store'));
       }
 
-      // Supabase RPC return value (store_id uuid)
       final storeId = response as String?;
       if (storeId == null) {
         return Left(Failure('Failed to create store - store ID is null'));
       }
+
+      final session = Get.find<StoreSessionService>();
+      session.setStoreId(storeId);
 
       return Right(storeId);
     } on PostgrestException catch (e) {

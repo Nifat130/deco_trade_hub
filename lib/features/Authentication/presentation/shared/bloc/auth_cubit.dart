@@ -22,7 +22,7 @@ class AuthCubit extends Cubit<AuthState> {
       await response.fold(
         (l) async => emit(UnAuthenticated(l.message)),
         (user) async {
-          final storeResult = await _authRepo.fetchStoreForUser(user.id); // Add this method in your AuthRepo
+          final storeResult = await _authRepo.fetchStoreForUser(user.id);
           storeResult.fold(
             /// User is authenticated but has no store
             (l) => emit(AuthenticatedWithoutStore(user)),

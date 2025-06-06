@@ -11,6 +11,7 @@ enum ProductCategory {
   pillowCover('Pillow Cover');
 
   final String name;
+
   const ProductCategory(this.name);
 }
 
@@ -33,8 +34,6 @@ class WholesalerProductController extends GetxController implements GetxService 
   final isOnOffer = false.obs;
   final offerPrice = TextEditingController();
 
-
-
   void clearDataAfterSuccess() {
     productName.clear();
     categoryName.value.clear();
@@ -51,26 +50,24 @@ class WholesalerProductController extends GetxController implements GetxService 
     isNewArrival.value = false;
     isOnOffer.value = false;
     update();
-
   }
-
 
   var posterImagePath = ''.obs;
   var imagePathList = [].obs;
 
-  void pickPosterImage() async{
+  void pickPosterImage() async {
     final picker = ImagePicker();
     final image = await picker.pickImage(source: ImageSource.gallery);
-    if(image != null){
+    if (image != null) {
       posterImagePath.value = image.path;
       imagePathList.insert(0, posterImagePath.value);
     }
   }
 
-  void pickProductImage() async{
+  void pickProductImage() async {
     final picker = ImagePicker();
     final image = await picker.pickImage(source: ImageSource.gallery);
-    if(image != null){
+    if (image != null) {
       imagePathList.add(image.path);
     }
   }
@@ -91,7 +88,25 @@ class WholesalerProductController extends GetxController implements GetxService 
 
   String? get error => _error;
 
-  Future<void> fetchProducts(ProductModel product) async {}
+  Future<void> fetchProducts() async {
+    try {
+      _isLoading = true;
+      update();
+      final result = await repo.getProductsByStore();
+      result.fold(
+        (failure) {
+          _error = failure.message;
+          Get.snackbar("Error", "${failure.message}");
+        },
+        (product) {
+          _allProducts = product;
+        },
+      );
+    } finally {
+      _isLoading = false;
+      update();
+    }
+  }
 
   Future<void> addProduct({required ProductModel productToCreate}) async {
     try {

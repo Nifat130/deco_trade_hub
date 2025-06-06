@@ -5,8 +5,11 @@ import 'package:deco_trade_hub/features/store/model/store_model.dart';
 import 'package:deco_trade_hub/services/global/enums.dart';
 import 'package:deco_trade_hub/services/global/failures.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:get/get.dart';
 import 'package:persistent_storage/persistent_storage.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
+import '../data_source/store_session.dart';
 
 class AuthRepoImpl implements AuthRepo {
   const AuthRepoImpl({
@@ -156,6 +159,9 @@ class AuthRepoImpl implements AuthRepo {
       }
 
       final store = StoreModel.fromJson(response);
+      final session = Get.find<StoreSessionService>();
+      session.setStoreId(store.id!);
+
       return right(store);
     } catch (e) {
       return left(Failure(e.toString()));
