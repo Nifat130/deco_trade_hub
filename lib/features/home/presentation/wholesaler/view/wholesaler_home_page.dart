@@ -30,8 +30,11 @@ class _WholesalerHomeViewState extends State<WholesalerHomeView> {
   @override
   void initState() {
     super.initState();
-    Get.find<StoreController>().fetchStoreInfo();
-    Get.find<WholesalerProductController>().fetchProducts();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Get.find<StoreController>().fetchStoreInfo();
+      Get.find<WholesalerProductController>().fetchProducts();
+    });
+
   }
 
   @override
