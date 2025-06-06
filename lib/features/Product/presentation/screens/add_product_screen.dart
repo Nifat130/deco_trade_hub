@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:deco_trade_hub/core/common/widgets/clickable_message.dart';
 import 'package:deco_trade_hub/core/common/widgets/custom_back_activity_header.dart';
+import 'package:deco_trade_hub/core/common/widgets/custom_button.dart';
 import 'package:deco_trade_hub/core/common/widgets/custom_text.dart';
 import 'package:deco_trade_hub/core/common/widgets/custom_text_field.dart';
 import 'package:deco_trade_hub/core/utils/constants/app_colors.dart';
@@ -163,27 +164,39 @@ class AddProductScreen extends GetView<AddProductController> {
                       SizedBox(height: 16.h,),
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              height: 80.h,
-                              width: 80.w,
-                              decoration: BoxDecoration(
-                                color: AppColors.white,
-                                borderRadius: BorderRadius.circular(8.h),
-                                border: Border.all(color: AppColors.borderColor)
-                              ),
-                              child: GestureDetector(
-                                onTap: (){
-
-                                },
-                                child: Image.asset(IconPath.addPictureIcon, color: AppColors.textSecondary,),
-                              ),
+                        child: Obx(() =>
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              spacing: 8.w,
+                              children: [
+                                ...controller.imagePathList.map((imagePath) =>
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.h),
+                                      child: Image.file(File(imagePath), height: 80.h,width: 80.w,),
+                                    )
+                                ),
+                                Container(
+                                  height: 80.h,
+                                  width: 80.w,
+                                  decoration: BoxDecoration(
+                                      color: AppColors.white,
+                                      borderRadius: BorderRadius.circular(8.h),
+                                      border: Border.all(color: AppColors.borderColor)
+                                  ),
+                                  child: GestureDetector(
+                                    onTap: (){
+                                      controller.pickProductImage();
+                                    },
+                                    child: Image.asset(IconPath.addPictureIcon, color: AppColors.textSecondary,),
+                                  ),
+                                )
+                              ],
                             )
-                          ],
                         ),
-                      )
+                      ),
+                      SizedBox(height: 24.h,),
+                      CustomButton(onPressed: (){}, title: "Add Product"),
+                      SizedBox(height: 24.h,)
                     ],
                   ),
                 ),
