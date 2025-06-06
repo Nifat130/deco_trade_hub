@@ -289,7 +289,6 @@ class AddProductScreen extends GetView<WholesalerProductController> {
                                         description: controller.fabricType.text,
                                         price: double.tryParse(controller.price.text),
                                         offerPrice: controller.isOnOffer.value ? double.tryParse(controller.offerPrice.text) : null,
-
                                         // avatarImage: controller.posterImagePath.value,
                                         // productImages: controller.imagePathList.toList(),
                                         category: controller.selectedCategoryName.value,

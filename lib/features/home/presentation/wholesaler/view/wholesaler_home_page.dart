@@ -5,11 +5,6 @@ import 'package:deco_trade_hub/features/whole_saler_product/controllers/wholesal
 import 'package:deco_trade_hub/ui/widgets/global/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:skeletonizer/skeletonizer.dart';
-
-import '../../../../../core/utils/constants/app_colors.dart';
-import '../../../../../core/utils/constants/image_path.dart';
 import '../../../../../ui/nifat/widgets/custom_text.dart';
 import '../../../../signout_button.dart';
 import '../../../../store/presentation/controllers/store_controller.dart';

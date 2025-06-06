@@ -102,6 +102,26 @@ class ProductModel extends Equatable {
     };
   }
 
+  Map<String, dynamic> toJsonForUpdate() {
+    final data = <String, dynamic>{};
+
+    if (id.isNotEmpty) data['id'] = id;
+    if (name != null) data['name'] = name;
+    if (description != null) data['description'] = description;
+    if (price != null) data['price'] = price;
+    if (offerPrice != null) data['offer_price'] = offerPrice;
+    if (category != null) data['category'] = category;
+    if (fabrics != null) data['fabrics'] = fabrics;
+    if (clothWidth != null) data['cloth_width'] = clothWidth;
+    if (stockQuantity != null) data['stock_quantity'] = stockQuantity;
+    if (isTrending != null) data['is_trending'] = isTrending;
+    if (isNewArrival != null) data['is_new_arrival'] = isNewArrival;
+    if (isOnOffer != null) data['is_on_offer'] = isOnOffer;
+    if (storeId != null) data['store_id'] = storeId;
+
+    return data;
+  }
+
   @override
   List<Object?> get props => [
         id,

@@ -29,7 +29,16 @@ class ProductRepository {
 
   Future<Either<Failure, ProductModel>> updateProduct(ProductModel product) {
     return safeSupabaseCall(() async {
-      final response = await supabaseClient.from('products').update(product.toJson()).eq('id', product.id).select().single();
+      final updateData = product.toJsonForUpdate();
+
+      // Add storeId to ensure ownership and consistency
+      updateData['store_id'] = storeId;
+
+      final response = await supabaseClient
+          .from('products')
+          .upsert(updateData, onConflict: 'id')
+          .select()
+          .single();
 
       return ProductModel.fromJson(response);
     });
