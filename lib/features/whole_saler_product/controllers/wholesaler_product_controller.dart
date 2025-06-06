@@ -1,12 +1,79 @@
 import 'package:deco_trade_hub/features/whole_saler_product/model/product_model.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../repository/product_repo_impl.dart';
+
+enum ProductCategory {
+  curtain('Curtain'),
+  foamCover('Foam Cover'),
+  pillowCover('Pillow Cover');
+
+  final String name;
+  const ProductCategory(this.name);
+}
 
 class WholesalerProductController extends GetxController implements GetxService {
   final ProductRepository repo;
 
   WholesalerProductController({required this.repo});
+
+  final productName = TextEditingController();
+  var categoryName = TextEditingController().obs;
+  var selectedCategoryName = "".obs;
+  final fabricType = TextEditingController();
+  final fixedWidth = TextEditingController();
+  final quantity = TextEditingController();
+  final price = TextEditingController();
+  final pillowSizeHeight = TextEditingController();
+  final pillowSizeWidth = TextEditingController();
+  final description = TextEditingController();
+  final isNewArrival = false.obs;
+  final isOnOffer = false.obs;
+  final offerPrice = TextEditingController();
+
+
+
+  void clearDataAfterSuccess() {
+    productName.clear();
+    categoryName.value.clear();
+    selectedCategoryName.value = "";
+    fabricType.clear();
+    fixedWidth.clear();
+    quantity.clear();
+    price.clear();
+    pillowSizeHeight.clear();
+    pillowSizeWidth.clear();
+    description.clear();
+    posterImagePath.value = '';
+    imagePathList.clear();
+    isNewArrival.value = false;
+    isOnOffer.value = false;
+    update();
+
+  }
+
+
+  var posterImagePath = ''.obs;
+  var imagePathList = [].obs;
+
+  void pickPosterImage() async{
+    final picker = ImagePicker();
+    final image = await picker.pickImage(source: ImageSource.gallery);
+    if(image != null){
+      posterImagePath.value = image.path;
+      imagePathList.insert(0, posterImagePath.value);
+    }
+  }
+
+  void pickProductImage() async{
+    final picker = ImagePicker();
+    final image = await picker.pickImage(source: ImageSource.gallery);
+    if(image != null){
+      imagePathList.add(image.path);
+    }
+  }
 
   ProductModel? _product;
 
@@ -38,6 +105,7 @@ class WholesalerProductController extends GetxController implements GetxService 
         },
         (product) {
           _product = product;
+          clearDataAfterSuccess();
           Get.snackbar("Success", "Product added successfully");
         },
       );

@@ -2,53 +2,62 @@ import 'package:equatable/equatable.dart';
 
 class ProductModel extends Equatable {
   final String id;
-  final String name;
+  final String? name;
   final String? description;
-  final double price;
-  final String? imageUrl;
-  final String categoryId;
-  final int stockQuantity;
-  final bool isTrending;
-  final bool isNewArrival;
-  final bool isOnOffer;
+  final double? price;
+  final String? avatarImage;
+  final List<String>? productImages;
+  final String? category;
+  final String? fabrics;
+  final double? clothWidth;
+  final int? stockQuantity;
+  final bool? isTrending;
+  final bool? isNewArrival;
+  final bool? isOnOffer;
   final double? offerPrice;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  final String storeId;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+  final String? storeId;
 
   const ProductModel({
     required this.id,
-    required this.name,
+    this.name,
     this.description,
-    required this.price,
-    this.imageUrl,
-    required this.categoryId,
-    required this.stockQuantity,
+    this.price,
+    this.avatarImage,
+    this.productImages,
+    this.category,
+    this.fabrics,
+    this.clothWidth,
+    this.stockQuantity,
     this.isTrending = false,
-    this.isNewArrival = false,
+    this.isNewArrival = true,
     this.isOnOffer = false,
     this.offerPrice,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.storeId,
+    this.createdAt,
+    this.updatedAt,
+    this.storeId,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> map) {
     return ProductModel(
       id: map['id'],
-      name: map['name'],
-      description: map['description'],
-      price: (map['price'] as num).toDouble(),
-      imageUrl: map['image_url'],
-      categoryId: map['category_id'],
-      stockQuantity: map['stock_quantity'],
+      name: map['name'] as String?,
+      description: map['description'] as String?,
+      price: (map['price'] as num?)?.toDouble(),
+      avatarImage: map['avatar_image'] as String?,
+      category: map['category'] as String?,
+      fabrics: map['fabrics'] as String?,
+      clothWidth: (map['cloth_width'] as num?)?.toDouble(),
+      stockQuantity: map['stock_quantity'] as int?,
       isTrending: map['is_trending'] ?? false,
       isNewArrival: map['is_new_arrival'] ?? false,
+      productImages: (map['product_images'] as List<dynamic>?)?.map((image) => image as String).toList(),
       isOnOffer: map['is_on_offer'] ?? false,
-      offerPrice: map['offer_price'] != null ? (map['offer_price'] as num).toDouble() : null,
-      createdAt: DateTime.parse(map['created_at']),
-      updatedAt: DateTime.parse(map['updated_at']),
-      storeId: map['store_id'],
+      offerPrice: (map['offer_price'] as num?)?.toDouble(),
+      createdAt: map['created_at'] != null ? DateTime.parse(map['created_at']) : null,
+      updatedAt: map['updated_at'] != null ? DateTime.parse(map['updated_at']) : null,
+      storeId: map['store_id'] as String?,
     );
   }
 
@@ -58,15 +67,18 @@ class ProductModel extends Equatable {
       'name': name,
       'description': description,
       'price': price,
-      'image_url': imageUrl,
-      'category_id': categoryId,
+      'avatar_image': avatarImage,
+      'category': category,
+      'fabrics': fabrics,
+      'cloth_width': clothWidth,
       'stock_quantity': stockQuantity,
       'is_trending': isTrending,
       'is_new_arrival': isNewArrival,
       'is_on_offer': isOnOffer,
       'offer_price': offerPrice,
-      'created_at': createdAt.toIso8601String(),
-      'updated_at': updatedAt.toIso8601String(),
+      'product_images': productImages,
+      'created_at': createdAt?.toIso8601String(),
+      'updated_at': updatedAt?.toIso8601String(),
       'store_id': storeId,
     };
   }
@@ -76,8 +88,11 @@ class ProductModel extends Equatable {
       'name': name,
       'description': description,
       'price': price,
-      'image_url': imageUrl,
-      'category_id': categoryId,
+      'avatar_image': avatarImage,
+      'category': category,
+      'fabrics': fabrics,
+      'cloth_width': clothWidth,
+      'product_images': productImages,
       'stock_quantity': stockQuantity,
       'is_trending': isTrending,
       'is_new_arrival': isNewArrival,
@@ -93,8 +108,11 @@ class ProductModel extends Equatable {
         name,
         description,
         price,
-        imageUrl,
-        categoryId,
+        avatarImage,
+        productImages,
+        category,
+        fabrics,
+        clothWidth,
         stockQuantity,
         isTrending,
         isNewArrival,

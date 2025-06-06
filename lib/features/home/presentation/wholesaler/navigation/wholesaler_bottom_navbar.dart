@@ -21,7 +21,7 @@ class WholesalerRoute extends StatelessWidget {
       screens: [
         WholesalerHomePage(),
         const Placeholder(),
-        const AddProductPage(),
+        const AddProductScreen(),
         const Placeholder(),
         StoreProfilePage(),
       ],

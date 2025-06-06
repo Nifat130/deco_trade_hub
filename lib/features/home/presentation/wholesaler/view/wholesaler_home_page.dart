@@ -2,8 +2,11 @@ import 'package:app_ui/app_ui.dart';
 import 'package:deco_trade_hub/features/store/presentation/shared/widget/store_stats_card.dart';
 import 'package:deco_trade_hub/ui/widgets/global/custom_appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../signout_button.dart';
+import '../../../../store/presentation/controllers/store_controller.dart';
 import '../../../../store/presentation/shared/widget/store_profile_header.dart';
 
 class WholesalerHomePage extends StatelessWidget {
@@ -26,7 +29,7 @@ class _WholesalerHomeViewState extends State<WholesalerHomeView> {
   @override
   void initState() {
     super.initState();
-    print('init triggered');
+    Get.find<StoreController>().fetchStoreInfo();
   }
 
   @override

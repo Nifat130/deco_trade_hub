@@ -23,5 +23,21 @@ class IconPath{
   static const  String notification1='$_basePath/notification1.png';
   static const  String notification2='$_basePath/notification2.png';
   static const  String notification3='$_basePath/notification3.png';
+  static const  String updateEmailIcon = '$_basePath/updateemailicon.png';
+  static const  String updatePaymentIcon = '$_basePath/updatepaymenticon.png';
+  static const  String reviewIcon = '$_basePath/reviewicon.png';
+  static const  String ohIcon = '$_basePath/ohIcon.png';
+  static const  String manageVisibilityIcon = '$_basePath/managevisibilityicon.png';
+  static const  String binIcon = '$_basePath/binicon.png';
+  static const  String twoStateVerificationIcon = '$_basePath/twostatevarificationicon.png';
+  static const  String addPickIcon = '$_basePath/addPickIcon.png';
+  static const  String addPictureIcon = '$_basePath/addPictureIcon.png';
+  static const  String fabricIcon = '$_basePath/fabricIcon.png';
+  static const  String productCategoryIcon = '$_basePath/productCategoryIcon.png';
+  static const  String productNameIcon = '$_basePath/productNameIcon.png';
+  static const  String productQuantityIcon = '$_basePath/productQuantityIcon.png';
+  static const  String takaIcon = '$_basePath/takaIcon.png';
+  static const  String productWidthIcon = '$_basePath/productWidthIcon.png';
+
 
 }
