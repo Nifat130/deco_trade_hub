@@ -34,7 +34,6 @@ class _WholesalerHomeViewState extends State<WholesalerHomeView> {
       Get.find<StoreController>().fetchStoreInfo();
       Get.find<WholesalerProductController>().fetchProducts();
     });
-
   }
 
   @override
@@ -79,9 +78,7 @@ class _WholesalerHomeViewState extends State<WholesalerHomeView> {
                       text: "New Arrivals",
                       fontSize: 16.w,
                     ),
-                    SizedBox(
-                      height: 8.h,
-                    ),
+                    SizedBox(height: 8.h),
 
                     productController.allProducts == null ? ProductListViewerSkeleton() : ProductListViewer(products: productController.allProducts!),
                     //pageViewer(homeScreenController.recommended),
@@ -90,18 +87,14 @@ class _WholesalerHomeViewState extends State<WholesalerHomeView> {
                       text: "Top Rated Workers",
                       fontSize: 16.w,
                     ),
-                    SizedBox(
-                      height: 8.h,
-                    ),
+                    SizedBox(height: 8.h),
                     //pageViewer(homeScreenController.nearby),
                     // listViewer(homeScreenController.workerList),
                     CustomText(
                       text: "Trending Products",
                       fontSize: 16.w,
                     ),
-                    SizedBox(
-                      height: 8.h,
-                    ),
+                    SizedBox(height: 8.h),
                     //pageViewer(homeScreenController.trend)
                     // listViewer(homeScreenController.newArrivals)
                   ],

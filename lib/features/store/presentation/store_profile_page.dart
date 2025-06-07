@@ -26,7 +26,15 @@ class _StoreProfilePageState extends State<StoreProfilePage> {
     return GetBuilder<StoreController>(
       builder: (controller) {
         return Scaffold(
-          appBar: CustomAppBar(title: "Store Profile"),
+          appBar: CustomAppBar(
+            title: "Store Profile",
+            actionWidget: IconButton(
+              icon: Icon(Icons.refresh),
+              onPressed: () async {
+                await controller.fetchStoreInfo();
+              },
+            ),
+          ),
           body: Builder(
             builder: (_) {
               if (controller.isLoadingStore) {

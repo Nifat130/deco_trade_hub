@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
+import '../../../../store/presentation/store_profile_page.dart';
 import '../view/retailer_home_page.dart';
 
 class RetailerRoute extends StatelessWidget {
@@ -12,7 +13,7 @@ class RetailerRoute extends StatelessWidget {
       context,
       screens: const [
         RetailerHomePage(),
-        Placeholder(),
+        StoreProfilePage(),
       ],
       items: [
         PersistentBottomNavBarItem(

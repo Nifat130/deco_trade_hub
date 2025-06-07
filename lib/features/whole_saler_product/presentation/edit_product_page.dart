@@ -23,7 +23,6 @@ class EditProductScreen extends GetView<EditProductController> {
 
   @override
   Widget build(BuildContext context) {
-    // Initialize the controller manually because we want to pass the product
     final EditProductController controller = Get.put(EditProductController(product));
 
     return Scaffold(

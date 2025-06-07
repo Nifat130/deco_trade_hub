@@ -1,9 +1,12 @@
 import 'package:app_ui/app_ui.dart';
+import 'package:deco_trade_hub/features/Authentication/presentation/shared/widget/custom_textfield_with_onchanged.dart';
 import 'package:deco_trade_hub/features/store/model/store_model.dart';
+import 'package:deco_trade_hub/ui/nifat/widgets/custom_button.dart';
 import 'package:deco_trade_hub/ui/widgets/global/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../ui/nifat/widgets/custom_text_field.dart';
 import 'controllers/store_controller.dart';
 
 class EditStorePage extends StatefulWidget {
@@ -76,62 +79,37 @@ class _EditStorePageState extends State<EditStorePage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        AppTextField.roundedBorder(
+                        CustomTextField(
                           controller: nameCtrl,
-                          labelText: 'Store Name',
+                          hintText: 'Store Name',
                           validator: (v) => v!.trim().isEmpty ? 'Store name is required' : null,
                         ),
                         const SizedBox(height: 16),
-                        TextFormField(
+                        CustomTextField(
                           controller: descCtrl,
-                          decoration: InputDecoration(
-                            labelText: 'Description',
-                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-                          ),
-                          maxLines: 5,
+                          hintText: 'Description',
+                          maxLine: 5,
                         ),
                         const SizedBox(height: 16),
-                        AppTextField.roundedBorder(controller: contactCtrl, labelText: 'Contact Number'),
+                        CustomTextField(controller: contactCtrl, hintText: 'Contact Number'),
                         const SizedBox(height: 16),
-                        AppTextField.roundedBorder(controller: emailCtrl, labelText: 'Email'),
+                        CustomTextField(controller: emailCtrl, hintText: 'Email'),
                         const SizedBox(height: 16),
-                        AppTextField.roundedBorder(controller: addr1Ctrl, labelText: 'Address Line 1'),
+                        CustomTextField(controller: addr1Ctrl, hintText: 'Address Line 1'),
                         const SizedBox(height: 16),
-                        AppTextField.roundedBorder(controller: addr2Ctrl, labelText: 'Address Line 2'),
+                        CustomTextField(controller: addr2Ctrl, hintText: 'Address Line 2'),
                         const SizedBox(height: 16),
-                        AppTextField.roundedBorder(controller: websiteCtrl, labelText: 'Website URL'),
+                        CustomTextField(controller: websiteCtrl, hintText: 'Website URL'),
                         const SizedBox(height: 24),
                         SizedBox(
                           width: double.infinity,
                           height: 50,
-                          child: ElevatedButton(
-                            onPressed: controller.isLoadingStore ? null : _submit,
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                              backgroundColor: Theme.of(context).colorScheme.primary,
-                            ),
-                            child: controller.isLoadingStore
-                                ? const SizedBox(
-                                    width: 24,
-                                    height: 24,
-                                    child: CircularProgressIndicator(
-                                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                                      strokeWidth: 2,
-                                    ),
-                                  )
-                                : const Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Icon(Icons.save, color: Colors.white),
-                                      SizedBox(width: 8),
-                                      Text(
-                                        'Save Changes',
-                                        style:
-                                            TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
-                                      ),
-                                    ],
-                                  ),
+                          child: CustomButton(
+                            loading: controller.isLoadingStore,
+                            onPressed: () {
+                              controller.isLoadingStore ? null : _submit;
+                            },
+                            title: 'Save Changes',
                           ),
                         ),
                       ],
