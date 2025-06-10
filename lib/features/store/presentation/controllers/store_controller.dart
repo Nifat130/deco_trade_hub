@@ -1,3 +1,4 @@
+import 'package:deco_trade_hub/features/store/model/store_banner_model.dart';
 import 'package:deco_trade_hub/features/store/model/store_model.dart';
 import 'package:deco_trade_hub/features/store/model/store_owner_model.dart';
 import 'package:get/get.dart';
@@ -109,6 +110,35 @@ class StoreController extends GetxController implements GetxService {
     print('Store updated: ${_store?.storeName}');
 
     _isLoadingStore = false;
+    update();
+  }
+
+  /// Trending stores
+  bool _isLoadingTrendingStores = false;
+
+  bool get isLoadingTrendingStores => _isLoadingTrendingStores;
+
+  List<StoreBannerModel>? _trendingStoreBanners;
+
+  List<StoreBannerModel>? get trendingStoreBanners => _trendingStoreBanners;
+
+  /// Fetch Store Owner Info
+  Future<void> fetchTrendingStores() async {
+    _isLoadingTrendingStores = true;
+    update();
+
+    final result = await repo.getTrendingStores();
+    result.fold(
+      (failure) {
+        _trendingStoreBanners = null;
+        logE('Error fetching trending store $failure');
+      },
+      (trendingStores) {
+        _trendingStoreBanners = trendingStores;
+      },
+    );
+
+    _isLoadingTrendingStores = false;
     update();
   }
 }

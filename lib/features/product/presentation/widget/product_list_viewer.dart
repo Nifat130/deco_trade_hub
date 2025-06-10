@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:deco_trade_hub/features/product/model/product_model.dart';
 import 'package:deco_trade_hub/core/utils/constants/app_sizer.dart';
 
-class ProductListViewer extends StatelessWidget {
+class RetailerProductListViewer extends StatelessWidget {
   final List<ProductModel> products;
   final double height;
   final double itemWidth;
 
-  const ProductListViewer({
+  const RetailerProductListViewer({
     super.key,
     required this.products,
     this.height = 250,

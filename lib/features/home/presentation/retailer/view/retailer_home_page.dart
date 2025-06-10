@@ -1,12 +1,11 @@
-import 'package:deco_trade_hub/features/product/model/product_model.dart';
+import 'package:deco_trade_hub/features/home/presentation/retailer/view/retailer_promotional_banners.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:deco_trade_hub/features/product/presentation/widget/product_list_viewer.dart';
 import 'package:deco_trade_hub/ui/widgets/global/custom_appbar.dart';
 import 'package:deco_trade_hub/core/utils/constants/app_sizer.dart';
-import 'package:deco_trade_hub/core/utils/constants/app_colors.dart';
-import '../../../../../core/shimmers/shimmer_product_list.dart';
 import '../../../../product/controllers/retailer_product_controller.dart';
+import '../../../../product/presentation/widget/product_section.dart';
 
 class RetailerHomePage extends StatelessWidget {
   const RetailerHomePage({super.key});
@@ -26,10 +25,12 @@ class RetailerHomeView extends StatefulWidget {
 
 class _RetailerHomeViewState extends State<RetailerHomeView> {
   final RetailerProductController _controller = Get.find<RetailerProductController>();
+  late final CarouselController _carouselController;
 
   @override
   void initState() {
     super.initState();
+    _carouselController = CarouselController(initialItem: 1);
     _controller.fetchTrendingProducts();
     _controller.fetchNewArrivalProducts();
     _controller.fetchOfferedProducts();
@@ -54,6 +55,11 @@ class _RetailerHomeViewState extends State<RetailerHomeView> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  CupertinoSearchTextField(),
+                  const SizedBox(height: 16),
+                  // PromotionalBanners(),
+                  TrendingStoresSection(),
+                  // SizedBox(height:500, child: CarouselExample()),
                   ProductSection(
                     title: "🔥 Trending Products",
                     fetchFn: _controller.fetchTrendingProducts,
@@ -80,65 +86,6 @@ class _RetailerHomeViewState extends State<RetailerHomeView> {
           );
         },
       ),
-    );
-  }
-}
-
-class ProductSection extends StatelessWidget {
-  final String title;
-  final Future<void> Function() fetchFn;
-  final List<dynamic>? Function() selector;
-  final bool Function() isLoading;
-
-  const ProductSection({
-    super.key,
-    required this.title,
-    required this.fetchFn,
-    required this.selector,
-    required this.isLoading,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.bold,
-                color: AppColors.primary,
-              ),
-            ),
-            IconButton(
-              icon: Icon(Icons.refresh, size: 18.sp, color: AppColors.primary),
-              onPressed: fetchFn,
-            ),
-          ],
-        ),
-        SizedBox(height: 10.h),
-        GetBuilder<RetailerProductController>(
-          builder: (_) {
-            if (isLoading()) {
-              return ShimmerProductList();
-            }
-
-            final products = selector() as List<ProductModel>?;
-            if (products == null || products.isEmpty) {
-              return Text(
-                "No products available.",
-                style: TextStyle(color: Colors.grey),
-              );
-            }
-
-            return ProductListViewer(products: products);
-          },
-        ),
-      ],
     );
   }
 }
