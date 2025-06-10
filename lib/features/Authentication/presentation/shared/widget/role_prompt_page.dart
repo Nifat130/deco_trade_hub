@@ -13,6 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../../core/utils/constants/app_colors.dart';
 import '../../../../../core/utils/constants/icon_path.dart';
 
 class RolePromptPage extends StatefulWidget {
@@ -139,16 +140,14 @@ class SignUpWithRoleScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       RoleContainer(
+                        selectedColor: controller.currentRole.value == UserRole.isWholesaler.value ? AppColors.primary : AppColors.white,
                         roleName: UserRole.isWholesaler,
-                        iconPath: controller.currentRole.value == "Wholesaler"
-                            ? IconPath.importerIcon
-                            : IconPath.importerBWIcon,
+                        iconPath: controller.currentRole.value == UserRole.isWholesaler.value ? IconPath.importerIcon : IconPath.importerBWIcon,
                       ),
                       RoleContainer(
+                        selectedColor: controller.currentRole.value == UserRole.isRetailer.value ? AppColors.primary : AppColors.white,
                         roleName: UserRole.isRetailer,
-                        iconPath: controller.currentRole.value == "Retailer"
-                            ? IconPath.retailerIcon
-                            : IconPath.retailerBWIcon,
+                        iconPath: controller.currentRole.value == UserRole.isRetailer.value ? IconPath.retailerIcon : IconPath.retailerBWIcon,
                       ),
                     ],
                   ),

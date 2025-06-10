@@ -1,5 +1,5 @@
 
-import 'package:deco_trade_hub/features/whole_saler_product/controllers/wholesaler_product_controller.dart';
+import 'package:deco_trade_hub/features/product/controllers/wholesaler_product_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

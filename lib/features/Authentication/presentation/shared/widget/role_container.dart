@@ -9,11 +9,12 @@ import '../../controllers/auth_controller.dart';
 class RoleContainer extends StatelessWidget {
   final UserRole roleName;
   final String iconPath;
-
+  final Color selectedColor;
   const RoleContainer({
     Key? key,
     required this.roleName,
     required this.iconPath,
+    required this.selectedColor,
   }) : super(key: key);
 
   @override
@@ -32,7 +33,7 @@ class RoleContainer extends StatelessWidget {
                 width: 100.w,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8.sp),
-                  color: controller.currentRole.value == roleName ? AppColors.primary : AppColors.white,
+                  color: selectedColor,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withAlpha(50),
@@ -59,7 +60,7 @@ class RoleContainer extends StatelessWidget {
                       text: roleName.value,
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
-                      color: controller.currentRole.value == roleName ? AppColors.white : AppColors.textPrimary,
+                      color: selectedColor == AppColors.primary ? Colors.white : Colors.black,
                     )
                   ],
                 ),

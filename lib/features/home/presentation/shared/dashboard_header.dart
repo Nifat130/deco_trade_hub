@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../core/shimmers/home_header_shimmer.dart';
 import '../../../../core/utils/constants/app_colors.dart';
 import '../../../../ui/nifat/widgets/custom_text.dart';
-import 'custom_shimmers.dart';
 
 class HomeDashboardHeader extends StatelessWidget {
   const HomeDashboardHeader({super.key});

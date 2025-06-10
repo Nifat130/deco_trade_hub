@@ -3,16 +3,16 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../core/utils/constants/app_colors.dart';
-import '../../../../core/utils/constants/app_sizer.dart';
-import '../../../../core/utils/constants/icon_path.dart';
-import '../../../ui/nifat/widgets/custom_button.dart';
-import '../../../ui/nifat/widgets/custom_text.dart';
-import '../../../ui/nifat/widgets/custom_text_field.dart';
-import '../model/product_model.dart';
-import '../controllers/edit_product_controller.dart';
-import '../controllers/wholesaler_product_controller.dart';
-import '../../../ui/widgets/global/custom_appbar.dart';
+import '../../../../../core/utils/constants/app_colors.dart';
+import '../../../../../core/utils/constants/app_sizer.dart';
+import '../../../../../core/utils/constants/icon_path.dart';
+import '../../../../ui/nifat/widgets/custom_button.dart';
+import '../../../../ui/nifat/widgets/custom_text.dart';
+import '../../../../ui/nifat/widgets/custom_text_field.dart';
+import '../../model/product_model.dart';
+import '../../controllers/edit_product_controller.dart';
+import '../../controllers/wholesaler_product_controller.dart';
+import '../../../../ui/widgets/global/custom_appbar.dart';
 
 class EditProductScreen extends GetView<EditProductController> {
   final ProductModel product;

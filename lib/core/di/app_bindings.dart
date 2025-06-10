@@ -28,6 +28,7 @@ class AppBindings extends Bindings {
   void __initControllers() {
     Get.lazyPut(() => StoreController(repo: Get.find()));
     Get.lazyPut(() => WholesalerProductController(repo: Get.find()));
+    Get.lazyPut(() => RetailerProductController(repo: Get.find()));
     Get.lazyPut(() => AuthController());
   }
 }

@@ -7,12 +7,12 @@ import 'package:deco_trade_hub/ui/widgets/global/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../core/utils/constants/icon_path.dart';
-import '../../../ui/nifat/widgets/custom_button.dart';
-import '../../../ui/nifat/widgets/custom_text.dart';
-import '../../../ui/nifat/widgets/custom_text_field.dart';
-import '../controllers/wholesaler_product_controller.dart';
-import '../model/product_model.dart';
+import '../../../../../core/utils/constants/icon_path.dart';
+import '../../../../ui/nifat/widgets/custom_button.dart';
+import '../../../../ui/nifat/widgets/custom_text.dart';
+import '../../../../ui/nifat/widgets/custom_text_field.dart';
+import '../../controllers/wholesaler_product_controller.dart';
+import '../../model/product_model.dart';
 
 class AddProductScreen extends GetView<WholesalerProductController> {
   const AddProductScreen({super.key});

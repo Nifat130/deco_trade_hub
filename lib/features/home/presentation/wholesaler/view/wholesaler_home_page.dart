@@ -1,11 +1,11 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:deco_trade_hub/core/utils/constants/app_sizer.dart';
 import 'package:deco_trade_hub/features/home/presentation/shared/listview_widget.dart';
-import 'package:deco_trade_hub/features/whole_saler_product/controllers/wholesaler_product_controller.dart';
 import 'package:deco_trade_hub/ui/widgets/global/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../../ui/nifat/widgets/custom_text.dart';
+import '../../../../product/controllers/wholesaler_product_controller.dart';
 import '../../../../signout_button.dart';
 import '../../../../store/presentation/controllers/store_controller.dart';
 import '../../shared/dashboard_header.dart';

@@ -10,6 +10,9 @@ Future<Either<Failure, T>> safeSupabaseCall<T>(
     final result = await action();
     return Right(result);
   } on PostgrestException catch (e) {
+    if (e.message.contains('unique_product_name_per_store')) {
+      Left(Failure('${'A product with this name already exists in your store. Please choose a different name.'}'));
+    }
     return Left(Failure('[Postgrest] ${e.message}'));
   } on AuthException catch (e) {
     return Left(Failure('[Auth] ${e.message}'));

@@ -5,8 +5,9 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../core/utils/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
-import '../../../whole_saler_product/model/product_model.dart';
-import '../../../whole_saler_product/presentation/edit_product_page.dart';
+import '../../../product/model/product_model.dart';
+import '../../../product/presentation/wholesaler/edit_product_page.dart';
+
 
 class ProductListViewer extends StatelessWidget {
   final List<ProductModel> products;
@@ -35,7 +36,6 @@ class ProductListViewer extends StatelessWidget {
           return GestureDetector(
             onTap: () {
               Get.to(() => EditProductScreen(product: product));
-
             },
             child: SizedBox(
               width: itemWidth.w,

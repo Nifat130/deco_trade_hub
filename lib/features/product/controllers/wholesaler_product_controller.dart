@@ -1,4 +1,4 @@
-import 'package:deco_trade_hub/features/whole_saler_product/model/product_model.dart';
+import 'package:deco_trade_hub/features/product/model/product_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';

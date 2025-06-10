@@ -1,12 +1,12 @@
 import 'package:deco_trade_hub/core/utils/constants/app_sizer.dart';
 import 'package:deco_trade_hub/features/store/presentation/store_profile_page.dart';
-import 'package:deco_trade_hub/features/whole_saler_product/presentation/add_product_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 import '../../../../../core/utils/constants/app_colors.dart';
 import '../../../../../core/utils/constants/icon_path.dart';
+import '../../../../product/presentation/wholesaler/add_product_page.dart';
 import '../view/wholesaler_home_page.dart';
 
 class WholesalerRoute extends StatelessWidget {
