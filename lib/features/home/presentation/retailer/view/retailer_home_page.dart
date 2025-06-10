@@ -1,4 +1,5 @@
 import 'package:deco_trade_hub/features/home/presentation/retailer/view/retailer_promotional_banners.dart';
+import 'package:deco_trade_hub/features/store/presentation/controllers/store_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,15 +26,19 @@ class RetailerHomeView extends StatefulWidget {
 
 class _RetailerHomeViewState extends State<RetailerHomeView> {
   final RetailerProductController _controller = Get.find<RetailerProductController>();
-  late final CarouselController _carouselController;
+  final StoreController _storeController = Get.find<StoreController>();
 
   @override
   void initState() {
     super.initState();
-    _carouselController = CarouselController(initialItem: 1);
-    _controller.fetchTrendingProducts();
-    _controller.fetchNewArrivalProducts();
-    _controller.fetchOfferedProducts();
+    _refreshData();
+  }
+
+  Future<void> _refreshData() async {
+    await _storeController.fetchTrendingStores();
+    await _controller.fetchTrendingProducts();
+    await _controller.fetchNewArrivalProducts();
+    await _controller.fetchOfferedProducts();
   }
 
   @override
@@ -47,7 +52,7 @@ class _RetailerHomeViewState extends State<RetailerHomeView> {
         builder: (retailerProductController) {
           return RefreshIndicator(
             onRefresh: () async {
-              await _controller.loadRetailerProducts();
+              await _refreshData();
             },
             child: SingleChildScrollView(
               physics: const AlwaysScrollableScrollPhysics(),

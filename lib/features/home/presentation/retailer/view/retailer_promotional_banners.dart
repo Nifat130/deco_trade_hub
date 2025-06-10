@@ -51,7 +51,7 @@ class _TrendingStoresSectionState extends State<TrendingStoresSection> {
 
   @override
   void initState() {
-    _carouselController = CarouselController(initialItem: 1);
+    _carouselController = CarouselController(initialItem: 0);
     Get.find<StoreController>().fetchTrendingStores();
     super.initState();
   }
@@ -70,7 +70,7 @@ class _TrendingStoresSectionState extends State<TrendingStoresSection> {
         child: CarouselView.weighted(
           controller: _carouselController,
           itemSnapping: true,
-          flexWeights: const <int>[1, 7, 1],
+          flexWeights: const <int>[ 7, 1],
           children: storeController.trendingStoreBanners!.map((image) {
             return HeroLayoutCard(storeBanners: image);
           }).toList(),
