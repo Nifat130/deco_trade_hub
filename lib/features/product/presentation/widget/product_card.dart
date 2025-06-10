@@ -1,9 +1,11 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:deco_trade_hub/core/shimmers/dummy_db/dummy_product.dart';
+import 'package:deco_trade_hub/features/retailer_cart/controllers/cart_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:deco_trade_hub/core/utils/constants/app_colors.dart';
 import 'package:deco_trade_hub/features/product/model/product_model.dart';
 import 'package:deco_trade_hub/core/utils/constants/app_sizer.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductModel product;
@@ -75,8 +77,18 @@ class ProductCard extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               style: TextStyle(fontSize: 12.sp),
             ),
-            SizedBox(height: 6.h),
+            SizedBox(height: 5.h),
             _buildPriceSection(),
+            // SizedBox(height: 6.h),
+            GetBuilder<RetailerCartController>(
+              builder: (cartController) {
+                final isInCart = cartController.isProductInCart(product.id);
+                return isInCart
+                    ? CartControls(productId: product.id)
+                    : AddToCartButton(product: product);
+              },
+            ),
+            // if (isInCart) CartControls(product.id) else AddToCartButton(),
           ],
         ),
       ),
@@ -133,5 +145,79 @@ class ProductCard extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class CartControls extends StatelessWidget {
+  final String productId;
+
+  const CartControls({
+    Key? key,
+    required this.productId,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<RetailerCartController>(builder: (cartController) {
+      final item = cartController.items.firstWhere((item) => item.product.id == productId);
+
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          IconButton(
+            icon: Icon(Icons.remove, size: 18.sp),
+            onPressed: () => cartController.decreaseQuantity(productId),
+          ),
+          Text(
+            item.quantity.toString(),
+            style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+          ),
+          IconButton(
+            icon: Icon(Icons.add, size: 18.sp),
+            onPressed: () => cartController.increaseQuantity(productId),
+          ),
+          IconButton(
+            icon: Icon(Icons.delete, size: 18.sp, color: Colors.red),
+            onPressed: () => cartController.removeFromCart(productId),
+          ),
+        ],
+      );
+    });
+  }
+}
+
+class AddToCartButton extends StatelessWidget {
+  final ProductModel product;
+
+  const AddToCartButton({
+    Key? key,
+    required this.product,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<RetailerCartController>(builder: (cartController) {
+      return SizedBox(
+        width: double.infinity,
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            visualDensity: VisualDensity(vertical: -4),
+            // padding: EdgeInsets.symmetric(vertical: 6.h),
+            backgroundColor: AppColors.primary,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+          onPressed: () => cartController.addToCart(product),
+          child: Text(
+            'Add to Cart',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 12.sp,
+            ),
+          ),
+        ),
+      );
+    });
   }
 }

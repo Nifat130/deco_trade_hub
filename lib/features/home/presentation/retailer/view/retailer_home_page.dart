@@ -31,6 +31,9 @@ class _RetailerHomeViewState extends State<RetailerHomeView> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _refreshData();
+    });
     _refreshData();
   }
 

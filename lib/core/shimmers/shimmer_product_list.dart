@@ -12,7 +12,7 @@ class ShimmerProductList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 250.h,
+      height: 280.h,
       child: Skeletonizer(
         child: ListView.builder(
             scrollDirection: Axis.horizontal,

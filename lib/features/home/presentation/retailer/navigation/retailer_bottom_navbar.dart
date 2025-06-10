@@ -1,3 +1,4 @@
+import 'package:deco_trade_hub/features/home/presentation/retailer/view/retailer_cart_page.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
@@ -13,12 +14,19 @@ class RetailerRoute extends StatelessWidget {
       context,
       screens: const [
         RetailerHomePage(),
+        RetailerCartPage(),
         StoreProfilePage(),
       ],
       items: [
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.home),
           title: 'Home',
+          activeColorPrimary: Colors.blue,
+          inactiveColorPrimary: Colors.grey,
+        ),
+        PersistentBottomNavBarItem(
+          icon: const Icon(Icons.add_shopping_cart_outlined),
+          title: 'Cart',
           activeColorPrimary: Colors.blue,
           inactiveColorPrimary: Colors.grey,
         ),

@@ -11,8 +11,8 @@ class RetailerProductListViewer extends StatelessWidget {
   const RetailerProductListViewer({
     super.key,
     required this.products,
-    this.height = 250,
-    this.itemWidth = 160,
+    this.height = 270,
+    this.itemWidth = 170,
   });
 
   @override

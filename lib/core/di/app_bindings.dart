@@ -23,12 +23,16 @@ class AppBindings extends Bindings {
 
     /// Product Repository
     Get.lazyPut<ProductRepository>(() => ProductRepository(), fenix: true);
+
+    /// Retailer Cart Repository
+    Get.lazyPut<CartRepository>(() => CartRepository(), fenix: true);
   }
 
   void __initControllers() {
     Get.lazyPut(() => StoreController(repo: Get.find()));
     Get.lazyPut(() => WholesalerProductController(repo: Get.find()));
     Get.lazyPut(() => RetailerProductController(repo: Get.find()));
+    Get.lazyPut(() => RetailerCartController(Get.find()));
     Get.lazyPut(() => AuthController());
   }
 }
