@@ -34,14 +34,13 @@ class _RetailerHomeViewState extends State<RetailerHomeView> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _refreshData();
     });
-    _refreshData();
   }
 
   Future<void> _refreshData() async {
-    await _storeController.fetchTrendingStores();
-    await _controller.fetchTrendingProducts();
-    await _controller.fetchNewArrivalProducts();
-    await _controller.fetchOfferedProducts();
+     _storeController.fetchTrendingStores();
+     _controller.fetchTrendingProducts();
+     _controller.fetchNewArrivalProducts();
+     _controller.fetchOfferedProducts();
   }
 
   @override

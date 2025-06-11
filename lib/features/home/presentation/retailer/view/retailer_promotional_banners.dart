@@ -52,7 +52,10 @@ class _TrendingStoresSectionState extends State<TrendingStoresSection> {
   @override
   void initState() {
     _carouselController = CarouselController(initialItem: 0);
-    Get.find<StoreController>().fetchTrendingStores();
+    // add post frame callback to ensure the controller is initialized
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Get.find<StoreController>().fetchTrendingStores();
+    });
     super.initState();
   }
 

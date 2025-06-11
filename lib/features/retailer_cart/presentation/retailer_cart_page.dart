@@ -1,5 +1,7 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:deco_trade_hub/core/shimmers/dummy_db/dummy_product.dart';
+import 'package:deco_trade_hub/features/Authentication/data/data_source/store_session.dart';
+import 'package:deco_trade_hub/features/retailer_order/controllers/retailer_order_controller.dart';
 import 'package:deco_trade_hub/ui/widgets/global/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -182,11 +184,18 @@ class CartTotalSection extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                Get.snackbar(
-                  'Order Placed',
-                  'Your order has been placed successfully!',
-                  snackPosition: SnackPosition.BOTTOM,
+                Get.find<RetailerOrderController>().placeOrder(
+                  retailerStoreId: Get.find<StoreSessionService>().storeId ?? '',
+                  cartItems: cartController.items,
                 );
+
+                // cartController.placeOrder(); // Implement your order placement logic here
+
+                // Get.snackbar(
+                //   'Order Placed',
+                //   'Your order has been placed successfully!',
+                //   snackPosition: SnackPosition.BOTTOM,
+                // );
                 cartController.clearCart();
               },
               child: Text(

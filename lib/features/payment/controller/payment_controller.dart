@@ -1,14 +1,22 @@
 import 'package:get/get.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:shared/shared.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class PaymentController extends GetxController implements GetxService {
   Future<bool> initiateStripePayment({required double amount}) async {
     try {
-      // 1. Create payment intent on Supabase (you need an RPC or Edge Function)
-      final response = await Supabase.instance.client.rpc('create_payment_intent', params: {'amount': (amount * 100).toInt()}); // Stripe uses cents
-      final clientSecret = response as String;
+      final response = await Supabase.instance.client.functions.invoke(
+        'create-payment-intent',
+        body: {
+          'amount': (amount * 100).toInt(),
+          'currency': 'inr',
+        },
+      ); // Stripe uses cents
 
+      final clientSecret = response.data['clientSecret'] as String;
+
+      logD("Payment Intent created with client secret: $clientSecret");
       // 2. Initialize Stripe payment sheet
       await Stripe.instance.initPaymentSheet(
         paymentSheetParameters: SetupPaymentSheetParameters(
@@ -21,7 +29,8 @@ class PaymentController extends GetxController implements GetxService {
       await Stripe.instance.presentPaymentSheet();
       return true;
     } catch (e) {
-      Get.snackbar("Payment Error", e.toString());
+      logE('Payment error: $e');
+      // Get.snackbar("Payment Error", e.toString());
       return false;
     }
   }

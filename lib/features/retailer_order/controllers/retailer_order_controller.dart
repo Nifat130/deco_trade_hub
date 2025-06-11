@@ -1,9 +1,11 @@
+import 'package:deco_trade_hub/features/payment/controller/payment_controller.dart';
 import 'package:get/get.dart';
+import 'package:shared/shared.dart';
 
 import '../../retailer_cart/model/cart_model.dart';
 import '../repository/retailer_order_repository.dart';
 
-class RetailerOrderController extends GetxController {
+class RetailerOrderController extends GetxController implements GetxService {
   final RetailerOrderRepository _orderRepo;
 
   RetailerOrderController(this._orderRepo);
@@ -12,6 +14,7 @@ class RetailerOrderController extends GetxController {
     required String retailerStoreId,
     required List<CartItem> cartItems,
   }) async {
+    logD('------123----- step 1');
     if (cartItems.isEmpty) {
       Get.snackbar("Error", "Your cart is empty.");
       return;
@@ -24,6 +27,7 @@ class RetailerOrderController extends GetxController {
       Get.snackbar("Error", "You can only order from one wholesaler at a time.");
       return;
     }
+    logD('------123----- step 2');
 
     final orderItems = cartItems.map((item) {
       final price = item.product.isOnOffer! ? item.product.offerPrice! : item.product.price;
@@ -39,19 +43,29 @@ class RetailerOrderController extends GetxController {
       final price = (item['unit_price'] as num).toDouble();
       return sum + (quantity * price);
     });
+    logD('------123----- step 3');
 
-    try {
-      final orderId = await _orderRepo.placeOrder(
-        retailerStoreId: retailerStoreId,
-        wholesalerStoreId: firstStoreId!,
-        orderItems: orderItems,
-        totalAmount: total,
-      );
-
-      Get.snackbar("Success", "Order placed successfully.");
-      // Clear your cart here
-    } catch (e) {
-      Get.snackbar("Order Failed", e.toString());
+    // 🔥 Now call the payment first
+    final isPaymentSuccess = await Get.find<PaymentController>().initiateStripePayment(amount: total);
+    if (!isPaymentSuccess) {
+      Get.snackbar("Payment Failed", "Payment was not successful.");
+      return;
     }
+
+    logD('------123----- step 4 payment done');
+
+    // try {
+    //   final orderId = await _orderRepo.placeOrder(
+    //     retailerStoreId: retailerStoreId,
+    //     wholesalerStoreId: firstStoreId!,
+    //     orderItems: orderItems,
+    //     totalAmount: total,
+    //   );
+    //
+    //   Get.snackbar("Success", "Order placed successfully.");
+    //   // Clear your cart here
+    // } catch (e) {
+    //   Get.snackbar("Order Failed", e.toString());
+    // }
   }
 }

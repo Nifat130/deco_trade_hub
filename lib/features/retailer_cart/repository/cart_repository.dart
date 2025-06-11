@@ -45,9 +45,9 @@ class CartRepository {
   }
 
   double get subtotal => _items.fold(
-    0,
+        0,
         (sum, item) => sum + item.totalPrice,
-  );
+      );
 
   double get deliveryFee => 50.0; // Fixed delivery fee for example
   double get vat => subtotal * 0.05; // 5% VAT for example
@@ -58,6 +58,3 @@ class CartRepository {
     _items.clear();
   }
 }
-
-
-
