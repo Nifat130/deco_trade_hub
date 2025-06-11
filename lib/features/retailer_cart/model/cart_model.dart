@@ -27,3 +27,28 @@ class CartItem extends Equatable {
   @override
   List<Object?> get props => [product, quantity];
 }
+
+class CartItemModel {
+  final String productId;
+  final String productName;
+  final double unitPrice;
+  final int quantity;
+  final String storeId;
+
+  CartItemModel({
+    required this.productId,
+    required this.productName,
+    required this.unitPrice,
+    required this.quantity,
+    required this.storeId,
+  });
+
+  double get total => unitPrice * quantity;
+
+  Map<String, dynamic> toJson() => {
+    'product_id': productId,
+    'quantity': quantity,
+    'unit_price': unitPrice,
+    'store_id': storeId,
+  };
+}

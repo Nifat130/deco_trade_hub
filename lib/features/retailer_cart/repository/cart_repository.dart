@@ -1,5 +1,6 @@
 import 'package:deco_trade_hub/features/product/model/product_model.dart';
 import 'package:deco_trade_hub/features/retailer_cart/model/cart_model.dart';
+import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 class CartRepository {
   final List<CartItem> _items = [];
@@ -57,3 +58,6 @@ class CartRepository {
     _items.clear();
   }
 }
+
+
+
