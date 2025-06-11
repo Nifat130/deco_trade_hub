@@ -24,7 +24,7 @@ class RetailerOrderRepository {
           'retailer_store_id': retailerStoreId,
           'wholesaler_store_id': wholesalerStoreId,
           'total_amount': totalAmount,
-          'payment_status': 'paid', // Since Stripe paid
+          'payment_status': 'paid',
           'order_status': 'pending',
         })
         .select()

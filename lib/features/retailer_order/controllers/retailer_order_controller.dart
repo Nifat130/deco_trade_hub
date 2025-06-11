@@ -1,5 +1,3 @@
-// presentation/controllers/retailer_order_controller.dart
-
 import 'package:get/get.dart';
 
 import '../../retailer_cart/model/cart_model.dart';
@@ -41,7 +39,6 @@ class RetailerOrderController extends GetxController {
       final price = (item['unit_price'] as num).toDouble();
       return sum + (quantity * price);
     });
-
 
     try {
       final orderId = await _orderRepo.placeOrder(
