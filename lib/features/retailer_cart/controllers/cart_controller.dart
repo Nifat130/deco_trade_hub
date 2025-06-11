@@ -5,11 +5,9 @@ import '../model/cart_model.dart';
 import '../repository/cart_repository.dart';
 
 class RetailerCartController extends GetxController implements GetxService {
-
   final CartRepository _cartRepository;
 
   RetailerCartController(this._cartRepository);
-
 
   List<CartItem> get items => _cartRepository.items;
 
@@ -22,6 +20,18 @@ class RetailerCartController extends GetxController implements GetxService {
   double get total => _cartRepository.total;
 
   void addToCart(ProductModel product) {
+    // check if the product is from the different store
+    // than the one already in the cart, cause
+    // user should not be able to order from multiple or two store.
+    // only single store
+
+    if (_cartRepository.items.isNotEmpty) {
+      final firstStoreId = _cartRepository.items.first.product.storeId;
+      if (product.storeId != firstStoreId) {
+        Get.snackbar("Error", "You can only order from one wholesaler at a time.");
+        return;
+      }
+    }
     _cartRepository.addToCart(product);
     update();
   }

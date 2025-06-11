@@ -196,7 +196,6 @@ class CartTotalSection extends StatelessWidget {
                 //   'Your order has been placed successfully!',
                 //   snackPosition: SnackPosition.BOTTOM,
                 // );
-                cartController.clearCart();
               },
               child: Text(
                 'Place Order (₹${cartController.total.toStringAsFixed(2)})',

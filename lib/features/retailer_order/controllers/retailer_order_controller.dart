@@ -1,4 +1,5 @@
 import 'package:deco_trade_hub/features/payment/controller/payment_controller.dart';
+import 'package:deco_trade_hub/features/retailer_cart/controllers/cart_controller.dart';
 import 'package:get/get.dart';
 import 'package:shared/shared.dart';
 
@@ -45,27 +46,36 @@ class RetailerOrderController extends GetxController implements GetxService {
     });
     logD('------123----- step 3');
 
-    // 🔥 Now call the payment first
-    final isPaymentSuccess = await Get.find<PaymentController>().initiateStripePayment(amount: total);
-    if (!isPaymentSuccess) {
-      Get.snackbar("Payment Failed", "Payment was not successful.");
-      return;
-    }
+    final result = await Get.find<PaymentController>().initiateStripePayment(amount: total);
 
-    logD('------123----- step 4 payment done');
+    result.match(
+      (failure) => Get.snackbar("Payment Failed", failure.message),
+      (stripeModel) async {
+        final paymentIntentId = stripeModel.paymentIntentId;
+        try {
+          final orderId = await _orderRepo.placeOrder(
+            stripePaymentIntentId: paymentIntentId,
+            address: 'Dummy Address For Now',
+            retailerStoreId: retailerStoreId,
+            wholesalerStoreId: firstStoreId!,
+            orderItems: orderItems,
+            totalAmount: total,
+          );
 
-    // try {
-    //   final orderId = await _orderRepo.placeOrder(
-    //     retailerStoreId: retailerStoreId,
-    //     wholesalerStoreId: firstStoreId!,
-    //     orderItems: orderItems,
-    //     totalAmount: total,
-    //   );
-    //
-    //   Get.snackbar("Success", "Order placed successfully.");
-    //   // Clear your cart here
-    // } catch (e) {
-    //   Get.snackbar("Order Failed", e.toString());
-    // }
+          logD('------123----- step 5 order done');
+
+          Get.snackbar("Success", "Order placed successfully.");
+
+          Get.find<RetailerCartController>().clearCart();
+          logD('------123----- step 4 payment done');
+
+          // Clear your cart here
+        } catch (e) {
+          logE('Error placing order: $e');
+          Get.snackbar("Order Failed", e.toString());
+        }
+      },
+    );
+
   }
 }

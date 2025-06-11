@@ -1,10 +1,13 @@
+import 'package:fpdart/fpdart.dart';
 import 'package:get/get.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:shared/shared.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import '../../../services/global/failures.dart';
+import '../model/stripe_success_model.dart';
 
 class PaymentController extends GetxController implements GetxService {
-  Future<bool> initiateStripePayment({required double amount}) async {
+  Future<Either<Failure, StripeSuccessModel>> initiateStripePayment({required double amount}) async {
     try {
       final response = await Supabase.instance.client.functions.invoke(
         'create-payment-intent',
@@ -14,10 +17,13 @@ class PaymentController extends GetxController implements GetxService {
         },
       ); // Stripe uses cents
 
+      logD(response.data);
+
       final clientSecret = response.data['clientSecret'] as String;
+      final paymentIntentId = response.data['paymentIntentId'] as String;
 
       logD("Payment Intent created with client secret: $clientSecret");
-      // 2. Initialize Stripe payment sheet
+
       await Stripe.instance.initPaymentSheet(
         paymentSheetParameters: SetupPaymentSheetParameters(
           paymentIntentClientSecret: clientSecret,
@@ -25,13 +31,17 @@ class PaymentController extends GetxController implements GetxService {
         ),
       );
 
-      // 3. Present payment sheet
       await Stripe.instance.presentPaymentSheet();
-      return true;
+
+      // Return Right after successful payment
+      return right(StripeSuccessModel(
+        clientSecret: clientSecret,
+        paymentIntentId: paymentIntentId,
+      ));
     } catch (e) {
       logE('Payment error: $e');
-      // Get.snackbar("Payment Error", e.toString());
-      return false;
+      // You can customize this failure model however you're using it globally
+      return left(Failure(e.toString()));
     }
   }
 }

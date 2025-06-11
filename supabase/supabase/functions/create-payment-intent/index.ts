@@ -24,7 +24,10 @@ serve(async (req) => {
       automatic_payment_methods: { enabled: true },
     });
 
-    return new Response(JSON.stringify({ clientSecret: paymentIntent.client_secret }), {
+    return new Response(JSON.stringify({
+          clientSecret: paymentIntent.client_secret,
+          paymentIntentId: paymentIntent.id
+        }), {
       headers: { "Content-Type": "application/json" },
       status: 200
     });
