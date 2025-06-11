@@ -11,10 +11,11 @@ class PaymentController extends GetxController implements GetxService {
 
       // 2. Initialize Stripe payment sheet
       await Stripe.instance.initPaymentSheet(
-          paymentSheetParameters: SetupPaymentSheetParameters(
-        paymentIntentClientSecret: clientSecret,
-        merchantDisplayName: "Deco Trade Hub",
-      ));
+        paymentSheetParameters: SetupPaymentSheetParameters(
+          paymentIntentClientSecret: clientSecret,
+          merchantDisplayName: "Deco Trade Hub",
+        ),
+      );
 
       // 3. Present payment sheet
       await Stripe.instance.presentPaymentSheet();
