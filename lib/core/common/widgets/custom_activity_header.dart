@@ -38,14 +38,14 @@ Widget customActivityHeader(String title, String notificationCount){
                         child: Container(
                           decoration: BoxDecoration(
                             border: Border.all(color: AppColors.borderColor),
-                            color: AppColors.primary,
+                            color: AppColors.white,
                           ),
                           child: Icon(Icons.arrow_back_ios_new_rounded, color: AppColors.primary,),
                         ),
                       )
                   ),
                   SizedBox(width: 16.w,),
-                  CustomText(text: title, fontWeight: FontWeight.w600, fontSize: 20.sp, color: AppColors.textPrimary,),
+                  CustomText(text: title, fontWeight: FontWeight.w600, fontSize: 20.sp, color: AppColors.white,),
                   Spacer(),
                   Stack(
                     children: [
@@ -59,7 +59,7 @@ Widget customActivityHeader(String title, String notificationCount){
                             child: Container(
                               decoration: BoxDecoration(
                                 border: Border.all(color: AppColors.borderColor),
-                                color: AppColors.primary,
+                                color: AppColors.white,
                               ),
                               child: Icon(Icons.notifications_none_outlined, color: AppColors.primary,),
                             ),
