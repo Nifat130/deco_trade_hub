@@ -25,7 +25,7 @@ class AddProductScreen extends GetView<AddProductController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              customBackActivityHeader("Add New Product"),
+              customBackActivityHeader("Add New product"),
               SizedBox(height: 24.h,),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -195,7 +195,7 @@ class AddProductScreen extends GetView<AddProductController> {
                         ),
                       ),
                       SizedBox(height: 24.h,),
-                      CustomButton(onPressed: (){}, title: "Add Product"),
+                      CustomButton(onPressed: (){}, title: "Add product"),
                       SizedBox(height: 24.h,)
                     ],
                   ),
