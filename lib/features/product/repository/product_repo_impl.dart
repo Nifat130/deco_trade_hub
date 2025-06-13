@@ -17,7 +17,8 @@ class ProductRepository {
 
   Future<Either<Failure, List<ProductModel>>> getProductsByStore() {
     return safeSupabaseCall(() async {
-      final response = await supabaseClient.from('products').select().eq('store_id', storeId).order('created_at', ascending: false);
+      final response =
+          await supabaseClient.from('products').select().eq('store_id', storeId).order('created_at', ascending: false);
       return (response as List).map((e) => ProductModel.fromJson(e)).toList();
     });
   }
@@ -54,7 +55,8 @@ class ProductRepository {
 
   Future<Either<Failure, List<ProductModel>>> getAllOfferedProducts() {
     return safeSupabaseCall(() async {
-      final response = await supabaseClient.from('products').select().eq('is_on_offer', true).order('updated_at', ascending: false);
+      final response =
+          await supabaseClient.from('products').select().eq('is_on_offer', true).order('updated_at', ascending: false);
 
       return (response as List).map((e) => ProductModel.fromJson(e)).toList();
     });
@@ -62,15 +64,21 @@ class ProductRepository {
 
   Future<Either<Failure, List<ProductModel>>> getAllTrendingProducts() {
     return safeSupabaseCall(() async {
-      final response = await supabaseClient.from('products').select().eq('is_trending', true).order('updated_at', ascending: false);
+      final response =
+          await supabaseClient.from('products').select().eq('is_trending', true).order('updated_at', ascending: false);
 
       return (response as List).map((e) => ProductModel.fromJson(e)).toList();
     });
   }
 
   Future<Either<Failure, List<ProductModel>>> getAllNewArrivalProducts() {
+    // return safeSupabaseCall(() async {
+    //   final response = await supabaseClient.from('products').select().eq('is_new_arrival', true).order('created_at', ascending: false);
+    //
+    //   return (response as List).map((e) => ProductModel.fromJson(e)).toList();
+    // });
     return safeSupabaseCall(() async {
-      final response = await supabaseClient.from('products').select().eq('is_new_arrival', true).order('created_at', ascending: false);
+      final response = await supabaseClient.from('products').select().order('created_at', ascending: false).limit(10);
 
       return (response as List).map((e) => ProductModel.fromJson(e)).toList();
     });
@@ -78,7 +86,8 @@ class ProductRepository {
 
   Future<Either<Failure, List<ProductModel>>> getProductsByCategoryForRetailer(String category) {
     return safeSupabaseCall(() async {
-      final response = await supabaseClient.from('products').select().eq('category', category).order('created_at', ascending: false);
+      final response =
+          await supabaseClient.from('products').select().eq('category', category).order('created_at', ascending: false);
 
       return (response as List).map((e) => ProductModel.fromJson(e)).toList();
     });
@@ -86,7 +95,8 @@ class ProductRepository {
 
   Future<Either<Failure, List<ProductModel>>> getProductsByFabricForRetailer(String fabric) {
     return safeSupabaseCall(() async {
-      final response = await supabaseClient.from('products').select().eq('fabrics', fabric).order('created_at', ascending: false);
+      final response =
+          await supabaseClient.from('products').select().eq('fabrics', fabric).order('created_at', ascending: false);
 
       return (response as List).map((e) => ProductModel.fromJson(e)).toList();
     });

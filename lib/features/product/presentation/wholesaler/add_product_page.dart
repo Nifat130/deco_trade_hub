@@ -155,12 +155,12 @@ class AddProductScreen extends GetView<WholesalerProductController> {
                         /// Toggle buttons for new arrival and offer
                         Obx(() => Row(
                               children: [
-                                Checkbox(
-                                  value: controller.isNewArrival.value,
-                                  onChanged: (val) => controller.isNewArrival.value = val ?? false,
-                                ),
-                                CustomText(text: "Is New Arrival"),
-                                SizedBox(width: 24.w),
+                                // Checkbox(
+                                //   value: controller.isNewArrival.value,
+                                //   onChanged: (val) => controller.isNewArrival.value = val ?? false,
+                                // ),
+                                // CustomText(text: "Is New Arrival"),
+                                // SizedBox(width: 24.w),
                                 Checkbox(
                                   value: controller.isOnOffer.value,
                                   onChanged: (val) => controller.isOnOffer.value = val ?? false,
@@ -193,7 +193,10 @@ class AddProductScreen extends GetView<WholesalerProductController> {
                         Obx(() => controller.posterImagePath.value == ""
                             ? Container(
                                 width: double.infinity,
-                                decoration: BoxDecoration(color: AppColors.white, borderRadius: BorderRadius.circular(8.h), border: Border.all(color: AppColors.borderColor)),
+                                decoration: BoxDecoration(
+                                    color: AppColors.white,
+                                    borderRadius: BorderRadius.circular(8.h),
+                                    border: Border.all(color: AppColors.borderColor)),
                                 padding: EdgeInsets.symmetric(vertical: 32.h),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -259,7 +262,10 @@ class AddProductScreen extends GetView<WholesalerProductController> {
                                   Container(
                                     height: 80.h,
                                     width: 80.w,
-                                    decoration: BoxDecoration(color: AppColors.white, borderRadius: BorderRadius.circular(8.h), border: Border.all(color: AppColors.borderColor)),
+                                    decoration: BoxDecoration(
+                                        color: AppColors.white,
+                                        borderRadius: BorderRadius.circular(8.h),
+                                        border: Border.all(color: AppColors.borderColor)),
                                     child: GestureDetector(
                                       onTap: () {
                                         controller.pickProductImage();
@@ -288,7 +294,9 @@ class AddProductScreen extends GetView<WholesalerProductController> {
                                         name: controller.productName.text,
                                         description: controller.fabricType.text,
                                         price: double.tryParse(controller.price.text),
-                                        offerPrice: controller.isOnOffer.value ? double.tryParse(controller.offerPrice.text) : null,
+                                        offerPrice: controller.isOnOffer.value
+                                            ? double.tryParse(controller.offerPrice.text)
+                                            : null,
                                         // avatarImage: controller.posterImagePath.value,
                                         // productImages: controller.imagePathList.toList(),
                                         category: controller.selectedCategoryName.value,
@@ -296,7 +304,8 @@ class AddProductScreen extends GetView<WholesalerProductController> {
                                         clothWidth: double.tryParse(controller.fixedWidth.text),
                                         stockQuantity: int.tryParse(controller.quantity.text),
                                         isTrending: false,
-                                        isNewArrival: controller.isNewArrival.value,
+                                        // isNewArrival: controller.isNewArrival.value,
+                                        isNewArrival: false,
                                         isOnOffer: controller.isOnOffer.value,
                                         storeId: Get.find<StoreController>().store?.id ?? ''),
                                   );
