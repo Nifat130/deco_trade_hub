@@ -1,22 +1,24 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:deco_trade_hub/core/shimmers/dummy_db/dummy_product.dart';
+import 'package:deco_trade_hub/core/utils/constants/app_colors.dart';
+import 'package:deco_trade_hub/core/utils/constants/app_sizer.dart';
+import 'package:deco_trade_hub/features/product/model/product_model.dart';
 import 'package:deco_trade_hub/features/retailer_cart/controllers/cart_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:deco_trade_hub/core/utils/constants/app_colors.dart';
-import 'package:deco_trade_hub/features/product/model/product_model.dart';
-import 'package:deco_trade_hub/core/utils/constants/app_sizer.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductModel product;
   final double width;
   final VoidCallback? onTap;
+  final bool isWholesaler;
 
   const ProductCard({
     super.key,
     required this.product,
     this.width = 160,
     this.onTap,
+    this.isWholesaler = false,
   });
 
   @override
@@ -80,14 +82,13 @@ class ProductCard extends StatelessWidget {
             SizedBox(height: 5.h),
             _buildPriceSection(),
             // SizedBox(height: 6.h),
-            GetBuilder<RetailerCartController>(
-              builder: (cartController) {
-                final isInCart = cartController.isProductInCart(product.id);
-                return isInCart
-                    ? CartControls(productId: product.id)
-                    : AddToCartButton(product: product);
-              },
-            ),
+            if (!isWholesaler)
+              GetBuilder<RetailerCartController>(
+                builder: (cartController) {
+                  final isInCart = cartController.isProductInCart(product.id);
+                  return isInCart ? CartControls(productId: product.id) : AddToCartButton(product: product);
+                },
+              ),
             // if (isInCart) CartControls(product.id) else AddToCartButton(),
           ],
         ),

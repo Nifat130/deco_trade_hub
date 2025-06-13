@@ -1,19 +1,3 @@
-// import 'package:flutter/material.dart';
-//
-// class RetailerOrdersView extends StatefulWidget {
-//   const RetailerOrdersView({super.key});
-//
-//   @override
-//   State<RetailerOrdersView> createState() => _RetailerOrdersViewState();
-// }
-//
-// class _RetailerOrdersViewState extends State<RetailerOrdersView> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return const Placeholder();
-//   }
-// }
-
 import 'package:deco_trade_hub/features/retailer_order/presentation/order_details_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -55,11 +39,11 @@ class _RetailerOrdersViewState extends State<RetailerOrdersView> {
           itemBuilder: (context, index) {
             final order = _.orders[index];
             return ListTile(
-              title: Text("Order #${order['order_number']}"),
-              subtitle: Text("Status: ${order['order_status']}"),
-              trailing: Text("\$${order['total_amount']}"),
+              title: Text("Order #${order.orderNumber}"),
+              subtitle: Text("Status: ${order.orderStatus}"),
+              trailing: Text("\$${order.totalAmount}"),
               onTap: () {
-                Get.to(() => OrderDetailsView(orderId: order['id']));
+                Get.to(() => OrderDetailsView(orderId: order.id));
               },
             );
           },

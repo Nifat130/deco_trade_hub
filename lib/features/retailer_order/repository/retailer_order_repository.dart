@@ -5,6 +5,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../core/utils/helpers/supabase_helper.dart';
 import '../../../services/global/failures.dart';
+import '../model/retailer_order_model.dart';
 
 class RetailerOrderRepository {
   final supabase = Supabase.instance.client;
@@ -62,22 +63,16 @@ class RetailerOrderRepository {
     return orderId;
   }
 
-  Future<List<Map<String, dynamic>>> fetchRetailerOrders(String retailerStoreId) async {
-    final response = await supabase
-        .from('orders')
-        .select('id, order_number, total_amount, order_status, created_at')
-        .eq('retailer_store_id', retailerStoreId)
-        .order('created_at', ascending: false);
-
-    return response;
+  Future<Either<Failure, List<RetailerOrder>>> fetchRetailerOrders(String retailerStoreId) async {
+    return safeSupabaseCall(() async {
+      final response = await supabase
+          .from('orders')
+          .select('id, order_number, total_amount, order_status, created_at')
+          .eq('retailer_store_id', retailerStoreId)
+          .order('created_at', ascending: false);
+      return (response as List).map((e) => RetailerOrder.fromJson(e as Map<String, dynamic>)).toList();
+    });
   }
-
-  //  Future<Either<Failure, List<ProductModel>>> getProductsByStore() {
-  //     return safeSupabaseCall(() async {
-  //       final response = await supabaseClient.from('products').select().eq('store_id', storeId).order('created_at', ascending: false);
-  //       return (response as List).map((e) => ProductModel.fromJson(e)).toList();
-  //     });
-  //   }
 
   Future<Either<Failure, OrderDetailsModel>> getOrderDetails(String orderId) async {
     return safeSupabaseCall(() async {
@@ -112,33 +107,4 @@ class RetailerOrderRepository {
       return OrderDetailsModel.fromJson(response);
     });
   }
-
-  /// response is a map with order details
-//{
-//   "id": "order-id",
-//   "order_number": "ORD-001",
-//   "total_amount": 150.0,
-//   "order_status": "pending",
-//   "delivery_address": "Dummy Address",
-//   "created_at": "...",
-//   "wholesaler_store": {
-//     "id": "store-id",
-//     "store_name": "XYZ Store",
-//     "address_line1": "Some Address",
-//     "store_logo_url": "..."
-//   },
-//   "order_items": [
-//     {
-//       "id": "order-item-id",
-//       "quantity": 2,
-//       "unit_price": 50.0,
-//       "total_price": 100.0,
-//       "product": {
-//         "id": "product-id",
-//         "name": "Product A",
-//         "avatar_image": "..."
-//       }
-//     }
-//   ]
-// }
 }

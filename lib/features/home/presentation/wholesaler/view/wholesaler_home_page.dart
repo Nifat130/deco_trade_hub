@@ -4,6 +4,7 @@ import 'package:deco_trade_hub/features/home/presentation/shared/listview_widget
 import 'package:deco_trade_hub/ui/widgets/global/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../../../../ui/nifat/widgets/custom_text.dart';
 import '../../../../product/controllers/wholesaler_product_controller.dart';
 import '../../../../signout_button.dart';
@@ -79,24 +80,10 @@ class _WholesalerHomeViewState extends State<WholesalerHomeView> {
                       fontSize: 16.w,
                     ),
                     SizedBox(height: 8.h),
-
-                    productController.allProducts == null ? ProductListViewerSkeleton() : ProductListViewer(products: productController.allProducts!),
-                    //pageViewer(homeScreenController.recommended),
-                    // listViewer(homeScreenController.newArrivals),
-                    CustomText(
-                      text: "Top Rated Workers",
-                      fontSize: 16.w,
-                    ),
+                    productController.allProducts == null
+                        ? ProductListViewerSkeleton()
+                        : ProductListViewer(products: productController.allProducts!),
                     SizedBox(height: 8.h),
-                    //pageViewer(homeScreenController.nearby),
-                    // listViewer(homeScreenController.workerList),
-                    CustomText(
-                      text: "Trending Products",
-                      fontSize: 16.w,
-                    ),
-                    SizedBox(height: 8.h),
-                    //pageViewer(homeScreenController.trend)
-                    // listViewer(homeScreenController.newArrivals)
                   ],
                 ),
               );

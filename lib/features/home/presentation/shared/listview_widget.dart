@@ -1,13 +1,11 @@
 import 'package:deco_trade_hub/core/utils/constants/app_sizer.dart';
+import 'package:deco_trade_hub/features/product/presentation/widget/product_card.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-import '../../../../core/utils/constants/app_colors.dart';
-import 'package:flutter/material.dart';
-
 import '../../../product/model/product_model.dart';
 import '../../../product/presentation/wholesaler/edit_product_page.dart';
-
 
 class ProductListViewer extends StatelessWidget {
   final List<ProductModel> products;
@@ -17,7 +15,7 @@ class ProductListViewer extends StatelessWidget {
   const ProductListViewer({
     super.key,
     required this.products,
-    this.height = 300,
+    this.height = 260,
     this.itemWidth = 160,
   });
 
@@ -34,54 +32,10 @@ class ProductListViewer extends StatelessWidget {
           final product = products[index];
 
           return GestureDetector(
-            onTap: () {
-              Get.to(() => EditProductScreen(product: product));
-            },
-            child: SizedBox(
-              width: itemWidth.w,
-              child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 8.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Image avatar or fallback icon
-                    product.avatarImage != null
-                        ? Image.network(
-                            product.avatarImage!,
-                            width: itemWidth.w,
-                            height: 120.h,
-                            fit: BoxFit.cover,
-                            errorBuilder: (_, __, ___) => Icon(Icons.broken_image, size: 40),
-                          )
-                        : Container(
-                            width: itemWidth.w,
-                            height: 120.h,
-                            color: Colors.grey.shade200,
-                            child: Icon(Icons.image_not_supported, size: 40),
-                          ),
-                    SizedBox(height: 5.h),
-                    Text(
-                      product.name ?? '',
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        color: AppColors.primary,
-                        fontWeight: FontWeight.w700,
-                        decoration: TextDecoration.underline,
-                      ),
-                    ),
-                    SizedBox(height: 5.h),
-                    Text(
-                      product.description ?? '',
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(color: Colors.black87),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          );
+              onTap: () {
+                Get.to(() => EditProductScreen(product: product));
+              },
+              child: ProductCard(product: product));
         },
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:deco_trade_hub/features/payment/controller/payment_controller.dart';
 import 'package:deco_trade_hub/features/retailer_cart/controllers/cart_controller.dart';
 import 'package:deco_trade_hub/features/retailer_order/model/order_models.dart';
+import 'package:deco_trade_hub/features/retailer_order/model/retailer_order_model.dart';
 import 'package:get/get.dart';
 import 'package:shared/shared.dart';
 
@@ -78,7 +79,7 @@ class RetailerOrderController extends GetxController implements GetxService {
     );
   }
 
-  List<Map<String, dynamic>> orders = [];
+  List<RetailerOrder> orders = [];
   bool isLoading = false;
 
   Future<void> loadOrders() async {
@@ -87,7 +88,16 @@ class RetailerOrderController extends GetxController implements GetxService {
 
     try {
       final retailerStoreId = Get.find<StoreSessionService>().storeId;
-      orders = await _orderRepo.fetchRetailerOrders(retailerStoreId ?? '');
+      final result = await _orderRepo.fetchRetailerOrders(retailerStoreId ?? '');
+      result.match(
+        (failure) {
+          Get.snackbar("Error", failure.message);
+          orders = [];
+        },
+        (orderList) {
+          orders = orderList;
+        },
+      );
     } catch (e) {
       Get.snackbar("Error", "Failed to load orders.");
     } finally {
