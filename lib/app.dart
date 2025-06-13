@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           /// change for design purpose change further init
-          initialRoute: AppRoute.addProductScreen,
+          initialRoute: AppRoute.bottomNevScreen,
           //initialRoute: AppRoute.init,
           getPages: AppRoute.routes,
           initialBinding: ControllerBinder(),
