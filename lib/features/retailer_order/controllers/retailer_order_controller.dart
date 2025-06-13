@@ -1,8 +1,10 @@
 import 'package:deco_trade_hub/features/payment/controller/payment_controller.dart';
 import 'package:deco_trade_hub/features/retailer_cart/controllers/cart_controller.dart';
+import 'package:deco_trade_hub/features/retailer_order/model/order_models.dart';
 import 'package:get/get.dart';
 import 'package:shared/shared.dart';
 
+import '../../Authentication/data/data_source/store_session.dart';
 import '../../retailer_cart/model/cart_model.dart';
 import '../repository/retailer_order_repository.dart';
 
@@ -68,14 +70,57 @@ class RetailerOrderController extends GetxController implements GetxService {
 
           Get.find<RetailerCartController>().clearCart();
           logD('------123----- step 4 payment done');
-
-          // Clear your cart here
         } catch (e) {
           logE('Error placing order: $e');
           Get.snackbar("Order Failed", e.toString());
         }
       },
     );
+  }
 
+  List<Map<String, dynamic>> orders = [];
+  bool isLoading = false;
+
+  Future<void> loadOrders() async {
+    isLoading = true;
+    update();
+
+    try {
+      final retailerStoreId = Get.find<StoreSessionService>().storeId;
+      orders = await _orderRepo.fetchRetailerOrders(retailerStoreId ?? '');
+    } catch (e) {
+      Get.snackbar("Error", "Failed to load orders.");
+    } finally {
+      isLoading = false;
+      update();
+    }
+  }
+
+  OrderDetailsModel? selectedOrder;
+  bool isOrderDetailsLoading = false;
+
+  Future<void> loadOrderDetails({required String orderId}) async {
+    isOrderDetailsLoading = true;
+    update();
+
+    try {
+      final result = await _orderRepo.getOrderDetails(orderId);
+
+      result.match(
+        (failure) {
+          Get.snackbar("Error", failure.message);
+          selectedOrder = null;
+        },
+        (orderDetails) {
+          selectedOrder = orderDetails;
+        },
+      );
+    } catch (e) {
+      Get.snackbar("Error", "Failed to load order details.");
+      selectedOrder = null;
+    } finally {
+      isOrderDetailsLoading = false;
+      update();
+    }
   }
 }

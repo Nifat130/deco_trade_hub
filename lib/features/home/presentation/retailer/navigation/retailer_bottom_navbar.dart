@@ -4,6 +4,7 @@ import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 import '../../../../store/presentation/store_profile_page.dart';
 import '../view/retailer_home_page.dart';
+import '../view/retailer_order_page.dart';
 
 class RetailerRoute extends StatelessWidget {
   const RetailerRoute({super.key});
@@ -15,6 +16,7 @@ class RetailerRoute extends StatelessWidget {
       screens: const [
         RetailerHomePage(),
         RetailerCartPage(),
+        RetailerOrderPage(),
         StoreProfilePage(),
       ],
       items: [
@@ -27,6 +29,12 @@ class RetailerRoute extends StatelessWidget {
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.add_shopping_cart_outlined),
           title: 'Cart',
+          activeColorPrimary: Colors.blue,
+          inactiveColorPrimary: Colors.grey,
+        ),
+        PersistentBottomNavBarItem(
+          icon: const Icon(Icons.history),
+          title: 'Orders',
           activeColorPrimary: Colors.blue,
           inactiveColorPrimary: Colors.grey,
         ),
