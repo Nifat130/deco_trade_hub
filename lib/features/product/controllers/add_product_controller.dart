@@ -25,7 +25,6 @@ class AddProductController extends GetxController{
     final image = await picker.pickImage(source: ImageSource.gallery);
     if(image != null){
       posterImagePath.value = image.path;
-      imagePathList.insert(0, posterImagePath.value);
     }
   }
 
