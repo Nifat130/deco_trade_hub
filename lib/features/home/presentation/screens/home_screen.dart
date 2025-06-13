@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../core/common/widgets/custom_text.dart';
 import '../../../../core/utils/constants/app_colors.dart';
-import '../../../../core/utils/constants/icon_path.dart';
 import '../../../../core/utils/constants/image_path.dart';
 import '../../../../routes/app_routes.dart';
 import '../../controllers/home_screen_controller.dart';
@@ -166,6 +165,13 @@ class HomeScreen extends StatelessWidget {
               )
             ],
           ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: AppColors.white,
+          onPressed: (){
+            Get.toNamed(AppRoute.addProductScreen);
+          },
+          child: Icon(Icons.add_circle_outline_rounded, color: AppColors.primary, size: 28.h,),
         ),
       ),
     );

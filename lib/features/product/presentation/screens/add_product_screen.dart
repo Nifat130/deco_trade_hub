@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:deco_trade_hub/core/common/widgets/App_snacber.dart';
 import 'package:deco_trade_hub/core/common/widgets/clickable_message.dart';
 import 'package:deco_trade_hub/core/common/widgets/custom_back_activity_header.dart';
 import 'package:deco_trade_hub/core/common/widgets/custom_button.dart';
@@ -8,6 +9,7 @@ import 'package:deco_trade_hub/core/common/widgets/custom_text_field.dart';
 import 'package:deco_trade_hub/core/utils/constants/app_colors.dart';
 import 'package:deco_trade_hub/core/utils/constants/app_sizer.dart';
 import 'package:deco_trade_hub/features/Product/controllers/add_product_controller.dart';
+import 'package:deco_trade_hub/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -228,7 +230,10 @@ class AddProductScreen extends GetView<AddProductController> {
                         ),
                       ),
                       SizedBox(height: 24.h,),
-                      CustomButton(onPressed: (){}, title: "Add product"),
+                      CustomButton(onPressed: (){
+                        AppSnackBar.showCustomSnackBar(title: "Success", message: "Product Successfully Added!!");
+                        Get.back();
+                      }, title: "Add product"),
                       SizedBox(height: 24.h,)
                     ],
                   ),
