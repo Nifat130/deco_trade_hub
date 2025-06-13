@@ -43,6 +43,7 @@ class AddProductScreen extends GetView<AddProductController> {
                           CustomTextField(
                             controller: controller.categoryName.value,
                             hintText: "Enter product category",
+                            readOnly: true,
                             prefixIcon: Image.asset(IconPath.productCategoryIcon, color: AppColors.textSecondary,),
                             suffixIcon: PopupMenuButton(
                                 color: AppColors.white,
@@ -147,9 +148,23 @@ class AddProductScreen extends GetView<AddProductController> {
                               )
                             ],
                           ),
-                        ) : ClipRRect(
-                          borderRadius: BorderRadius.circular(8.h),
-                          child: Image.file(File(controller.posterImagePath.value), height: 150.h, width: double.infinity, fit: BoxFit.fill,),
+                        ) : Stack(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(8.h),
+                              child: Image.file(File(controller.posterImagePath.value), height: 150.h, width: double.infinity, fit: BoxFit.fill,),
+                            ),
+                            Positioned(
+                              top: 8.h,
+                              right: 8.w,
+                              child: GestureDetector(
+                                onTap: (){
+                                  controller.posterImagePath.value = '';
+                                },
+                                child: Icon(Icons.cancel_rounded, color: AppColors.error.withAlpha(150), size: 32.h,),
+                              ),
+                            )
+                          ],
                         )
                       ),
                       SizedBox(height: 24.h,),
@@ -170,9 +185,26 @@ class AddProductScreen extends GetView<AddProductController> {
                               spacing: 8.w,
                               children: [
                                 ...controller.imagePathList.map((imagePath) =>
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(8.h),
-                                      child: Image.file(File(imagePath), height: 80.h,width: 80.w,),
+                                    Stack(
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 12.h, right: 8.w),
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.circular(8.h),
+                                            child: Image.file(File(imagePath), height: 80.h,width: 80.w, fit: BoxFit.fill,),
+                                          ),
+                                        ),
+                                        Positioned(
+                                          top: 0.h,
+                                          right: -2.w,
+                                          child: GestureDetector(
+                                            onTap: (){
+                                              controller.imagePathList.remove(imagePath);
+                                            },
+                                            child: Icon(Icons.cancel_rounded, color: Colors.red,),
+                                          ),
+                                        )
+                                      ],
                                     )
                                 ),
                                 Container(
@@ -183,6 +215,7 @@ class AddProductScreen extends GetView<AddProductController> {
                                       borderRadius: BorderRadius.circular(8.h),
                                       border: Border.all(color: AppColors.borderColor)
                                   ),
+                                  margin: EdgeInsets.only(top: 12.h),
                                   child: GestureDetector(
                                     onTap: (){
                                       controller.pickProductImage();
