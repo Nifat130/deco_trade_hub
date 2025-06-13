@@ -22,6 +22,7 @@ class AppBindings extends Bindings {
     Get.lazyPut<ProductRepository>(() => ProductRepository(), fenix: true);
     Get.lazyPut<CartRepository>(() => CartRepository(), fenix: true);
     Get.lazyPut<RetailerOrderRepository>(() => RetailerOrderRepository(), fenix: true);
+    Get.lazyPut<WholesalerOrderRepository>(() => WholesalerOrderRepository(), fenix: true);
   }
 
   void __initControllers() {
@@ -31,6 +32,7 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => RetailerCartController(Get.find()));
     Get.lazyPut(() => AuthController());
     Get.lazyPut(() => RetailerOrderController(Get.find()));
+    Get.lazyPut(() => WholesalerOrderController(Get.find()));
     Get.lazyPut(() => PaymentController());
   }
 }

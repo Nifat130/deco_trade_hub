@@ -1,21 +1,21 @@
+import 'package:deco_trade_hub/features/wholesaler_order/controllers/wholesaler_order_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../product/model/product_model.dart';
-import '../controllers/retailer_order_controller.dart';
-import '../model/order_models.dart';
+import '../../retailer_order/model/order_models.dart';
 
-class OrderDetailsView extends StatefulWidget {
+class WholesalerOrderDetailsView extends StatefulWidget {
   final String orderId;
 
-  const OrderDetailsView({super.key, required this.orderId});
+  const WholesalerOrderDetailsView({super.key, required this.orderId});
 
   @override
-  State<OrderDetailsView> createState() => _OrderDetailsViewState();
+  State<WholesalerOrderDetailsView> createState() => _WholesalerOrderDetailsViewState();
 }
 
-class _OrderDetailsViewState extends State<OrderDetailsView> {
-  final controller = Get.find<RetailerOrderController>();
+class _WholesalerOrderDetailsViewState extends State<WholesalerOrderDetailsView> {
+  final controller = Get.find<WholesalerOrderController>();
 
   @override
   void initState() {
@@ -29,7 +29,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Order Details")),
-      body: GetBuilder<RetailerOrderController>(
+      body: GetBuilder<WholesalerOrderController>(
         builder: (retailerOrderController) {
           if (retailerOrderController.isOrderDetailsLoading) {
             return const Center(child: CircularProgressIndicator());

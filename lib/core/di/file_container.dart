@@ -12,5 +12,7 @@ import '../../features/payment/controller/payment_controller.dart';
 import '../../features/product/controllers/wholesaler_product_controller.dart';
 import '../../features/product/repository/product_repo_impl.dart';
 import '../../features/retailer_order/controllers/retailer_order_controller.dart';
+import '../../features/wholesaler_order/controllers/wholesaler_order_controller.dart';
+import '../../features/wholesaler_order/repository/wholesaler_order_repository.dart';
 
 part 'app_bindings.dart';

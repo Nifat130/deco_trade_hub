@@ -8,6 +8,7 @@ import '../../../../../core/utils/constants/app_colors.dart';
 import '../../../../../core/utils/constants/icon_path.dart';
 import '../../../../product/presentation/wholesaler/add_product_page.dart';
 import '../view/wholesaler_home_page.dart';
+import '../view/wholesaler_order_page.dart';
 
 class WholesalerRoute extends StatelessWidget {
   const WholesalerRoute({super.key});
@@ -20,7 +21,7 @@ class WholesalerRoute extends StatelessWidget {
       context,
       screens: [
         WholesalerHomePage(),
-        const Placeholder(),
+        const WholesalerOrderPage(),
         const AddProductScreen(),
         const Placeholder(),
         StoreProfilePage(),
