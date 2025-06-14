@@ -1,10 +1,10 @@
-import 'package:deco_trade_hub/features/retailer_order/model/order_models.dart';
+import 'package:deco_trade_hub/features/order/model/order_models.dart';
 import 'package:get/get.dart';
 
 import '../../Authentication/data/data_source/store_session.dart';
 import '../../order_helper/order_enum.dart';
 import '../model/wholesaler_order_model.dart';
-import '../repository/wholesaler_order_repository.dart';
+import '../repositories/wholesaler_order_repository.dart';
 
 class WholesalerOrderController extends GetxController implements GetxService {
   final WholesalerOrderRepository _orderRepo;

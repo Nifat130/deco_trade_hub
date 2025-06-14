@@ -1,14 +1,15 @@
+import 'package:deco_trade_hub/features/order/model/order_models.dart';
+import 'package:deco_trade_hub/features/order/model/retailer_order_model.dart';
 import 'package:deco_trade_hub/features/payment/controller/payment_controller.dart';
 import 'package:deco_trade_hub/features/retailer_cart/controllers/cart_controller.dart';
-import 'package:deco_trade_hub/features/retailer_order/model/order_models.dart';
-import 'package:deco_trade_hub/features/retailer_order/model/retailer_order_model.dart';
+import 'package:deco_trade_hub/features/store/presentation/controllers/store_controller.dart';
 import 'package:get/get.dart';
 import 'package:shared/shared.dart';
 
 import '../../Authentication/data/data_source/store_session.dart';
 import '../../order_helper/order_enum.dart';
 import '../../retailer_cart/model/cart_model.dart';
-import '../repository/retailer_order_repository.dart';
+import '../repositories/retailer_order_repository.dart';
 
 class RetailerOrderController extends GetxController implements GetxService {
   final RetailerOrderRepository _orderRepo;
@@ -59,7 +60,7 @@ class RetailerOrderController extends GetxController implements GetxService {
         try {
           final orderId = await _orderRepo.placeOrder(
             stripePaymentIntentId: paymentIntentId,
-            address: 'Dummy Address For Now',
+            address: Get.find<StoreController>().store?.addressLine1 ?? 'Address not provided',
             retailerStoreId: retailerStoreId,
             wholesalerStoreId: firstStoreId!,
             orderItems: orderItems,

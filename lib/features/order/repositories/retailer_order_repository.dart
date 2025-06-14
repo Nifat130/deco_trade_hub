@@ -1,4 +1,4 @@
-import 'package:deco_trade_hub/features/retailer_order/model/order_models.dart';
+import 'package:deco_trade_hub/features/order/model/order_models.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:shared/shared.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';

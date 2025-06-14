@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../../../wholesaler_order/presentation/wholesaler_orders_view.dart';
+import '../../../../order/view/wholesaler/wholesaler_orders_view.dart';
 
 class WholesalerOrderPage extends StatelessWidget {
   const WholesalerOrderPage({super.key});

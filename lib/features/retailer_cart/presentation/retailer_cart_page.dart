@@ -1,12 +1,12 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:deco_trade_hub/core/shimmers/dummy_db/dummy_product.dart';
+import 'package:deco_trade_hub/core/utils/constants/app_colors.dart';
+import 'package:deco_trade_hub/core/utils/constants/app_sizer.dart';
 import 'package:deco_trade_hub/features/Authentication/data/data_source/store_session.dart';
-import 'package:deco_trade_hub/features/retailer_order/controllers/retailer_order_controller.dart';
+import 'package:deco_trade_hub/features/order/controllers/retailer_order_controller.dart';
 import 'package:deco_trade_hub/ui/widgets/global/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:deco_trade_hub/core/utils/constants/app_sizer.dart';
-import 'package:deco_trade_hub/core/utils/constants/app_colors.dart';
 
 import '../controllers/cart_controller.dart';
 import '../model/cart_model.dart';

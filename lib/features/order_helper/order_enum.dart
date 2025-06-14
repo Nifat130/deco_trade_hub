@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// for domain layer
 enum OrderStatus {
   pending,
   processing,
@@ -16,17 +17,31 @@ enum OrderStatus {
   String toJson() => name;
 }
 
+/// for presentation layer
 extension OrderStatusExtension on OrderStatus {
-  String get label {
+  String get labelForWholesaler {
     switch (this) {
       case OrderStatus.pending:
         return 'Pending';
       case OrderStatus.processing:
-        return 'Processing';
+        return 'Need to deliver';
       case OrderStatus.delivered:
-        return 'Delivered';
+        return 'Delivered to customer';
       case OrderStatus.completed:
         return 'Completed';
+    }
+  }
+
+  String get labelForRetailer {
+    switch (this) {
+      case OrderStatus.pending:
+        return 'Pending';
+      case OrderStatus.processing:
+        return 'Being Prepared';
+      case OrderStatus.delivered:
+        return 'Out for Delivery';
+      case OrderStatus.completed:
+        return 'Order Closed';
     }
   }
 
@@ -41,45 +56,5 @@ extension OrderStatusExtension on OrderStatus {
       case OrderStatus.completed:
         return Colors.green;
     }
-  }
-}
-
-// order_status_helper.dart
-
-class OrderStatusBadge extends StatelessWidget {
-  final OrderStatus status;
-  final double fontSize;
-  const OrderStatusBadge({super.key, required this.status, this.fontSize = 14});
-
-  Color _getColor() {
-    switch (status) {
-      case OrderStatus.pending:
-        return Colors.orange;
-      case OrderStatus.processing:
-        return Colors.blue;
-      case OrderStatus.delivered:
-        return Colors.green;
-      default:
-        return Colors.grey;
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(
-        color: _getColor().withValues(alpha: .2),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Text(
-        status.name.toUpperCase(),
-        style: TextStyle(
-          color: _getColor(),
-          fontWeight: FontWeight.bold,
-          fontSize: fontSize,
-        ),
-      ),
-    );
   }
 }
