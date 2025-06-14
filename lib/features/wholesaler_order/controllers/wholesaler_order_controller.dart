@@ -2,6 +2,7 @@ import 'package:deco_trade_hub/features/retailer_order/model/order_models.dart';
 import 'package:get/get.dart';
 
 import '../../Authentication/data/data_source/store_session.dart';
+import '../../order_helper/order_enum.dart';
 import '../model/wholesaler_order_model.dart';
 import '../repository/wholesaler_order_repository.dart';
 
@@ -61,6 +62,34 @@ class WholesalerOrderController extends GetxController implements GetxService {
       selectedOrder = null;
     } finally {
       isOrderDetailsLoading = false;
+      update();
+    }
+  }
+
+  /// Order status
+  bool isUpdating = false;
+  Future<void> updateOrderStatus({
+    required String orderId,
+    required OrderStatus newStatus,
+  }) async {
+    isUpdating = true;
+    update();
+
+    try {
+      final result = await _orderRepo.updateOrderStatus(orderId: orderId, newStatus: newStatus);
+
+      result.match(
+        (failure) {
+          Get.snackbar("Error", failure.message);
+        },
+        (_) {
+          Get.snackbar("Success", "Order updated to ${newStatus.name}");
+        },
+      );
+    } catch (e) {
+      Get.snackbar("Error", "Failed to update order.");
+    } finally {
+      isUpdating = false;
       update();
     }
   }

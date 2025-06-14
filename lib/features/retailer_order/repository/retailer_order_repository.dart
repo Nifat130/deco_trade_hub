@@ -5,6 +5,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../core/utils/helpers/supabase_helper.dart';
 import '../../../services/global/failures.dart';
+import '../../order_helper/order_enum.dart';
 import '../model/retailer_order_model.dart';
 
 class RetailerOrderRepository {
@@ -105,6 +106,19 @@ class RetailerOrderRepository {
         throw Failure('Order not found');
       }
       return OrderDetailsModel.fromJson(response);
+    });
+  }
+
+  Future<Either<Failure, bool>> updateOrderStatus({
+    required String orderId,
+    required OrderStatus newStatus,
+  }) async {
+    return safeSupabaseCall(() async {
+      await supabase.from('orders').update({
+        'order_status': newStatus.toJson(),
+      }).eq('id', orderId);
+
+      return true;
     });
   }
 }

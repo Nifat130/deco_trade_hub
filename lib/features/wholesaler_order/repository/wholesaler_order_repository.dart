@@ -4,6 +4,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../core/utils/helpers/supabase_helper.dart';
 import '../../../services/global/failures.dart';
+import '../../order_helper/order_enum.dart';
 import '../model/wholesaler_order_model.dart';
 
 class WholesalerOrderRepository {
@@ -20,44 +21,8 @@ class WholesalerOrderRepository {
     });
   }
 
-  // Future<Either<Failure, OrderDetailsModel>> getOrderDetails(String orderId) async {
-  //   return safeSupabaseCall(() async {
-  //     final response = await supabase.from('orders').select('''
-  //       id,
-  //       order_number,
-  //       total_amount,
-  //       order_status,
-  //       delivery_address,
-  //       created_at,
-  //       retailer_store:retailer_store_id (
-  //         id,
-  //         store_name,
-  //         address_line1,
-  //         store_logo_url
-  //       ),
-  //       order_items (
-  //         id,
-  //         quantity,
-  //         unit_price,
-  //         total_price,
-  //         product:product_id (
-  //           id,
-  //           name,
-  //           avatar_image
-  //         )
-  //       )
-  //     ''').eq('id', orderId).maybeSingle();
-  //     if (response == null) {
-  //       throw Failure('Order not found');
-  //     }
-  //     return OrderDetailsModel.fromJson(response);
-  //   });
-  // }
-
   Future<Either<Failure, OrderDetailsModel>> getOrderDetails(String orderId) async {
     return safeSupabaseCall(() async {
-      // final storeAlias = isRetailer ? 'retailer_store:retailer_store_id' : 'wholesaler_store:wholesaler_store_id';
-
       final storeAlias = 'retailer_store:retailer_store_id';
 
       final response = await supabase.from('orders').select('''
@@ -90,6 +55,19 @@ class WholesalerOrderRepository {
         throw Failure('Order not found');
       }
       return OrderDetailsModel.fromJson(response);
+    });
+  }
+
+  Future<Either<Failure, bool>> updateOrderStatus({
+    required String orderId,
+    required OrderStatus newStatus,
+  }) async {
+    return safeSupabaseCall(() async {
+      await supabase.from('orders').update({
+        'order_status': newStatus.toJson(),
+      }).eq('id', orderId);
+
+      return true;
     });
   }
 }
