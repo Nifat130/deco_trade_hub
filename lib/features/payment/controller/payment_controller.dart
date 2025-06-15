@@ -27,12 +27,11 @@ class PaymentController extends GetxController implements GetxService {
       logD("Payment Intent created with client secret: $clientSecret");
 
       await Stripe.instance.initPaymentSheet(
-        paymentSheetParameters: SetupPaymentSheetParameters(
-          paymentIntentClientSecret: clientSecret,
-          merchantDisplayName: "Deco Trade Hub",
-          style: Get.isDarkMode ? ThemeMode.dark : ThemeMode.light,
-        ),
-      );
+          paymentSheetParameters: SetupPaymentSheetParameters(
+        paymentIntentClientSecret: clientSecret,
+        merchantDisplayName: "Deco Trade Hub",
+        style: Get.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+      ));
 
       await Stripe.instance.presentPaymentSheet();
 

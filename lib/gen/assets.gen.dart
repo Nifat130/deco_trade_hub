@@ -12,6 +12,17 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/addPickIcon.png
+  AssetGenImage get addPickIcon =>
+      const AssetGenImage('assets/icons/addPickIcon.png');
+
+  /// File path: assets/icons/addPictureIcon.png
+  AssetGenImage get addPictureIcon =>
+      const AssetGenImage('assets/icons/addPictureIcon.png');
+
+  /// File path: assets/icons/binicon.png
+  AssetGenImage get binicon => const AssetGenImage('assets/icons/binicon.png');
+
   /// File path: assets/icons/connectivity.svg
   String get connectivity => 'assets/icons/connectivity.svg';
 
@@ -22,6 +33,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/employeeIcon.png
   AssetGenImage get employeeIcon =>
       const AssetGenImage('assets/icons/employeeIcon.png');
+
+  /// File path: assets/icons/fabricIcon.png
+  AssetGenImage get fabricIcon =>
+      const AssetGenImage('assets/icons/fabricIcon.png');
 
   /// File path: assets/icons/hire.png
   AssetGenImage get hire => const AssetGenImage('assets/icons/hire.png');
@@ -54,6 +69,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/logout.png
   AssetGenImage get logout => const AssetGenImage('assets/icons/logout.png');
 
+  /// File path: assets/icons/managevisibilityicon.png
+  AssetGenImage get managevisibilityicon =>
+      const AssetGenImage('assets/icons/managevisibilityicon.png');
+
   /// File path: assets/icons/memory.svg
   String get memory => 'assets/icons/memory.svg';
 
@@ -73,6 +92,25 @@ class $AssetsIconsGen {
   AssetGenImage get notificationIcon =>
       const AssetGenImage('assets/icons/notificationIcon.png');
 
+  /// File path: assets/icons/ohIcon.png
+  AssetGenImage get ohIcon => const AssetGenImage('assets/icons/ohIcon.png');
+
+  /// File path: assets/icons/productCategoryIcon.png
+  AssetGenImage get productCategoryIcon =>
+      const AssetGenImage('assets/icons/productCategoryIcon.png');
+
+  /// File path: assets/icons/productNameIcon.png
+  AssetGenImage get productNameIcon =>
+      const AssetGenImage('assets/icons/productNameIcon.png');
+
+  /// File path: assets/icons/productQuantityIcon.png
+  AssetGenImage get productQuantityIcon =>
+      const AssetGenImage('assets/icons/productQuantityIcon.png');
+
+  /// File path: assets/icons/productWidthIcon.png
+  AssetGenImage get productWidthIcon =>
+      const AssetGenImage('assets/icons/productWidthIcon.png');
+
   /// File path: assets/icons/profile.svg
   String get profile => 'assets/icons/profile.svg';
 
@@ -84,6 +122,10 @@ class $AssetsIconsGen {
   AssetGenImage get retailerIcon =>
       const AssetGenImage('assets/icons/retailerIcon.png');
 
+  /// File path: assets/icons/reviewicon.png
+  AssetGenImage get reviewicon =>
+      const AssetGenImage('assets/icons/reviewicon.png');
+
   /// File path: assets/icons/settings.png
   AssetGenImage get settings =>
       const AssetGenImage('assets/icons/settings.png');
@@ -92,14 +134,34 @@ class $AssetsIconsGen {
   AssetGenImage get shoppingButtonIcon =>
       const AssetGenImage('assets/icons/shoppingButtonIcon.png');
 
+  /// File path: assets/icons/takaIcon.png
+  AssetGenImage get takaIcon =>
+      const AssetGenImage('assets/icons/takaIcon.png');
+
   /// File path: assets/icons/tools.svg
   String get tools => 'assets/icons/tools.svg';
 
+  /// File path: assets/icons/twostatevarificationicon.png
+  AssetGenImage get twostatevarificationicon =>
+      const AssetGenImage('assets/icons/twostatevarificationicon.png');
+
+  /// File path: assets/icons/updateemailicon.png
+  AssetGenImage get updateemailicon =>
+      const AssetGenImage('assets/icons/updateemailicon.png');
+
+  /// File path: assets/icons/updatepaymenticon.png
+  AssetGenImage get updatepaymenticon =>
+      const AssetGenImage('assets/icons/updatepaymenticon.png');
+
   /// List of all assets
   List<dynamic> get values => [
+    addPickIcon,
+    addPictureIcon,
+    binicon,
     connectivity,
     employeeBWIcon,
     employeeIcon,
+    fabricIcon,
     hire,
     home,
     homeButtonIcon,
@@ -109,17 +171,28 @@ class $AssetsIconsGen {
     key,
     lock,
     logout,
+    managevisibilityicon,
     memory,
     notification1,
     notification2,
     notification3,
     notificationIcon,
+    ohIcon,
+    productCategoryIcon,
+    productNameIcon,
+    productQuantityIcon,
+    productWidthIcon,
     profile,
     retailerBWIcon,
     retailerIcon,
+    reviewicon,
     settings,
     shoppingButtonIcon,
+    takaIcon,
     tools,
+    twostatevarificationicon,
+    updateemailicon,
+    updatepaymenticon,
   ];
 }
 
