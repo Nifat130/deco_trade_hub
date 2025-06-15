@@ -2,6 +2,10 @@ import 'package:deco_trade_hub/features/product/presentation/widget/product_card
 import 'package:flutter/material.dart';
 import 'package:deco_trade_hub/features/product/model/product_model.dart';
 import 'package:deco_trade_hub/core/utils/constants/app_sizer.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import 'product_details_page.dart';
 
 class RetailerProductListViewer extends StatelessWidget {
   final List<ProductModel> products;
@@ -30,7 +34,7 @@ class RetailerProductListViewer extends StatelessWidget {
             product: product,
             width: itemWidth,
             onTap: () {
-              // make reusable
+              Get.to(() => ProductDetailsView(product: product));
             },
           );
         },

@@ -81,7 +81,7 @@ class ProductCard extends StatelessWidget {
             ),
             SizedBox(height: 5.h),
             _buildPriceSection(),
-            // SizedBox(height: 6.h),
+            SizedBox(height: 5.h),
             if (!isWholesaler)
               GetBuilder<RetailerCartController>(
                 builder: (cartController) {
@@ -164,31 +164,34 @@ class CartControls extends StatelessWidget {
       final stockQuantity = item.product.stockQuantity ?? 0;
 
       return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.min,
         children: [
           IconButton(
-            icon: Icon(Icons.remove, size: 18.sp),
+            icon: Icon(Icons.remove_circle_outline, color: AppColors.primary, size: 22.sp),
             onPressed: () => cartController.decreaseQuantity(productId),
           ),
+
           Text(
             item.quantity.toString(),
-            style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
           ),
+
           IconButton(
-            icon: Icon(Icons.add, size: 18.sp),
+            icon: Icon(Icons.add_circle_outline, color: AppColors.primary, size: 22.sp),
             onPressed: () {
               if (item.quantity < stockQuantity) {
                 cartController.increaseQuantity(productId);
               } else {
-                // show error
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text("Only $stockQuantity item(s) available in stock")),
                 );
               }
             },
           ),
+
+          // Delete Button
           IconButton(
-            icon: Icon(Icons.delete, size: 18.sp, color: Colors.red),
+            icon: Icon(Icons.delete_forever, color: Colors.redAccent, size: 22.sp),
             onPressed: () => cartController.removeFromCart(productId),
           ),
         ],
@@ -196,45 +199,6 @@ class CartControls extends StatelessWidget {
     });
   }
 }
-
-//
-// class CartControls extends StatelessWidget {
-//   final String productId;
-//
-//   const CartControls({
-//     Key? key,
-//     required this.productId,
-//   }) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return GetBuilder<RetailerCartController>(builder: (cartController) {
-//       final item = cartController.items.firstWhere((item) => item.product.id == productId);
-//
-//       return Row(
-//         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//         children: [
-//           IconButton(
-//             icon: Icon(Icons.remove, size: 18.sp),
-//             onPressed: () => cartController.decreaseQuantity(productId),
-//           ),
-//           Text(
-//             item.quantity.toString(),
-//             style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
-//           ),
-//           IconButton(
-//             icon: Icon(Icons.add, size: 18.sp),
-//             onPressed: () => cartController.increaseQuantity(productId),
-//           ),
-//           IconButton(
-//             icon: Icon(Icons.delete, size: 18.sp, color: Colors.red),
-//             onPressed: () => cartController.removeFromCart(productId),
-//           ),
-//         ],
-//       );
-//     });
-//   }
-// }
 
 class AddToCartButton extends StatelessWidget {
   final ProductModel product;
@@ -251,7 +215,7 @@ class AddToCartButton extends StatelessWidget {
         width: double.infinity,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            visualDensity: VisualDensity(vertical: -4),
+            visualDensity: VisualDensity.compact,
             // padding: EdgeInsets.symmetric(vertical: 6.h),
             backgroundColor: AppColors.primary,
             shape: RoundedRectangleBorder(

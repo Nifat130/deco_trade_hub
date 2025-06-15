@@ -1,5 +1,5 @@
 import 'package:deco_trade_hub/core/utils/constants/app_sizer.dart';
-import 'package:deco_trade_hub/features/product/presentation/widget/product_list_viewer.dart';
+import 'package:deco_trade_hub/features/product/presentation/retailer/retailer_product_list_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 
