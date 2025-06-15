@@ -15,7 +15,7 @@ class BottomNevScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GetX<NavController>(
-        builder: (creatorNavController) => creatorNavController.screens[creatorNavController.currentIndex],
+        builder: (creatorNavController) => creatorNavController.businessScreens[creatorNavController.currentIndex],
       ),
       bottomNavigationBar: GetX<NavController>(
         builder: (navController) {

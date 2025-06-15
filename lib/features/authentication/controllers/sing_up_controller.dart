@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -16,6 +18,7 @@ class SingUpController extends GetxController{
     super.onInit();
     if(Get.arguments != null){
       selectedRole.value = Get.arguments;
+      log(selectedRole.value);
     }
   }
 
@@ -28,7 +31,8 @@ class SingUpController extends GetxController{
   final aboutTEController = TextEditingController();
 
   var logoPath = ''.obs;
-  var licencePath = ''.obs;
+  var businessLicencePath = ''.obs;
+  var importLicencePath = ''.obs;
   var establishedDate = 'Enter your establish date'.obs;
   void pickLogo() async{
     final picker = ImagePicker();
@@ -39,12 +43,28 @@ class SingUpController extends GetxController{
     }
   }
 
-  void pickLicence() async{
+  void pickNidCard() async{
     final picker = ImagePicker();
     final image = await picker.pickImage(source: ImageSource.gallery);
 
     if(image != null){
-      licencePath.value = image.path;
+      nidPath.value = image.path;
+    }
+  }
+  void pickBusinessLicence() async{
+    final picker = ImagePicker();
+    final image = await picker.pickImage(source: ImageSource.gallery);
+
+    if(image != null){
+      businessLicencePath.value = image.path;
+    }
+  }
+  void pickImportLicence() async{
+    final picker = ImagePicker();
+    final image = await picker.pickImage(source: ImageSource.gallery);
+
+    if(image != null){
+      importLicencePath.value = image.path;
     }
   }
 

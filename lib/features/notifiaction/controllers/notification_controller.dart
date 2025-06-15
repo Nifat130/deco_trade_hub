@@ -21,7 +21,7 @@ class NotificationController extends GetxController{
     },
     {
       "icon" : Image.asset(IconPath.notification1, fit: BoxFit.fill,),
-      "description": "Your appointment with TechFix is scheduled for Feb 10, 2025, at 3:00 PM ",
+      "description": "Your order with Dhaka is scheduled for Feb 10, 2025, at 3:00 PM ",
       "read": true,
       "nid": 2001
     },

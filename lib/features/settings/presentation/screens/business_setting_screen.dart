@@ -44,16 +44,6 @@ class BusinessSettingScreen extends GetView<BusinessSettingScreenController> {
                               Image.asset(ImagePath.dummyBusinessProfile, height: 60.h, width: 60.w, fit: BoxFit.fill,) :
                               Image.file(File(controller.imagePath.value), height: 60.h, width: 60.w, fit: BoxFit.fill,)
                             ),
-                            // Positioned(
-                            //     top: 32,
-                            //     right: -4,
-                            //     child: GestureDetector(
-                            //       onTap: (){
-                            //         controller.pickLogo();
-                            //       },
-                            //       child: Image.asset(IconPath.addPickIcon, height: 30.h, width: 30.w, fit: BoxFit.fill,),
-                            //     )
-                            // )
                           ],
                         )
                     ),
@@ -63,13 +53,6 @@ class BusinessSettingScreen extends GetView<BusinessSettingScreenController> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         CustomText(text: "dpb@gmail.com", color: AppColors.textSecondary, fontSize: 14.sp, fontWeight: FontWeight.w500,),
-                        // SizedBox(width: 10.w,),
-                        // GestureDetector(
-                        //   onTap: (){
-                        //     Get.snackbar("me", "nifat");
-                        //   },
-                        //   child: CustomText(text: "(Upgrade)", color: AppColors.primary, fontSize: 14.sp, decoration: TextDecoration.underline, fontWeight: FontWeight.w700,),
-                        // )
                       ],
                     ),
                     settingContainers(controller.accountSettings, "Account Settings", controller, context),

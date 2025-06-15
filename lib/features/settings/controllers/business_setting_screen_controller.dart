@@ -14,17 +14,12 @@ class BusinessSettingScreenController extends GetxController{
     {
       "icon" : Image.asset(IconPath.updateEmailIcon, fit: BoxFit.fill,),
       "description": "Update Email & Password",
-      //"navigate": AppRoute.settingsUpdateEmailPassword
-    },
-    {
-      "icon" : Image.asset(IconPath.twoStateVerificationIcon, fit: BoxFit.fill,),
-      "description": "Two-State Verification",
-      "navigate": "false",
+      "navigate": "AppRoute.settingsUpdateEmailPassword"
     },
     {
       "icon" : Image.asset(IconPath.binIcon, fit: BoxFit.fill,),
       "description": "Log Out",
-      "navigate": AppRoute.loginScreen,
+      //"navigate": AppRoute.loginScreen,
     },
     {
       "icon" : Image.asset(IconPath.binIcon, fit: BoxFit.fill,),
@@ -37,7 +32,7 @@ class BusinessSettingScreenController extends GetxController{
     {
       "icon" : Image.asset(IconPath.ohIcon, fit: BoxFit.fill,),
       "description": "Update Operating Hours",
-      //"navigate": AppRoute.settingsBUpdateOperatingHoursScreen
+      "navigate": "AppRoute.settingsBUpdateOperatingHoursScreen"
     },
     {
       "icon" : Image.asset(IconPath.updateEmailIcon, fit: BoxFit.fill,),
@@ -60,7 +55,7 @@ class BusinessSettingScreenController extends GetxController{
     },
     {
       "icon" : Image.asset(IconPath.reviewIcon, fit: BoxFit.fill,),
-      "description": "Review App Permissions",
+      "description": "Terms & Conditions",
       //"navigate": AppRoute.settingsAppPermissionScreen
     },
 
