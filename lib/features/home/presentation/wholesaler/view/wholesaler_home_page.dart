@@ -82,7 +82,10 @@ class _WholesalerHomeViewState extends State<WholesalerHomeView> {
                     SizedBox(height: 8.h),
                     productController.allProducts == null
                         ? ProductListViewerSkeleton()
-                        : ProductListViewer(products: productController.allProducts!),
+                        : ProductListViewer(
+                            products: productController.allProducts!,
+                            isWholesaler: true,
+                          ),
                     SizedBox(height: 8.h),
                   ],
                 ),

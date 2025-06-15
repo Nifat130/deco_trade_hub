@@ -11,12 +11,14 @@ class ProductListViewer extends StatelessWidget {
   final List<ProductModel> products;
   final double height;
   final double itemWidth;
+  final bool isWholesaler;
 
   const ProductListViewer({
     super.key,
     required this.products,
     this.height = 260,
     this.itemWidth = 160,
+    required this.isWholesaler,
   });
 
   @override
@@ -35,7 +37,10 @@ class ProductListViewer extends StatelessWidget {
               onTap: () {
                 Get.to(() => EditProductScreen(product: product));
               },
-              child: ProductCard(product: product));
+              child: ProductCard(
+                product: product,
+                isWholesaler: isWholesaler,
+              ));
         },
       ),
     );
