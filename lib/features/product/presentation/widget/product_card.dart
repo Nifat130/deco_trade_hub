@@ -167,7 +167,11 @@ class CartControls extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           IconButton(
-            icon: Icon(Icons.remove_circle_outline, color: AppColors.primary, size: 22.sp),
+            icon: Icon(
+              Icons.remove_circle,
+              color: AppColors.primary,
+            ),
+            // visualDensity: VisualDensity.compact,
             onPressed: () => cartController.decreaseQuantity(productId),
           ),
 
@@ -177,7 +181,11 @@ class CartControls extends StatelessWidget {
           ),
 
           IconButton(
-            icon: Icon(Icons.add_circle_outline, color: AppColors.primary, size: 22.sp),
+            icon: Icon(
+              Icons.add_circle,
+              color: AppColors.primary,
+            ),
+            // visualDensity: VisualDensity.compact,
             onPressed: () {
               if (item.quantity < stockQuantity) {
                 cartController.increaseQuantity(productId);
