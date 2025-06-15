@@ -1,8 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:get/get.dart';
-import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:shared/shared.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
 import '../../../services/global/failures.dart';
 import '../model/stripe_success_model.dart';
 
@@ -28,6 +30,7 @@ class PaymentController extends GetxController implements GetxService {
         paymentSheetParameters: SetupPaymentSheetParameters(
           paymentIntentClientSecret: clientSecret,
           merchantDisplayName: "Deco Trade Hub",
+          style: Get.isDarkMode ? ThemeMode.dark : ThemeMode.light,
         ),
       );
 
@@ -39,8 +42,7 @@ class PaymentController extends GetxController implements GetxService {
         paymentIntentId: paymentIntentId,
       ));
     } catch (e) {
-      logE('Payment error: $e');
-      // You can customize this failure model however you're using it globally
+      logE('Payment Error: $e');
       return left(Failure(e.toString()));
     }
   }

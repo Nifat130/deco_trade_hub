@@ -54,7 +54,7 @@ class RetailerOrderController extends GetxController implements GetxService {
     final result = await Get.find<PaymentController>().initiateStripePayment(amount: total);
 
     result.match(
-      (failure) => Get.snackbar("Payment Failed", failure.message),
+      (failure) => Get.snackbar("Payment Failed", 'Payment could not be processed'),
       (stripeModel) async {
         final paymentIntentId = stripeModel.paymentIntentId;
         try {
@@ -75,7 +75,7 @@ class RetailerOrderController extends GetxController implements GetxService {
           logD('------123----- step 4 payment done');
         } catch (e) {
           logE('Error placing order: $e');
-          Get.snackbar("Order Failed", e.toString());
+          Get.snackbar("Order Failed", "Failed to place order. Please try again.");
         }
       },
     );
