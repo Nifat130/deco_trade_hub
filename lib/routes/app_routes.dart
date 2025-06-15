@@ -1,5 +1,9 @@
 
 
+import 'package:deco_trade_hub/features/bookings/presentation/screens/booking_details_screen.dart';
+import 'package:deco_trade_hub/features/bookings/presentation/screens/booking_screen.dart';
+import 'package:deco_trade_hub/features/bookings/presentation/screens/business_booking_details_screen.dart';
+import 'package:deco_trade_hub/features/bookings/presentation/screens/business_booking_screen.dart';
 import 'package:deco_trade_hub/features/product/presentation/screens/add_product_screen.dart';
 import 'package:deco_trade_hub/features/feed/presentation/screens/feed_screen.dart';
 import 'package:deco_trade_hub/features/home/presentation/screens/home_screen.dart';
@@ -34,6 +38,10 @@ class AppRoute {
   static String addProductScreen = "/addProductScreen";
   static String feedScreen = "/feedScreen";
   static String editProfileScreen = "/editProfileScreen";
+  static String bookingScreen = "/bookingScreen";
+  static String bookingDetailsScreen = "/bookingDetailsScreen";
+  static String businessBookingScreen = "/businessBookingScreen";
+  static String businessBookingDetailsScreen = "/businessBookingDetailsScreen";
 
 
   /// Checking for role
@@ -70,6 +78,10 @@ class AppRoute {
     GetPage(name: addProductScreen, page:() => AddProductScreen()),
     GetPage(name: feedScreen, page:() => FeedScreen()),
     GetPage(name: editProfileScreen, page:() => EditProfileScreen()),
+    GetPage(name: bookingScreen, page:() => BookingScreen()),
+    GetPage(name: bookingDetailsScreen, page:() => BookingDetailsScreen()),
+    GetPage(name: businessBookingScreen, page:() => BusinessBookingScreen()),
+    GetPage(name: businessBookingDetailsScreen, page:() => BusinessBookingDetailsScreen()),
     // GetPage(name: roleSelectionScreen, page:() => const RoleSelectionScreen()),
     // GetPage(name: forgetPassword, page:() => const ForgetPassword()),
     // GetPage(name: otpVerificationScreen, page:() => const OtpVerificationScreen()),

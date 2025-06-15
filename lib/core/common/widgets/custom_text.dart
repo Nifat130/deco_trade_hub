@@ -11,6 +11,7 @@ import '../../utils/constants/app_colors.dart';
 class CustomText extends StatelessWidget {
   final String text;
   final double? fontSize;
+  final double? decorationThickness;
   final Color? color;
   final FontWeight? fontWeight;
   final int? maxLines;
@@ -25,6 +26,7 @@ class CustomText extends StatelessWidget {
         this.maxLines,
         this.textOverflow,
         this.fontSize,
+        this.decorationThickness,
         this.color,
         this.fontWeight,
         this.decoration,
@@ -38,6 +40,7 @@ class CustomText extends StatelessWidget {
       style: GoogleFonts.dmSans(
         //fontFamily: 'SukhumvitSet',  // Using SukhumvitSet font
         decoration: decoration,
+        decorationThickness: decorationThickness,
         decorationColor: decorationColor ?? const Color(0xffA59F92),
         fontSize: fontSize ?? 14.sp,
         color: color ?? AppColors.textPrimary,

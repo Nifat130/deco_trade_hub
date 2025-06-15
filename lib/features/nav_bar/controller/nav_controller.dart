@@ -7,6 +7,9 @@ import 'package:deco_trade_hub/core/utils/constants/app_sizer.dart';
 import 'package:deco_trade_hub/core/utils/constants/app_sizer.dart';
 import 'package:deco_trade_hub/core/utils/constants/app_sizer.dart';
 import 'package:deco_trade_hub/core/utils/constants/app_sizer.dart';
+import 'package:deco_trade_hub/features/bookings/controllers/business_booking_controller.dart';
+import 'package:deco_trade_hub/features/bookings/presentation/screens/booking_screen.dart';
+import 'package:deco_trade_hub/features/bookings/presentation/screens/business_booking_screen.dart';
 import 'package:deco_trade_hub/features/settings/presentation/screens/business_setting_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -24,18 +27,18 @@ class NavController extends GetxController {
     _selectedIndex.value = index;
   }
 
-  // final List<Widget> businessScreens = [
-  //   BusinessHomeScreen(),
-  //   BusinessBookingScreen(),
-  //   MessageScreen(),
-  //   BusinessSettingScreen()
-  // ];
-  final List<Widget> screens = [
+  final List<Widget> businessScreens = [
     HomeScreen(),
+    BusinessBookingScreen(),
     HomeScreen(),
-    HomeScreen(),
-    BusinessSettingScreen(),
+    BusinessSettingScreen()
   ];
+  // final List<Widget> screens = [
+  //   HomeScreen(),
+  //   HomeScreen(),
+  //   HomeScreen(),
+  //   BusinessSettingScreen(),
+  // ];
 
   final List<String> labels = const ['Home', 'Bookings', 'Hire', 'Settings'];
 

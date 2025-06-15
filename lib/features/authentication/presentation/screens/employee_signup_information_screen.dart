@@ -111,26 +111,31 @@ class EmployeeSignupInformationScreen extends GetView<SingUpController> {
                   },
                   child: Obx(() =>
                   controller.nidPath.value == '' ?
-                  Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.sp),
-                        color: Colors.white,
-                        border: Border.all(color: AppColors.borderColor, width: 2)
-                    ),
-                    padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 24.h),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Icon(Icons.file_open_sharp, color: AppColors.textSecondary,),
-                        SizedBox(height: 8.h,),
-                        CustomText(text: "Upload photo of your NID card", fontSize: 18.sp, color: AppColors.textSecondary,)
-                      ],
+                  GestureDetector(
+                    onTap: (){
+                      controller.pickNidCard();
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.sp),
+                          color: Colors.white,
+                          border: Border.all(color: AppColors.borderColor, width: 2)
+                      ),
+                      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 24.h),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Icon(Icons.file_open_sharp, color: AppColors.textSecondary,),
+                          SizedBox(height: 8.h,),
+                          CustomText(text: "Upload photo of your NID card", fontSize: 18.sp, color: AppColors.textSecondary,)
+                        ],
+                      ),
                     ),
                   ) :
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8.sp),
-                    child: Image.file(File(controller.licencePath.value), width: double.infinity, height: 150.h, fit: BoxFit.fill,),
+                    child: Image.file(File(controller.nidPath.value), width: double.infinity, height: 150.h, fit: BoxFit.fill,),
                   )
                   ),
                 ),

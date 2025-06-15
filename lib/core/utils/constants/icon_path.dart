@@ -38,6 +38,12 @@ class IconPath{
   static const  String productQuantityIcon = '$_basePath/productQuantityIcon.png';
   static const  String takaIcon = '$_basePath/takaIcon.png';
   static const  String productWidthIcon = '$_basePath/productWidthIcon.png';
+  static const  String pendingIcon = '$_basePath/pendingIcon.png';
+  static const  String progressIcon = '$_basePath/progressIcon.png';
+  static const  String completedImage = '$_basePath/completedImage.png';
+  static const  String crossButton = '$_basePath/crossButton.png';
+  static const  String forwardButton = '$_basePath/forwardButton.png';
+  static const  String paymentIcon = '$_basePath/paymentIcon.png';
 
 
 }

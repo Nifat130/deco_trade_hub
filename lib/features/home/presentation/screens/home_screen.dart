@@ -42,7 +42,12 @@ class HomeScreen extends StatelessWidget {
                             Flexible(
                                 flex: 2,
                                 child: ClipOval(
-                                  child: Image.asset(ImagePath.profileImage, fit: BoxFit.fill, height: 44.h, width: 44.w,),
+                                  child: GestureDetector(
+                                    onTap: (){
+                                      Get.toNamed(AppRoute.feedScreen);
+                                    },
+                                    child: Image.asset(ImagePath.profileImage, fit: BoxFit.fill, height: 44.h, width: 44.w,),
+                                  ),
                                 )
                             ),
                             Flexible(

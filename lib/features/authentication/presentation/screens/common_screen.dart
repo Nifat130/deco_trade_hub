@@ -94,9 +94,9 @@ class CommonScreen extends GetView<CommonController> {
                       Obx(() =>
                           roleContainer(controller, "Retailer", controller.selectedRole.value == "Retailer" ? IconPath.retailerIcon : IconPath.retailerBWIcon)
                       ),
-                      Obx(() =>
-                          roleContainer(controller, "Employee", controller.selectedRole.value == "Employee" ? IconPath.employeeIcon : IconPath.employeeBWIcon)
-                      ),
+                      // Obx(() =>
+                      //     roleContainer(controller, "Employee", controller.selectedRole.value == "Employee" ? IconPath.employeeIcon : IconPath.employeeBWIcon)
+                      // ),
                     ],
                   ),
                   SizedBox(height: 24.h,),
